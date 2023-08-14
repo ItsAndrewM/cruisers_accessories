@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@builder.io/react": "^3.0.13",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
     "next": "13.4.13",
