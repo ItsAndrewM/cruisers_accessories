@@ -4,9 +4,12 @@ import { useRouter } from "next/router";
 import { BuilderComponent, builder, useIsPreviewing } from "@builder.io/react";
 import DefaultErrorPage from "next/error";
 import Head from "next/head";
+import '../builder-registry'
 
 // Replace with your Public API Key
 builder.init(process.env.BUILDER_PUBLIC_KEY);
+console.log(process.env.BUILDER_PUBLIC_KEY)
+
 
 // Define a function that fetches the Builder
 // content for a given page
