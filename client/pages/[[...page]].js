@@ -7,8 +7,7 @@ import Head from "next/head";
 import '../builder-registry'
 
 // Replace with your Public API Key
-builder.init(process.env.BUILDER_PUBLIC_KEY);
-console.log(process.env.BUILDER_PUBLIC_KEY)
+builder.init("20988483cda74747b3e814c30d7ff832");
 
 
 // Define a function that fetches the Builder

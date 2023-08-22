@@ -11,3 +11,9 @@ Builder.registerComponent(
     ],
 }
 )
+
+Builder.registerComponent(
+    dynamic(() => import("./components/catCarousel/catCarousel")), {
+    name: 'CatCarousel',
+}
+)
