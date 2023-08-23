@@ -27,7 +27,7 @@ const CatCarousel = () => {
                         // <Link href={`/products/product-category/${cats.slug}`} key={cats.id}>
                         <>
                             <Image src={cats.images[0].file.url} alt={cats.name} width={500} height={500} quality={100} />
-                            <div className={style.textContainer}><h1>{cats.name}</h1><h2><Link href={`/products/product-category/${cats.slug}`}>SHOP {cats.name}</Link></h2></div>
+                            <div className={style.textContainer}><h1>{cats.name}</h1><div><h2><Link href={`/products/product-category/${cats.slug}`} className={styles.link}>SHOP {cats.name}</Link></h2></div></div>
                         </>
                         // </Link>
                     )

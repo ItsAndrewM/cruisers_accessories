@@ -1,6 +1,7 @@
 import SearchBar from "@/components/searchBar/searchBar";
 import { Suspense } from "react"
 
+
 const SearchBarFallback = () => {
     return <>placeholder</>
 }
@@ -13,7 +14,6 @@ const Page = () => {
                     <SearchBar />
                 </Suspense>
             </nav>
-            <h1>dashboard</h1>
         </>
 
     );
