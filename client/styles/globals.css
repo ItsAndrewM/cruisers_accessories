@@ -15,6 +15,7 @@
   --gap-xl: 36px;
   --cream: #f3f0e7;
   --green: #64ffda;
+  --babyblue: #4A90E2;
   --grey: #8892b0;
   --lightGrey: #666;
   --lighterGrey: rgba(0, 0, 0, 0.2);
@@ -51,6 +52,7 @@ a {
   text-decoration: none;
 }
 
+
 img {
   max-width: 100%;
   height: auto;
@@ -82,9 +84,7 @@ h6 {
   font-family: var(--body-font-family);
 }
 
-section {
-  max-width: 100% !important;
-}
+/* section {} */
 
 /* //////////////////////////////////////////////////////////////// */
 /* /////////////////////////mobile styling///////////////////////// */

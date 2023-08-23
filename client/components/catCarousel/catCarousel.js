@@ -53,6 +53,7 @@ const CatCarousel = () => {
                     items={items && items}
                     responsive={responsive}
                     controlsStrategy="default"
+                    disableButtonsControls={true}
                 />
             </div>
         </div>
