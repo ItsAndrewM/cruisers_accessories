@@ -1,8 +1,8 @@
-import s from './loadingDots.module.css'
+import styles from './loadingDots.module.css'
 
 const LoadingDots = () => {
     return (
-        <span className={s.root}>
+        <span className={styles.wrapper}>
             <span />
             <span />
             <span />

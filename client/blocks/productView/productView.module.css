@@ -1,0 +1,48 @@
+.button {
+    margin: 8px;
+    display: block;
+}
+
+.grid {
+    display: flex;
+}
+
+.container {
+    display: flex;
+    gap: .5em;
+    align-items: center;
+}
+
+.outerGrid {
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    gap: 32px;
+    padding: 0;
+    margin: 0;
+}
+
+.box {
+    border: 1px solid gray;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.span {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.select {
+    padding: 8px;
+    padding-right: 32px;
+    border-radius: 4px;
+    background-color: var(--cream);
+    font-size: inherit;
+    font-family: inherit;
+    width: 100%;
+}
