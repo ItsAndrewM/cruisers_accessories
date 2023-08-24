@@ -11,6 +11,6 @@
     max-width: 100%;
     overflow: auto;
     display: flex;
-    bottom: 160px;
+    bottom: 10px;
     transform: translatex(-50%);
 }

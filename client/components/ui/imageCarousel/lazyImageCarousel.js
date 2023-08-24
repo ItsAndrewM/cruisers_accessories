@@ -8,21 +8,28 @@ import {
 import Image from "next/image";
 import styles from "./imageCarousel.module.css";
 import "pure-react-carousel/dist/react-carousel.es.css";
-
+import { IconButton } from 'theme-ui'
 const CustomDotGroup = ({ images, onThumbnailClick, ...imageProps }) => {
   return (
     <div className={styles.wrapper}>
       {images.map((image, slide) => {
-        (
-
-          <Dot slide={slide}>
-            <Image
-              src={image.src}
-              {...imageProps}
-              height={80}
-              width={80}
-            ></Image>
-          </Dot>
+        console.log(image)
+        return (
+          <IconButton
+            key={slide}
+            sx={{ height: 80, width: 80 }}
+            as="span"
+            onClick={() => onThumbnailClick?.(slide)}
+          >
+            <Dot slide={slide}>
+              <Image
+                src={image.src}
+                {...imageProps}
+                height={80}
+                width={80}
+              ></Image>
+            </Dot>
+          </IconButton>
         )
       })}
     </div>
