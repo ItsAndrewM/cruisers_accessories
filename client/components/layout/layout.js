@@ -42,11 +42,10 @@ const Layout = ({ children, pageProps }) => {
             return 'loading ...'
           }
           const siteSettings = data.siteSettings
-          console.log(siteSettings)
           const colorOverrides = data.colorOverrides
           const siteSeoInfo = data.siteInformation
           return (
-            <ManagedUIContext key={data.id} siteSettings={siteSettings || fallback}>
+            <ManagedUIContext key={data.id} siteSettings={siteSettings}>
               <Head seoInfo={siteSeoInfo || seoConfig} />
               <InnerLayout
                 themeName={data.theme || 'base'}
@@ -69,8 +68,7 @@ const InnerLayout = ({ themeName, children, colorOverrides }) => {
   const { displaySidebar, closeSidebar } = useUI()
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
   return (
-    // <ThemeUIProvider theme={theme}>
-    <>
+    <ThemeUIProvider theme={theme}>
       <Navbar />
       <div
         className={styles.wrapper}
@@ -97,8 +95,7 @@ const InnerLayout = ({ themeName, children, colorOverrides }) => {
           }
         />
       </NoSSR>
-    </>
-    // </ThemeUIProvider >
+    </ThemeUIProvider >
 
   )
 }
