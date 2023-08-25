@@ -25,7 +25,7 @@ const Sidebar = ({ children, open = false, onClose }) => {
       }}
     >
       <ModalCloseTarget>
-        <Themed.div
+        <div
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -35,7 +35,7 @@ const Sidebar = ({ children, open = false, onClose }) => {
           }}
         >
           <Close />
-        </Themed.div>
+        </div>
       </ModalCloseTarget>
       {children}
     </BaseModal>

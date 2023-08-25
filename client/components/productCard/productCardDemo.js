@@ -77,9 +77,9 @@ const ProductCardDemo = ({
           </div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <Themed.h2 sx={{ mt: 4, mb: 0, fontSize: 14 }}>
+          <h2 sx={{ mt: 4, mb: 0, fontSize: 14 }}>
             {product.title}
-          </Themed.h2>
+          </h2>
           <Text sx={{ fontSize: 12, mb: 2 }}>{price}</Text>
         </div>
       </Link>

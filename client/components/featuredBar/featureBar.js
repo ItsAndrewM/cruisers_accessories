@@ -17,9 +17,9 @@ const FeatureBar = ({
     <CenterModal isOpen={delayPassed && !hide}>
       <ModalTitle>{title}</ModalTitle>
       {description}
-      <Themed.div sx={{ display: 'flex', justifyContent: 'center', p: [1, 2] }}>
+      <div sx={{ display: 'flex', justifyContent: 'center', p: [1, 2] }}>
         {action && action}
-      </Themed.div>
+      </div>
     </CenterModal>
   )
 }

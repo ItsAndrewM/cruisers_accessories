@@ -113,7 +113,7 @@ const SearchModalContent = ({ props }) => {
   const throttleSearch = useCallback(throttle(getProducts), [])
 
   return (
-    <Themed.div
+    <div
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -158,7 +158,7 @@ const SearchModalContent = ({ props }) => {
           )}
         </span>
       )}
-    </Themed.div>
+    </div>
   )
 }
 
