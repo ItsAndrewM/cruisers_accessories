@@ -23,7 +23,6 @@ const FeatureBar = dynamic(() => import('../featuredBar/featureBar'), {
 
 const Layout = ({ children, pageProps }) => {
   const builderTheme = pageProps.theme
-  console.log(pageProps)
   const isLive = !Builder.isEditing && !Builder.isPreviewing
   return (
     <CommerceProvider {...swellConfig}>

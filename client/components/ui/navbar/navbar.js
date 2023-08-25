@@ -35,7 +35,7 @@ const Navbar = () => {
     <Fragment>
       <BuilderComponent
         content={announcement}
-        data={{ theme }}
+        // data={{ theme }}
         model="announcement-bar"
       />
       <div className={styles.wrapper}
