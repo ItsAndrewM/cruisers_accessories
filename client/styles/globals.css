@@ -15,7 +15,7 @@
   --gap-xl: 36px;
   --cream: #f3f0e7;
   --green: #64ffda;
-  --babyblue: #4A90E2;
+  --babyblue: #4a90e2;
   --grey: #8892b0;
   --lightGrey: #666;
   --lighterGrey: rgba(0, 0, 0, 0.2);
@@ -50,8 +50,8 @@ a {
   position: relative;
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
-
 
 img {
   max-width: 100%;
@@ -91,7 +91,6 @@ h6 {
 /* //////////////////////////////////////////////////////////////// */
 
 @media (max-width: 600px) {
-
   h1,
   h2 {
     font-size: var(--mobile-h);
