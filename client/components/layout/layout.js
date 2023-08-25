@@ -1,4 +1,4 @@
-import { ThemeUIProvider, jsx } from 'theme-ui'
+import { ThemeUIProvider } from 'theme-ui'
 import dynamic from 'next/dynamic'
 import { ManagedUIContext, useUI } from '../ui/context'
 import Head from '../head/head'
@@ -34,9 +34,9 @@ const Layout = ({ children, pageProps }) => {
           if (loading && !builderTheme) {
             return 'loading ...'
           }
-          const siteSettings = data?.siteSettings
-          const colorOverrides = data?.colorOverrides
-          const siteSeoInfo = data?.siteInformation
+          const siteSettings = data.siteSettings
+          const colorOverrides = data.colorOverrides
+          const siteSeoInfo = data.siteInformation
           return (
             <ManagedUIContext key={data.id} siteSettings={siteSettings}>
               <Head seoInfo={siteSeoInfo || seoConfig} />
@@ -61,7 +61,8 @@ const InnerLayout = ({ themeName, children, colorOverrides }) => {
   const { displaySidebar, closeSidebar } = useUI()
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
   return (
-    <ThemeUIProvider theme={theme}>
+    // <ThemeUIProvider theme={theme}>
+    <>
       <Navbar />
       <div
         className={styles.wrapper}
@@ -88,7 +89,8 @@ const InnerLayout = ({ themeName, children, colorOverrides }) => {
           }
         />
       </NoSSR>
-    </ThemeUIProvider >
+    </>
+    // </ThemeUIProvider >
 
   )
 }
