@@ -31,10 +31,8 @@ export default function App({ Component, pageProps }) {
   const Layout = Component.Layout || Noop;
 
   return (
-    <>
-      <Layout pageProps={pageProps}>
-        <Component {...pageProps} />
-      </Layout>
-    </>
+    <Layout pageProps={pageProps}>
+      <Component {...pageProps} />
+    </Layout>
   );
 }
