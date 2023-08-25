@@ -7,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     padding: 2;
-    color: background;
+    color: inherit;
 }
 
 .justifyContent {
