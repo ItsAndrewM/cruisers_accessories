@@ -47,7 +47,8 @@ const Layout = ({ children, pageProps }) => {
           return (
             // <ManagedUIContext key={data.id} siteSettings={siteSettings}>
             <ManagedUIContext key={data.id} >
-              <Head seoInfo={siteSeoInfo || seoConfig} />
+              {/* <Head seoInfo={siteSeoInfo || seoConfig} /> */}
+              <Head seoInfo={seoConfig} />
               <InnerLayout
                 themeName={data.theme || 'base'}
               // colorOverrides={colorOverrides}
