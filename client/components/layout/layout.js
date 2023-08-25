@@ -23,6 +23,7 @@ const FeatureBar = dynamic(() => import('../featuredBar/featureBar'), {
 
 const Layout = ({ children, pageProps }) => {
   const builderTheme = pageProps.theme
+  console.log(pageProps)
   const isLive = !Builder.isEditing && !Builder.isPreviewing
   return (
     <CommerceProvider {...swellConfig}>
@@ -38,7 +39,7 @@ const Layout = ({ children, pageProps }) => {
           const colorOverrides = data?.colorOverrides
           const siteSeoInfo = data?.siteInformation
           return (
-            <ManagedUIContext key={data?.id} siteSettings={siteSettings}>
+            <ManagedUIContext key={data.id} siteSettings={siteSettings}>
               <Head seoInfo={siteSeoInfo || seoConfig} />
               <InnerLayout
                 themeName={data.theme || 'base'}
@@ -61,7 +62,7 @@ const InnerLayout = ({ themeName, children, colorOverrides }) => {
   const { displaySidebar, closeSidebar } = useUI()
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
   return (
-    <ThemeUIProvider theme={theme}>
+    <ThemeUIProvider theme={theme && theme}>
       <Navbar />
       <div
         className={styles.wrapper}

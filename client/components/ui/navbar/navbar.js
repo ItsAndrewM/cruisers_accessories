@@ -31,7 +31,6 @@ const Navbar = () => {
     }
     fetchContent()
   }, [cart?.items])
-
   return (
     <Fragment>
       <BuilderComponent

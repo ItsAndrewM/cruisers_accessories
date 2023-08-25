@@ -29,14 +29,10 @@
         {
           "link": "/about-us",
           "title": "About us"
-        },
-        {
-          "link": "/contact-us",
-          "title": "Contact Us"
         }
       ]
     },
-    "theme": "deep"
+    "theme": "swiss"
   },
   "id": "c77df46d5ce0441c86ca4bafd757d88d",
   "lastUpdated": 1631307937069,
