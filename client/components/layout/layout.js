@@ -39,7 +39,7 @@ const Layout = ({ children, pageProps }) => {
           // const siteSeoInfo = data.siteInformation
           return (
             // <ManagedUIContext key={data.id} siteSettings={siteSettings}>
-            <ManagedUIContext key={data.id} >
+            <ManagedUIContext >
               {/* <Head seoInfo={siteSeoInfo || seoConfig} /> */}
               <Head seoInfo={seoConfig} />
               <InnerLayout

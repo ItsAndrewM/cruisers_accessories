@@ -4,7 +4,7 @@ export const prepareVariantsWithOptions = (product) => {
       (optionValues, optionId) => {
         product.options.find((option) => {
           const matchingOptionValue = option.values.find((value) => {
-            return value?.id === optionId;
+            return value.id === optionId;
           });
           if (matchingOptionValue) {
             optionValues[`${option?.name?.toLowerCase()}`] =

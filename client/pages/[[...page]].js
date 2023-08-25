@@ -95,7 +95,7 @@ export default function Page({ page }) {
                 // data={{ theme }}
                 renderLink={(props) => {
                     // nextjs link doesn't handle hash links well if it's on the same page (starts with #)
-                    if (props.target === '_blank' || props.href?.startsWith('#')) {
+                    if (props.target === '_blank' || props.href.startsWith('#')) {
                         return <Link {...props}></Link>
                     }
                     return <Link {...props} as={Link}></Link>
