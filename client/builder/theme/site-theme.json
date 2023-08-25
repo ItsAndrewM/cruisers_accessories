@@ -7,19 +7,19 @@
   "data": {
     "colorOverrides": {},
     "siteInformation": {
-      "description": "Precision Sails Presents: Cruiser Accessories",
+      "description": "A starter kit demo store for using Swell and Builder.io ->  https://github.com/swellstores/nextjs-builder",
       "openGraph": {
         "locale": "en_IE",
-        "site_name": "Cruiser Accessories",
+        "site_name": "Builder.io + Next.js + Swell Demo",
         "type": "website",
-        "url": "https://cruiser-accessories.vercel.app/"
+        "url": "https://github.com/swellstores/nextjs-builder"
       },
-      "title": "Cruiser Accessories",
+      "title": "Builder.io + Next.js + Swell Demo",
       "titleTemplate": "%s - Headless Demo"
     },
     "siteSettings": {
       "logo": {
-        "text": "Cruiser Accessories"
+        "text": "Storefront"
       },
       "navigationLinks": [
         {
