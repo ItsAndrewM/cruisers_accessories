@@ -32,8 +32,7 @@ const backup = {
 
 export async function getLayoutProps(targetingAttributes) {
   const theme = await resolveSwellContent('theme', targetingAttributes)
-  console.log(theme)
   return {
-    theme: theme || backup,
+    theme: theme || null,
   }
 }

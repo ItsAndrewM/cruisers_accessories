@@ -61,7 +61,7 @@ const InnerLayout = ({ themeName, children, colorOverrides }) => {
   const { displaySidebar, closeSidebar } = useUI()
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
   return (
-    <ThemeUIProvider theme={theme && theme}>
+    <ThemeUIProvider >
       <Navbar />
       <div
         className={styles.wrapper}
