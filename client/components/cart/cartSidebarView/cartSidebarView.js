@@ -46,7 +46,7 @@ const CartSidebarView = () => {
           <Bag />
           Your cart is empty
           <Text>
-            Continue browsing!.
+            Continue browsing!
           </Text>
         </>
       ) : (
