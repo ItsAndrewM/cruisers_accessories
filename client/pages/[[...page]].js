@@ -92,7 +92,7 @@ export default function Page({ page }) {
             <BuilderComponent
                 options={{ includeRefs: true }}
                 model="page"
-                data={{ theme }}
+                // data={{ theme }}
                 renderLink={(props) => {
                     // nextjs link doesn't handle hash links well if it's on the same page (starts with #)
                     if (props.target === '_blank' || props.href?.startsWith('#')) {
