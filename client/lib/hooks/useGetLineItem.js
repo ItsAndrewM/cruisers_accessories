@@ -8,9 +8,8 @@ export const useGetLineItem = () => {
       return null
     }
 
-    const item = cartItems?.find((cartItem) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
+    const item = cartItems.find((cartItem) => {
+
       return cartItem.id === itemId
     })
 

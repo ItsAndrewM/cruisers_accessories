@@ -30,7 +30,7 @@ export const UIProvider = ({
         toggleSidebar,
     }
 
-    return <UIContext.Provider value={value} children={children} />
+    return <UIContext.Provider value={value}>{children}</UIContext.Provider>
 }
 
 export const useUI = () => {
