@@ -26,6 +26,7 @@ const CustomDotGroup = ({ images, onThumbnailClick, ...imageProps }) => {
                 {...imageProps}
                 height={80}
                 width={80}
+                alt=""
               ></Image>
             </Dot>
           </IconButton>

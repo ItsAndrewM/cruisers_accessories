@@ -8,7 +8,7 @@ import { searchProducts } from '@/lib/operations-swell'
 import { ExpandModal } from 'react-spring-modal'
 import { throttle } from 'lodash'
 import 'react-spring-modal/styles.css'
-import cross from '../../icons/cross'
+import Cross from '../../icons/cross'
 import styles from "./searchBar.module.css"
 
 

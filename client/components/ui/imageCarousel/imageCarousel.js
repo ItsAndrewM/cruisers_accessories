@@ -19,7 +19,7 @@ const ImageCarousel = ({
     return (
         <div >
             <UntilInteraction
-                skeleton={<Image src={images[0].src} {...imageProps} />}
+                skeleton={<Image src={images[0].src} {...imageProps} alt='' />}
             >
                 <LazyCarousel
                     images={images}
