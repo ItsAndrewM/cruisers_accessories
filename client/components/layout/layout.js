@@ -16,6 +16,13 @@ import 'react-spring-modal/styles.css'
 import seoConfig from '../../config/seo.json'
 import NoSSR from '../ui/noSSR/noSSR'
 import styles from "./layout.module.css"
+const fallback = {
+  navigationLinks: [
+    { link: '/faq', title: 'FAQ' },
+    { link: '/about-us', title: 'About us' }
+  ],
+  logo: { text: 'Storefront' }
+}
 
 const FeatureBar = dynamic(() => import('../featuredBar/featureBar'), {
   ssr: false,
@@ -35,10 +42,11 @@ const Layout = ({ children, pageProps }) => {
             return 'loading ...'
           }
           const siteSettings = data.siteSettings
+          console.log(siteSettings)
           const colorOverrides = data.colorOverrides
           const siteSeoInfo = data.siteInformation
           return (
-            <ManagedUIContext key={data.id} siteSettings={siteSettings}>
+            <ManagedUIContext key={data.id} siteSettings={siteSettings || fallback}>
               <Head seoInfo={siteSeoInfo || seoConfig} />
               <InnerLayout
                 themeName={data.theme || 'base'}
