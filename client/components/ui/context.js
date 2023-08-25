@@ -9,12 +9,12 @@ export const UIContext = createContext(initialState)
 UIContext.displayName = 'UIContext'
 
 export const UIProvider = ({
-    siteSettings,
+    // siteSettings,
     children,
 }) => {
     const [state, setState] = useState({
         ...initialState,
-        ...siteSettings,
+        // ...siteSettings,
     })
 
     const openSidebar = () => setState(() => ({ displaySidebar: true }))
@@ -24,7 +24,7 @@ export const UIProvider = ({
 
     const value = {
         ...state,
-        ...siteSettings,
+        // ...siteSettings,
         openSidebar,
         closeSidebar,
         toggleSidebar,
