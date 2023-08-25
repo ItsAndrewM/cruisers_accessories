@@ -40,8 +40,8 @@ export const useUI = () => {
     }
     return context
 }
-
 export const ManagedUIContext = ({
     children,
-    siteSettings,
-}) => <UIProvider siteSettings={siteSettings}>{children}</UIProvider>
+    // siteSettings,
+    // }) => <UIProvider siteSettings={siteSettings}>{children}</UIProvider>
+}) => <UIProvider >{children}</UIProvider>
