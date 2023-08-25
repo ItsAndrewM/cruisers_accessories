@@ -5,7 +5,7 @@
     "optimizeContentVisibility": true,
     "reloadPreviewForMobile": false
   },
-  "siteUrl": "http://localhost:3000",
+  "siteUrl": "https://cruiser-accessories.vercel.app/",
   "customTargetingAttributes": {
     "collectionHandle": {
       "type": "SwellCategoryHandle"
