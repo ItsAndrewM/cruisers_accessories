@@ -39,7 +39,7 @@ const CartSidebarView = () => {
 
   return (
     <div
-      className={`${styles.wrapper}` `${isEmpty ? styles.justifyContent : ""}`}
+      className={`${styles.wrapper} ${isEmpty ? styles.justifyContent : ""}`}
     >
       {isEmpty ? (
         <>

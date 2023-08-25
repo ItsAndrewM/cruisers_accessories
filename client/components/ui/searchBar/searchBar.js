@@ -82,8 +82,7 @@ const Searchbar = () => {
 }
 
 const SearchModalContent = ({ props }) => {
-  const [search, setSearch] = useState(
-    props.initialSearch && String(props.initialSearch),
+  const [search, setSearch] = useState(props && props.initialSearch && String(props.initialSearch),
   )
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
@@ -99,7 +98,7 @@ const SearchModalContent = ({ props }) => {
     setSearch(searchTerm)
     setProducts(results)
     setLoading(false)
-    if (searchTerm) {
+    if (searchTerm && props) {
       props.onSearch(searchTerm)
     }
   }
@@ -125,7 +124,7 @@ const SearchModalContent = ({ props }) => {
       <Input
         type="search"
         sx={{ marginBottom: 15 }}
-        defaultValue={props.initialSearch}
+        defaultValue={props && props.initialSearch}
         placeholder="Search for products..."
         onChange={(event) => throttleSearch(event.target.value)}
       />

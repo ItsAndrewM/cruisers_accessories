@@ -15,6 +15,7 @@ import '@builder.io/widgets'
 import 'react-spring-modal/styles.css'
 import seoConfig from '../../config/seo.json'
 import NoSSR from '../ui/noSSR/noSSR'
+import styles from "./layout.module.css"
 
 const FeatureBar = dynamic(() => import('../featuredBar/featureBar'), {
   ssr: false,
@@ -63,13 +64,7 @@ const InnerLayout = ({ themeName, children, colorOverrides }) => {
     <ThemeUIProvider theme={theme}>
       <Navbar />
       <div
-        sx={{
-          margin: `0 auto`,
-          px: 20,
-          maxWidth: 1920,
-          minWidth: '60vw',
-          minHeight: 800,
-        }}
+        className={styles.wrapper}
       >
         <main>{children}</main>
       </div>

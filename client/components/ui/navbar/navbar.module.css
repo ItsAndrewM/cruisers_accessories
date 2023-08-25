@@ -1,7 +1,7 @@
 .wrapper {
     margin: 0 auto;
-    max-width: 1920;
-    padding: 2;
+    max-width: 1920px;
+    padding: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,7 +11,7 @@
 .container {
     display: flex;
     flex-basis: 0;
-    min-width: 240;
+    min-width: 240px;
     justify-content: space-evenly;
 }
 
@@ -23,7 +23,7 @@
 
 .small {
     display: flex;
-    min-width: 140;
+    min-width: 140px;
     width: 100%;
-    justify-content: space-between, flex-end;
+    justify-content: space-between;
 }
