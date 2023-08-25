@@ -1,6 +1,6 @@
 import { Text, Card, Grid, Divider, NavLink } from "theme-ui";
 import { useEffect, useState } from "react";
-import { Bag } from "../../icons/bag";
+import Bag from "../../icons/bag";
 import { useCart } from "@/lib/hooks/useCart";
 import { useCheckoutUrl } from "@/lib/hooks/useCheckoutUrl";
 import CartItem from "../cartItem/cartItem";

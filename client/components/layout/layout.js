@@ -5,8 +5,8 @@ import Head from '../head/head'
 import Navbar from '../ui/navbar/navbar'
 import { useAcceptCookies } from '../../lib/hooks/useAcceptCookies'
 import { Button } from 'theme-ui'
-import { Sidebar } from '../ui/sidebar/sidebar'
-import { CartSidebarView } from '../cart/cartSidebarView/cartSidebarView'
+import Sidebar from '../ui/sidebar/sidebar'
+import CartSidebarView from '../cart/cartSidebarView/cartSidebarView'
 import { CommerceProvider } from '@/lib/commerceProvider'
 import swellConfig from '@/swell.config'
 import { builder, BuilderContent, Builder } from '@builder.io/react'
@@ -23,7 +23,6 @@ const FeatureBar = dynamic(() => import('../featuredBar/featureBar'), {
 const Layout = ({ children, pageProps }) => {
   const builderTheme = pageProps.theme
   const isLive = !Builder.isEditing && !Builder.isPreviewing
-  console.log(isLive)
   return (
     <CommerceProvider {...swellConfig}>
       <BuilderContent

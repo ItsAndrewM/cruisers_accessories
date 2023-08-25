@@ -3,8 +3,8 @@ import { Grid, Button, Input, Text, IconButton } from 'theme-ui'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Plus } from '../../icons/plus'
-import { Minus } from "../../icons/minus"
+import Plus from '../../icons/plus'
+import Minus from "../../icons/minus"
 import { getPrice } from '@/lib/utils/product'
 import { useUpdateItemQuantity } from '@/lib/hooks/useUpdateItemQuantity'
 import { useRemoveItemFromCart } from '@/lib/hooks/useRemoveItemFromCart'

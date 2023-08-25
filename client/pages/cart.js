@@ -1,5 +1,5 @@
-import { CartSidebarView } from '../components/cart/cartSidebarView/cartSidebarView'
-import { Layout } from '../components/layout/layout'
+import CartSidebarView from '../components/cart/cartSidebarView/cartSidebarView'
+import Layout from '../components/layout/layout'
 const Cart = () => <CartSidebarView />
 export default Cart
 

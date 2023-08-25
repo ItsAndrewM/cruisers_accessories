@@ -25,7 +25,6 @@ const SearchBar = () => {
         [searchParams]
     )
     const search = searchParams.get('search')
-    console.log(search)
 
     useEffect(() => {
         const searchProducts = async (search) => {
@@ -35,7 +34,6 @@ const SearchBar = () => {
                 limit: 25, // Max. 100
                 page: 1
             })
-            console.log(props)
             setItems(props.results)
         }
         searchProducts(search)

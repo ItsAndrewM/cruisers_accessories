@@ -1,6 +1,6 @@
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import { Layout } from '@/components/layout/layout'
+import Layout from '@/components/layout/layout'
 import { BuilderComponent, Builder, builder } from '@builder.io/react'
 import builderConfig from '@/builder.config'
 import DefaultErrorPage from 'next/error'

@@ -13,7 +13,6 @@ const CustomDotGroup = ({ images, onThumbnailClick, ...imageProps }) => {
   return (
     <div className={styles.wrapper}>
       {images.map((image, slide) => {
-        console.log(image)
         return (
           <IconButton
             key={slide}

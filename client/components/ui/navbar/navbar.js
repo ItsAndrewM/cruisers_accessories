@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from 'react'
 import Link from 'next/link'
-import { UserNav } from '../userNav/userNav'
+import UserNav from '../userNav/userNav'
 import env from '../../../config/env'
 import { BuilderComponent, builder } from '@builder.io/react'
 import { useCart } from '@/lib/hooks/useCart'

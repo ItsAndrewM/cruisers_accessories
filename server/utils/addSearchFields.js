@@ -16,5 +16,4 @@ const addSearchFields = async () => {
 }
 
 addSearchFields().then((data) => {
-    console.log(data)
 })
