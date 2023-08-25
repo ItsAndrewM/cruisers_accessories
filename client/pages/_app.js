@@ -6,13 +6,13 @@ import "../blocks/productView/productView.builder";
 builder.init(builderConfig.apiKey);
 const Noop = ({ children }) => <>{children}</>;
 
-// Builder.register("insertMenu", {
-//   name: "Swell Category Components",
-//   items: [
-//     { name: "FeaturedCat" },
-//     // { name: 'ProductGrid' }
-//   ],
-// });
+Builder.register("insertMenu", {
+  name: "Swell Category Components",
+  items: [
+    { name: "FeaturedCat" },
+    // { name: 'ProductGrid' }
+  ],
+});
 
 Builder.register("insertMenu", {
   name: "Swell Products Components",
