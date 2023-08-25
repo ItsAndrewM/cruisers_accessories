@@ -1,8 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../context";
-import { Cart } from "../types";
 
-export function useCart(): Cart | null {
+export const useCart = () => {
   const { swell, cart, setCart } = useContext(Context);
 
   useEffect(() => {
@@ -10,7 +9,7 @@ export function useCart(): Cart | null {
       try {
         const result = await swell.cart.get();
         setCart(result);
-      } catch (error) {}
+      } catch (error) { }
     };
 
     fetchData();

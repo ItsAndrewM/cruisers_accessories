@@ -1,0 +1,29 @@
+.wrapper {
+    margin: 0 auto;
+    max-width: 1920;
+    padding: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex-basis: 0;
+    min-width: 240;
+    justify-content: space-evenly;
+}
+
+.div {
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
+}
+
+.small {
+    display: flex;
+    min-width: 140;
+    width: 100%;
+    justify-content: space-between, flex-end;
+}

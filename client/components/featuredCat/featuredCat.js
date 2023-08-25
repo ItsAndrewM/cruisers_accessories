@@ -60,7 +60,7 @@ const FeaturedCat = () => {
           items.map((val, index) => {
             if (index < 8) {
               return (
-                <li className={styles.listItem}>
+                <li className={styles.listItem} key={index}>
                   <Link
                     href={`/products/product-category/${val.slug}`}
                     className={styles.imgLink}

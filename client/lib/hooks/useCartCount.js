@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Context } from "../context";
 
-export async function useCartCount() {
+export const useCartCount = async () => {
   const { cart } = useContext(Context);
   if (cart == null || cart.item_quantity < 1) {
     return 0;

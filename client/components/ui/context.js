@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
 
 const initialState = {
     displaySidebar: false,
@@ -12,7 +12,7 @@ export const UIProvider = ({
     siteSettings,
     children,
 }) => {
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         ...initialState,
         ...siteSettings,
     })

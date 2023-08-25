@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../context";
 
-export function useCheckoutUrl(): string | null {
+export const useCheckoutUrl = () => {
   const { cart } = useContext(Context);
   if (!cart) {
     return null;

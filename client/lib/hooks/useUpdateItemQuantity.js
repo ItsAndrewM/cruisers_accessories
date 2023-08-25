@@ -3,11 +3,11 @@ import { Context } from "../context";
 
 import { useGetLineItem } from "./useGetLineItem";
 
-export function useUpdateItemQuantity() {
+export const useUpdateItemQuantity = () => {
   const { swell, setCart } = useContext(Context);
   const getLineItem = useGetLineItem();
 
-  async function updateItemQuantity(itemId: string | number, quantity: number) {
+  const updateItemQuantity = async (itemId, quantity) => {
     if (itemId == null) {
       throw new Error("Must provide an item id");
     }

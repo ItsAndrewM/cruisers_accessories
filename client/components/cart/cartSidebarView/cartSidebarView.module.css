@@ -1,0 +1,15 @@
+.wrapper {
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 5;
+    background: text;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2;
+    color: background;
+}
+
+.justifyContent {
+    justify-content: center;
+}
