@@ -42,15 +42,15 @@ const Layout = ({ children, pageProps }) => {
             return 'loading ...'
           }
           // const siteSettings = data.siteSettings
-          const colorOverrides = data.colorOverrides
-          const siteSeoInfo = data.siteInformation
+          // const colorOverrides = data.colorOverrides
+          // const siteSeoInfo = data.siteInformation
           return (
             // <ManagedUIContext key={data.id} siteSettings={siteSettings}>
             <ManagedUIContext key={data.id} >
               <Head seoInfo={siteSeoInfo || seoConfig} />
               <InnerLayout
                 themeName={data.theme || 'base'}
-                colorOverrides={colorOverrides}
+              // colorOverrides={colorOverrides}
               >
                 {children}
               </InnerLayout>
