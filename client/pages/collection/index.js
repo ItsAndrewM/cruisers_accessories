@@ -8,6 +8,7 @@ import Head from 'next/head'
 import { useThemeUI } from '@theme-ui/core'
 import { getAllCollections } from '../../lib/operations-swell'
 import { getLayoutProps } from '../../lib/get-layout-props'
+import { NextSeo } from 'next-seo'
 
 const builderModel = 'collections-primary'
 builder.init(builderConfig.apiKey)
