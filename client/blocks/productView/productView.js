@@ -11,7 +11,7 @@ import {
 import LoadingDots from '../../components/ui/loadingDots/loadingDots'
 import ProductLoader from './productLoader'
 import styles from "./productView.module.css"
-import ImageCarousel from '@/components/ui/imageCarousel/imageCarousel'
+import ImageCarousel from '../../components/ui/imageCarousel/lazyImageCarousel'
 
 const ProductBox = ({
   product,

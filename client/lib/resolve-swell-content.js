@@ -2,16 +2,14 @@ import { builder, Builder } from '@builder.io/react'
 import { getAsyncProps } from '@builder.io/utils'
 import builderConfig from '../builder.config'
 import {
+    getAllCollections,
     getCollection,
     getProduct,
 } from './operations-swell'
 builder.init(builderConfig.apiKey)
 Builder.isStatic = true
 
-export const resolveSwellContent = async (
-    modelName,
-    targetingAttributes
-) => {
+export const resolveSwellContent = async (modelName, targetingAttributes) => {
     let page = await builder
         .get(modelName, {
             userAttributes: targetingAttributes,
@@ -71,6 +69,15 @@ export const resolveSwellContent = async (
                     })
                     return {
                         products,
+                    }
+                }
+            },
+
+            async CollectionGrid({ collection }) {
+                if (collection && typeof collection === 'string') {
+                    const collections = await getAllCollections(builderConfig);
+                    return {
+                        collections,
                     }
                 }
             },

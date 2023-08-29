@@ -5,9 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Plus from '../../icons/plus'
 import Minus from "../../icons/minus"
-import { getPrice } from '@/lib/utils/product'
-import { useUpdateItemQuantity } from '@/lib/hooks/useUpdateItemQuantity'
-import { useRemoveItemFromCart } from '@/lib/hooks/useRemoveItemFromCart'
+import { getPrice } from '../../../lib/utils/product'
+import { useUpdateItemQuantity } from "../../../lib/hooks/useUpdateItemQuantity"
+import { useRemoveItemFromCart } from "../../../lib/hooks/useRemoveItemFromCart"
 import styles from "./cartItem.module.css"
 const CartItem = ({
   item,

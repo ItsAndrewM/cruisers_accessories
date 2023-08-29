@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import LoadingDots from '@/components/ui/loadingDots/loadingDots'
+import LoadingDots from '../../components/ui/loadingDots/loadingDots'
 import { Grid } from '@theme-ui/components'
-import ProductCard from '@/components/productCard/productCard'
-import ProductCardDemo from '@/components/productCard/productCardDemo'
-import { getCollection, getProduct } from '@/lib/operations-swell'
-import builderConfig from '@/builder.config'
+import ProductCard from "../../components/productCard/productCard"
+import ProductCardDemo from "../../components/productCard/productCardDemo"
+import { getCollection, getProduct } from '../../lib/operations-swell'
+import builderConfig from '../../builder.config'
 
 export const ProductGrid = ({
   products: initialProducts,
@@ -55,9 +55,10 @@ export const ProductGrid = ({
   if (loading) {
     return <LoadingDots />
   }
-  const ProductComponent = process.env.IS_DEMO
-    ? ProductCardDemo
-    : ProductCard
+  const ProductComponent =
+    // process.env.IS_DEMO
+    // ? ProductCardDemo
+    ProductCard
 
   return (
     <Grid gap={2} width={['100%', '40%', '24%']}>

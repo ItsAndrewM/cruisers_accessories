@@ -1,11 +1,12 @@
 import { BuilderComponent, Builder, builder } from '@builder.io/react'
-import { getAllProductPaths, getProduct } from '@/lib/operations-swell';
+import { getAllProductPaths, getProduct } from '../../lib/operations-swell';
 import { resolveSwellContent } from '../../lib/resolve-swell-content';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import DefaultErrorPage from 'next/error'
-import Layout from '@/components/layout/layout';
-import { getLayoutProps } from '@/lib/get-layout-props';
+import Layout from '../../components/layout/layout';
+import { getLayoutProps } from "../../lib/get-layout-props"
+import { useThemeUI } from 'theme-ui';
 // Replace with your Public API Key.
 builder.init("20988483cda74747b3e814c30d7ff832");
 const builderModel = 'product-page'
@@ -38,6 +39,7 @@ export const getStaticProps = async ({ params }) => {
 const Page = ({ product, page, }) => {
     const isLive = !Builder.isEditing && !Builder.isPreviewing
     const router = useRouter()
+    const { theme } = useThemeUI()
     if (!product && isLive) {
         return (
             <>
@@ -56,7 +58,7 @@ const Page = ({ product, page, }) => {
         <BuilderComponent
             key={product.id}
             model={builderModel}
-            data={{ product }}
+            data={{ product, theme }}
             {...(page && { content: page })}
         />
     )

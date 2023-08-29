@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import swell from 'swell-js';
 import { Context } from './context';
-import swellConfig from '@/swell.config';
+import swellConfig from '../swell.config';
 import useSWR from 'swr'
 
 

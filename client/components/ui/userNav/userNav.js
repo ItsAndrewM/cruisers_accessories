@@ -1,4 +1,4 @@
-import Bag from '@/components/icons/bag'
+import Bag from '../../icons/bag'
 import { useUI } from '../context'
 import { Button } from 'theme-ui'
 

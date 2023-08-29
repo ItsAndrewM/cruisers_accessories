@@ -81,6 +81,7 @@ export const getAllCollections = async (
 
 export const getAllCollectionPaths = async (
     config,
+    limit
 ) => {
     const collections = await getAllCollections(config, limit)
     return collections?.map((entry) => entry.slug) || []

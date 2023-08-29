@@ -42,8 +42,8 @@ body {
   overflow-x: hidden;
   padding: 0;
   margin: 0;
-  font-family: var(--body-font-family);
-  background-color: var(--background-color);
+  /* font-family: var(--body-font-family); */
+  /* background-color: var(--background-color); */
 }
 
 a {
@@ -81,7 +81,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--body-font-family);
+  /* font-family: var(--body-font-family); */
 }
 
 /* section {} */
@@ -91,6 +91,7 @@ h6 {
 /* //////////////////////////////////////////////////////////////// */
 
 @media (max-width: 600px) {
+
   h1,
   h2 {
     font-size: var(--mobile-h);

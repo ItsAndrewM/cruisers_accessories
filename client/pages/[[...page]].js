@@ -1,18 +1,18 @@
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import Layout from '@/components/layout/layout'
+import Layout from '../components/layout/layout'
 import { BuilderComponent, Builder, builder } from '@builder.io/react'
-import builderConfig from '@/builder.config'
+import builderConfig from '../builder.config'
 import DefaultErrorPage from 'next/error'
 import Head from 'next/head'
-import { resolveSwellContent } from '@/lib/resolve-swell-content'
+import { resolveSwellContent } from '../lib/resolve-swell-content'
+import '../blocks/productGrid/productGrid.builder'
+// import "../blocks/collectionView/collectionView.builder"
+import { useThemeUI } from '@theme-ui/core'
+import Link from '../components/ui/link/link'
+import { getLayoutProps } from '../lib/get-layout-props'
 
 builder.init(builderConfig.apiKey)
-// import '../blocks/ProductGrid/ProductGrid.builder'
-// import '../blocks/CollectionView/CollectionView.builder'
-import { useThemeUI } from '@theme-ui/core'
-import Link from '@/components/ui/link/link'
-import { getLayoutProps } from '@/lib/get-layout-props'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -92,13 +92,13 @@ export default function Page({ page }) {
             <BuilderComponent
                 options={{ includeRefs: true }}
                 model="page"
-                // data={{ theme }}
+                data={{ theme }}
                 renderLink={(props) => {
                     // nextjs link doesn't handle hash links well if it's on the same page (starts with #)
                     if (props.target === '_blank' || props.href.startsWith('#')) {
                         return <Link {...props}></Link>
                     }
-                    return <Link {...props} as={Link}></Link>
+                    return <Link {...props} ></Link>
                 }}
                 {...(page && { content: page })}
             />

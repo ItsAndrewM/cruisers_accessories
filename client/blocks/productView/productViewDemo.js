@@ -3,7 +3,7 @@ import OptionPicker from '../../components/optionPicker/optionPicker'
 import { NextSeo } from 'next-seo'
 import { getPrice } from '../../lib/utils/product'
 import ProductLoader from './productLoader'
-import ImageCarousel from '@/components/ui/imageCarousel/imageCarousel'
+import ImageCarousel from '../../components/ui/imageCarousel/lazyImageCarousel'
 
 const ProductBox = ({
   product,
