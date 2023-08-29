@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import styles from "./imageCarousel.module.css"
-import UntilInteraction from '@/components/untilInteraction/untilInteraction'
+import UntilInteraction from "../../untilInteraction/untilInteraction"
 
 const LazyCarousel = dynamic(() => import('./lazyImageCarousel'), {
     loading: () => <div className={styles.container} ></div>,

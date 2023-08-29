@@ -2,9 +2,11 @@
 import { Close } from 'theme-ui'
 import { useResponsiveValue } from '@theme-ui/match-media'
 import { BaseModal, ModalCloseTarget } from 'react-spring-modal'
+import styles from "./sidebar.module.css"
 
 const Sidebar = ({ children, open = false, onClose }) => {
   const width = useResponsiveValue(['100%', 500])
+
   return (
     <BaseModal
       isOpen={open}
@@ -16,6 +18,7 @@ const Sidebar = ({ children, open = false, onClose }) => {
           top: 0,
           right: 0,
           height: '100%',
+          transition: 'transform .5s ease'
         },
       }}
       contentTransition={{
@@ -26,13 +29,7 @@ const Sidebar = ({ children, open = false, onClose }) => {
     >
       <ModalCloseTarget>
         <div
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            py: 1,
-            bg: 'text',
-            color: 'background',
-          }}
+          className={styles.close}
         >
           <Close />
         </div>

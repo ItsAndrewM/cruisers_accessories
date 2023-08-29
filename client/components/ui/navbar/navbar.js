@@ -3,12 +3,14 @@ import Link from 'next/link'
 import UserNav from '../userNav/userNav'
 import env from '../../../config/env'
 import { BuilderComponent, builder } from '@builder.io/react'
-import { useCart } from '@/lib/hooks/useCart'
+import { useCart } from '../../../lib/hooks/useCart'
 import { useThemeUI } from 'theme-ui'
+import { Themed } from "@theme-ui/mdx"
 import { useUI } from '../context'
 import Image from 'next/image'
 import Searchbar from '../searchBar/searchBar'
 import styles from "./navbar.module.css"
+import featuredCatStyles from "../../featuredCat/featuredCat.module.css"
 
 const Navbar = () => {
   const [announcement, setAnnouncement] = useState()
@@ -32,47 +34,24 @@ const Navbar = () => {
     fetchContent()
   }, [cart?.items])
   return (
-    <Fragment>
+    <header className={styles.header}>
       <BuilderComponent
         content={announcement}
-        // data={{ theme }}
+        data={{ theme }}
         model="announcement-bar"
       />
       <div className={styles.wrapper}
-        as="header"
       >
         <div
-          className={styles.container}
+          className={styles.logo}
         >
-          {navigationLinks?.map((link, index) => (
-            <a
-              key={index}
-              sx={{ padding: 10, minWidth: 90 }}
-              as={Link}
-              href={link.link}
-            >
-              {link.title}
-            </a>
-          ))}
-        </div>
-        <div
-          className={styles.div}
-        >
+          <div></div>
+
           <h1
-            sx={{
-              fontSize: 20,
-              fontWeight: 'bold',
-            }}
           >
             {logo && logo.image && (
-              <a
-                as={Link}
+              <Link
                 href="/"
-                sx={{
-                  letterSpacing: -1,
-                  textDecoration: `none`,
-                  paddingLeft: '5px',
-                }}
               >
                 <Image
                   layout="fixed"
@@ -81,31 +60,39 @@ const Navbar = () => {
                   src={logo.image}
                   alt={logo.text}
                 ></Image>
-              </a>
+              </Link>
             )}
             {logo && logo.text && !logo.image && (
-              <a
-                as={Link}
+              <Link
                 href="/"
-                sx={{
-                  letterSpacing: -1,
-                  textDecoration: `none`,
-                  paddingLeft: '5px',
-                }}
               >
                 {logo.text}
-              </a>
+              </Link>
             )}
           </h1>
-        </div>
-        <div
-          className={styles.small}
-        >
-          <Searchbar />
           <UserNav />
         </div>
+        <nav
+          className={styles.container}
+        >
+          <ul className={styles.navlinks}>
+            <li>
+              <Searchbar />
+            </li>
+            {navigationLinks?.map((link, index) => (
+              <li key={index}>
+                <Link
+                  href={link.link}
+                  className={featuredCatStyles.link}
+                >
+                  {link.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-    </Fragment>
+    </header >
   )
 }
 

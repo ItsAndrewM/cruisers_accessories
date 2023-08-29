@@ -1,12 +1,12 @@
 import { Text, Card, Grid, Divider, NavLink } from "theme-ui";
 import { useEffect, useState } from "react";
 import Bag from "../../icons/bag";
-import { useCart } from "@/lib/hooks/useCart";
-import { useCheckoutUrl } from "@/lib/hooks/useCheckoutUrl";
+import { useCart } from "../../../lib/hooks/useCart"
+import { useCheckoutUrl } from "../../../lib/hooks/useCheckoutUrl"
 import CartItem from "../cartItem/cartItem";
 import { BuilderComponent, builder } from "@builder.io/react";
 import env from "../../../config/env";
-import { getPrice } from "@/lib/utils/product";
+import { getPrice } from "../../../lib/utils/product";
 import styles from "./cartSidebarView.module.css"
 
 const CartSidebarView = () => {

@@ -30,7 +30,14 @@ const SearchBar = () => {
         const searchProducts = async (search) => {
             swell.init(process.env.NEXT_PUBLIC_SWELL_STORE_ID, "pk_By1MsSwBSiM1eFL4HPR8IWkRpO9N9m2C");
             const props = await swell.products.list({
-                search: search, // Any text string
+                // search: search, // Any text string
+                where: {
+                    $or: [
+                        { 'attributes.boat_model': { $regex: search, $options: 'i' } },
+                        { name: { $regex: search, $options: 'i' } }
+                    ]
+                },
+                // boat_model: [search]
                 limit: 25, // Max. 100
                 page: 1
             })

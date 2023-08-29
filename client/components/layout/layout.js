@@ -7,8 +7,8 @@ import { useAcceptCookies } from '../../lib/hooks/useAcceptCookies'
 import { Button } from 'theme-ui'
 import Sidebar from '../ui/sidebar/sidebar'
 import CartSidebarView from '../cart/cartSidebarView/cartSidebarView'
-import { CommerceProvider } from '@/lib/commerceProvider'
-import swellConfig from '@/swell.config'
+import { CommerceProvider } from '../../lib/commerceProvider'
+import swellConfig from '../../swell.config'
 import { builder, BuilderContent, Builder } from '@builder.io/react'
 import themesMap from '../../config/theme'
 import '@builder.io/widgets'
@@ -16,13 +16,15 @@ import 'react-spring-modal/styles.css'
 import seoConfig from '../../config/seo.json'
 import NoSSR from '../ui/noSSR/noSSR'
 import styles from "./layout.module.css"
+import siteTheme from "../../builder/theme/site-theme.json"
 
 const FeatureBar = dynamic(() => import('../featuredBar/featureBar'), {
   ssr: false,
 })
 
 const Layout = ({ children, pageProps }) => {
-  const builderTheme = pageProps.theme
+  const builderTheme = pageProps.theme || siteTheme
+  console.log(builderTheme)
   const isLive = !Builder.isEditing && !Builder.isPreviewing
   return (
     <CommerceProvider {...swellConfig}>
@@ -31,21 +33,21 @@ const Layout = ({ children, pageProps }) => {
         modelName="theme"
       >
         {(data, loading) => {
-          if (loading && !builderTheme) {
+          if (loading && !data) {
             return 'loading ...'
           }
-          // const siteSettings = data.siteSettings
-          // const colorOverrides = data.colorOverrides
-          // const siteSeoInfo = data.siteInformation
+          const siteSettings = data.siteSettings
+          const colorOverrides = data.colorOverrides
+          const siteSeoInfo = data.siteInformation
           return (
-            // <ManagedUIContext key={data.id} siteSettings={siteSettings}>
-            <ManagedUIContext >
-              {/* <Head seoInfo={siteSeoInfo || seoConfig} /> */}
-              <Head seoInfo={seoConfig} />
+            <ManagedUIContext key={data.id} siteSettings={siteSettings}>
+              {/* <ManagedUIContext > */}
+              <Head seoInfo={siteSeoInfo || seoConfig} />
+              {/* <Head seoInfo={seoConfig} /> */}
               <InnerLayout
-                // themeName={data.theme || 'base'}
-                themeName={'base'}
-              // colorOverrides={colorOverrides}
+                themeName={data.theme || 'base'}
+                // themeName={'base'}
+                colorOverrides={colorOverrides}
               >
                 {children}
               </InnerLayout>

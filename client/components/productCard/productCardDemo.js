@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Card, Text } from '@theme-ui/components'
 import Link from '../ui/link/link'
-import { getPrice } from '@/lib/utils/product'
+import { getPrice } from '../../lib/utils/product'
 import { useState } from 'react'
 import NoSSR from '../ui/noSSR/noSSR'
 

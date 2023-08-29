@@ -28,27 +28,9 @@ const FeaturedCat = () => {
 
   useEffect(() => {
     const getCategories = async () => {
-      swell.init(
-        process.env.NEXT_PUBLIC_SWELL_STORE_ID,
-        "pk_By1MsSwBSiM1eFL4HPR8IWkRpO9N9m2C"
-      );
-      const props = await swell.categories.list({
-        limit: 25,
-        page: 1,
-      });
-      //   const filtered = props.results.filter((ele) => {
-      //     return ele.images !== null;
-      //   });
-      const results = props.results.sort(function (a, b) {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      });
-      setItems(results);
+      const props = await fetch('/api/category-parents');
+      const data = await props.json()
+      setItems(data.data.results);
     };
     getCategories();
   }, []);

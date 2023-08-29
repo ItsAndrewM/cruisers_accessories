@@ -1,7 +1,8 @@
 import { Card, Text } from '@theme-ui/components'
 import ImageCarousel from '../ui/imageCarousel/lazyImageCarousel'
 import Link from '../ui/link/link'
-import { getPrice } from '@/lib/utils/product'
+import { getPrice } from '../../lib/utils/product'
+import styles from "./productCard.module.css"
 
 const ProductCard = ({
   product,
@@ -32,7 +33,6 @@ const ProductCard = ({
             height={imgHeight}
             priority={imgPriority}
             loading={imgLoading}
-            layout={imgLayout}
             sizes={imgSizes}
             alt={product.name}
             images={
@@ -47,7 +47,7 @@ const ProductCard = ({
           />
         </div>
         <div style={{ textAlign: 'center' }}>
-          <h2 sx={{ mt: 4, mb: 0, fontSize: 14 }}>{product.name}</h2>
+          <h2 className={styles.h2}>{product.name}</h2>
           <Text sx={{ fontSize: 12, mb: 2 }}>{price}</Text>
         </div>
       </Link>
