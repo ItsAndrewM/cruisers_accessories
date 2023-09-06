@@ -52,7 +52,7 @@ restrictedRegister(
   {
     name: "AllProductsView",
     description:
-      "Dynamic collection detaills, autobinds to the collection in context, use only on collection pages",
+      "Dynamic all products, autobinds to the collection in context, use only on product page",
     inputs: collectionBoxSchema,
     defaults: {
       bindings: {

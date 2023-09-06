@@ -29,6 +29,7 @@ Builder.register("insertMenu", {
     { name: "ProductView" },
     { name: "ProductBox" },
     { name: "ProductGrid" },
+    { name: "AllProductsView" },
   ],
 });
 
