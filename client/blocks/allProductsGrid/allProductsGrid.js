@@ -3,18 +3,18 @@ import LoadingDots from "../../components/ui/loadingDots/loadingDots";
 import { Grid } from "@theme-ui/components";
 import ProductCard from "../../components/productCard/productCard";
 import ProductCardDemo from "../../components/productCard/productCardDemo";
-import { getAllCollections } from "../../lib/operations-swell";
+import { getAllCollections, getAllProducts } from "../../lib/operations-swell";
 import builderConfig from "../../builder.config";
 import CollectionCard from "../../components/collectionCard/collectionCard";
 
-export const CollectionGrid = ({
+export const AllProductsGrid = ({
   offset = 0,
   limit = 10,
   cardProps,
   highlightCard,
 }) => {
   const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState();
+  const [allProducts, setAllProducts] = useState();
 
   // useEffect(() => {
   //   // setLoading(false);
@@ -26,13 +26,13 @@ export const CollectionGrid = ({
   // }, [collection]);
 
   useEffect(() => {
-    const fetchCollection = async () => {
+    const fetchAllProducts = async () => {
       setLoading(true);
-      const result = await getAllCollections(builderConfig, limit, offset);
-      setCategories(result);
+      const result = await getAllProducts(builderConfig, limit, offset);
+      setAllProducts(result);
       setLoading(false);
     };
-    fetchCollection();
+    fetchAllProducts();
   }, []);
 
   // useEffect(() => {
@@ -42,20 +42,20 @@ export const CollectionGrid = ({
   // process.env.IS_DEMO
   // ? ProductCardDemo
   // CollectionCard;
-  if (loading || !categories) {
+  if (loading || !allProducts) {
     return <LoadingDots />;
   } else {
-    const arr = categories.slice(offset, limit);
+    const arr = allProducts.slice(offset, limit);
     console.log(arr);
     return (
       <Grid gap={2} width={["100%", "40%", "24%"]}>
-        {categories.slice(offset, limit).map((category, i) => {
+        {allProducts.slice(offset, limit).map((products, i) => {
           return (
             <CollectionCard
-              key={String(category.id) + i}
+              key={String(products.id) + i}
               // {...(highlightCard?.index === i ? highlightCard : cardProps)}
-              category={category}
-              type={"collection"}
+              category={products}
+              type={"products"}
             />
           );
         })}

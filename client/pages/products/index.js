@@ -6,27 +6,27 @@ import builderConfig from "../../builder.config";
 import DefaultErrorPage from "next/error";
 import Head from "next/head";
 import { useThemeUI } from "@theme-ui/core";
-import { getAllCollections } from "../../lib/operations-swell";
+import { getAllProducts } from "../../lib/operations-swell";
 import { getLayoutProps } from "../../lib/get-layout-props";
 import { NextSeo } from "next-seo";
-import CollectionViewHome from "@/blocks/collectionViewHome/collectionViewHome";
+import ProductsViewHome from "@/blocks/productsViewHome/productsViewHome";
 
 const builderModel = "collections-primary";
 builder.init(builderConfig.apiKey);
 
 export async function getStaticProps() {
-  const collections = await getAllCollections(builderConfig);
+  const products = await getAllProducts(builderConfig);
   const page = await resolveSwellContent(builderModel);
   return {
     props: {
       page: page || null,
-      collections: collections || null,
+      products: products || null,
       ...(await getLayoutProps()),
     },
   };
 }
 
-export default function Page({ collections, page }) {
+export default function Page({ products, page }) {
   const router = useRouter();
   const { theme } = useThemeUI();
   if (router.isFallback) {
@@ -72,10 +72,12 @@ export default function Page({ collections, page }) {
       <BuilderComponent
         options={{ includeRefs: true }}
         model={{ builderModel }}
-        data={{ collections, theme }}
+        data={{ products, theme }}
         {...(page && { content: page })}
       />
-      <div>{/* <CollectionViewHome /> */}</div>
+      <div>
+        <ProductsViewHome />
+      </div>
     </div>
   );
 }

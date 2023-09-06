@@ -1,35 +1,39 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
+        protocol: "https",
         hostname: "cdn.swell.store",
-        port: ""
+        port: "",
       },
       {
-        protocol: 'https',
+        protocol: "https",
         hostname: "cdn.builder.io",
-        port: ""
-      }
-    ]
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "via.placeholder.com",
+        port: "",
+      },
+    ],
   },
   async headers() {
     return [
       {
-        source: '/:path*',
+        source: "/:path*",
         headers: [
           {
-            key: 'Content-Security-Policy',
+            key: "Content-Security-Policy",
             value:
-              'frame-ancestors https://*.builder.io https://builder.io http://localhost:3000 ',
+              "frame-ancestors https://*.builder.io https://builder.io http://localhost:3000 ",
           },
         ],
       },
-    ]
+    ];
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

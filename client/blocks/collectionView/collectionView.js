@@ -1,56 +1,53 @@
-import { useState, useEffect } from 'react'
-import { NextSeo } from 'next-seo'
-import LoadingDots from '@/components/ui/loadingDots/loadingDots'
-import builderConfig from '@/builder.config'
-import { ProductGrid, ProductGridProps } from '../productGrid/productGrid'
-import { getCollection } from '../../lib/operations-swell'
-import styles from "./collectionView.module.css"
+import { useState, useEffect } from "react";
+import { NextSeo } from "next-seo";
+import LoadingDots from "@/components/ui/loadingDots/loadingDots";
+import builderConfig from "@/builder.config";
+import { ProductGrid, ProductGridProps } from "../productGrid/productGrid";
+import { getCollection } from "../../lib/operations-swell";
+import styles from "./collectionView.module.css";
 
 const CollectionPreview = ({
   collection: initialCollection,
   productGridOptions,
   renderSeo,
 }) => {
-  console.log(initialCollection)
-  const [collection, setCollection] = useState(initialCollection)
-  const [loading, setLoading] = useState(false)
+  const [collection, setCollection] = useState(initialCollection);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => setCollection(initialCollection), [initialCollection])
+  useEffect(() => setCollection(initialCollection), [initialCollection]);
 
   useEffect(() => {
     const fetchCollection = async () => {
-      setLoading(true)
+      setLoading(true);
       const result = await getCollection(builderConfig, {
         handle: collection,
-      })
-      setCollection(result)
-      setLoading(false)
+      });
+      setCollection(result);
+      setLoading(false);
+    };
+    if (typeof collection === "string") {
+      fetchCollection();
     }
-    if (typeof collection === 'string') {
-      fetchCollection()
-    }
-  }, [collection])
+  }, [collection]);
 
-  if (!collection || typeof collection === 'string' || loading) {
+  if (!collection || typeof collection === "string" || loading) {
     return (
       <>
         <LoadingDots />
       </>
-    )
+    );
   }
 
-  const { title, description, products } = collection
+  const { title, description, products } = collection;
   return (
     <>
-      <div className={styles.wrapper}
-        key={collection.id}
-      >
+      <div className={styles.wrapper} key={collection.id}>
         {renderSeo && (
           <NextSeo
             title={collection.title}
             description={collection.description}
             openGraph={{
-              type: 'website',
+              type: "website",
               title,
               description,
             }}
@@ -67,7 +64,7 @@ const CollectionPreview = ({
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default CollectionPreview
+export default CollectionPreview;

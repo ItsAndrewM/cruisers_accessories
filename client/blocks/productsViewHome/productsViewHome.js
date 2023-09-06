@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { NextSeo } from "next-seo";
-import styles from "./collectionViewHome.module.css";
-import { CollectionGrid } from "../collectionGrid/collectionGrid";
+import styles from "../collectionViewHome/collectionViewHome.module.css";
+import { AllProductsGrid } from "../allProductsGrid/allProductsGrid";
 
-const CollectionViewHome = ({ productGridOptions, renderSeo }) => {
-  const title = "CAS category collections";
-  const description = "CAS category collections";
+const ProductsViewHome = ({ productGridOptions, renderSeo }) => {
+  const title = "CAS Products collections";
+  const description = "CAS Products collections";
 
   return (
     <>
@@ -28,11 +28,11 @@ const CollectionViewHome = ({ productGridOptions, renderSeo }) => {
           {/* <div dangerouslySetInnerHTML={{ __html: collection.description }} /> */}
         </div>
         <div className={styles.padding5}>
-          <CollectionGrid {...productGridOptions} />
+          <AllProductsGrid {...productGridOptions} />
         </div>
       </div>
     </>
   );
 };
 
-export default CollectionViewHome;
+export default ProductsViewHome;
