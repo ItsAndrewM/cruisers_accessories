@@ -2,11 +2,11 @@ import dynamic from "next/dynamic";
 import { Builder } from "@builder.io/react";
 import { Input } from "@builder.io/sdk";
 const LazyProductGrid = dynamic(async () => {
-  return (await import("./allProductsGrid")).CollectionGrid;
+  return (await import("./allProductsGrid")).AllProductsGrid;
 });
 const isDemo = Boolean(process.env.IS_DEMO);
 
-const collectionCardFields = [
+const allProductsCardFields = [
   {
     name: "imgWidth",
     type: "number",
@@ -39,7 +39,7 @@ const collectionCardFields = [
   },
 ];
 
-export const collectionGridSchema = [
+export const allProductsGridSchema = [
   {
     name: "cardProps",
     defaultValue: {
@@ -51,7 +51,7 @@ export const collectionGridSchema = [
       layout: "fixed",
     },
     type: "object",
-    subFields: collectionCardFields,
+    subFields: allProductsCardFields,
   },
   {
     name: "offset",
@@ -66,7 +66,7 @@ export const collectionGridSchema = [
 ];
 
 Builder.registerComponent(LazyProductGrid, {
-  name: "CollectionGrid",
+  name: "AllProductsGrid",
   image: "https://unpkg.com/css.gg@2.0.0/icons/svg/play-list-add.svg",
   description: "Pick categories free form",
   inputs: [
@@ -80,11 +80,11 @@ Builder.registerComponent(LazyProductGrid, {
         },
       ],
     },
-  ].concat(collectionGridSchema),
+  ].concat(allProductsGridSchema),
 });
 
 Builder.registerComponent(LazyProductGrid, {
-  name: "CollectionGrid",
+  name: "AllProductsGrid",
   image: "https://unpkg.com/css.gg@2.0.0/icons/svg/display-grid.svg",
   description: "A grid showing all categories",
   inputs: [
@@ -92,5 +92,5 @@ Builder.registerComponent(LazyProductGrid, {
       name: "collection",
       type: `SwellCategoryHandle`,
     },
-  ].concat(collectionGridSchema),
+  ].concat(allProductsGridSchema),
 });

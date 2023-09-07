@@ -7,6 +7,7 @@ import "../blocks/collectionView/collectionView.builder";
 import "../blocks/collectionGrid/collectionGrid.builder";
 import "../blocks/collectionViewHome/collectionViewHome.builder";
 import "../blocks/productsViewHome/productsViewHome.builder";
+import "../blocks/allProductsGrid/allProductsGrid.builder";
 import dynamic from "next/dynamic";
 import "../builder-registry";
 
@@ -29,7 +30,7 @@ Builder.register("insertMenu", {
     { name: "ProductView" },
     { name: "ProductBox" },
     { name: "ProductGrid" },
-    { name: "AllProductsView" },
+    { name: "AllProductsGrid" },
   ],
 });
 

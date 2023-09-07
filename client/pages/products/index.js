@@ -11,7 +11,7 @@ import { getLayoutProps } from "../../lib/get-layout-props";
 import { NextSeo } from "next-seo";
 import ProductsViewHome from "@/blocks/productsViewHome/productsViewHome";
 
-const builderModel = "collections-primary";
+const builderModel = "all-products";
 builder.init(builderConfig.apiKey);
 
 export async function getStaticProps() {
