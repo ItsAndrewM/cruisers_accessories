@@ -61,7 +61,7 @@ export const allProductsGridSchema = [
   {
     name: "limit",
     type: "number",
-    defaultValue: 9,
+    defaultValue: 24,
   },
 ];
 
@@ -86,11 +86,11 @@ Builder.registerComponent(LazyProductGrid, {
 Builder.registerComponent(LazyProductGrid, {
   name: "AllProductsGrid",
   image: "https://unpkg.com/css.gg@2.0.0/icons/svg/display-grid.svg",
-  description: "A grid showing all categories",
+  description: "A grid showing all products",
   inputs: [
     {
-      name: "collection",
-      type: `SwellCategoryHandle`,
+      name: "products",
+      type: `SwellProductHandle`,
     },
   ].concat(allProductsGridSchema),
 });

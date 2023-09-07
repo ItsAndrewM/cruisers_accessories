@@ -15,14 +15,12 @@ const CollectionCard = ({
   type,
 }) => {
   const handle = category.slug;
-  console.log(category);
   if (!imgWidth) {
-    imgWidth = 500;
+    imgWidth = 350;
   }
   if (!imgHeight) {
-    imgHeight = 500;
+    imgHeight = 350;
   }
-  console.log(category);
   return (
     <Card
       sx={{

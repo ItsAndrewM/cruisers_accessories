@@ -1,0 +1,11 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.wrapper > div:first-child {
+  width: 100%;
+  justify-items: center;
+}

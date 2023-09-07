@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import LoadingDots from "../../components/ui/loadingDots/loadingDots";
 import { Grid } from "@theme-ui/components";
-import ProductCard from "../../components/productCard/productCard";
-import ProductCardDemo from "../../components/productCard/productCardDemo";
-import { getAllCollections, getAllProducts } from "../../lib/operations-swell";
+import { getAllProducts } from "../../lib/operations-swell";
 import builderConfig from "../../builder.config";
 import CollectionCard from "../../components/collectionCard/collectionCard";
+import styles from "./allProductsGrid.module.css";
 
 export const AllProductsGrid = ({
-  offset = 0,
-  limit = 10,
+  offset = 1,
+  limit = 24,
   cardProps,
   highlightCard,
 }) => {
@@ -29,6 +28,7 @@ export const AllProductsGrid = ({
     const fetchAllProducts = async () => {
       setLoading(true);
       const result = await getAllProducts(builderConfig, limit, offset);
+      console.log(result);
       setAllProducts(result);
       setLoading(false);
     };
@@ -45,21 +45,24 @@ export const AllProductsGrid = ({
   if (loading || !allProducts) {
     return <LoadingDots />;
   } else {
-    const arr = allProducts.slice(offset, limit);
-    console.log(arr);
+    // const arr = allProducts.slice(offset, limit);
+    // console.log(arr);
     return (
-      <Grid gap={2} width={["100%", "40%", "24%"]}>
-        {allProducts.slice(offset, limit).map((products, i) => {
-          return (
-            <CollectionCard
-              key={String(products.id) + i}
-              // {...(highlightCard?.index === i ? highlightCard : cardProps)}
-              category={products}
-              type={"products"}
-            />
-          );
-        })}
-      </Grid>
+      <div className={styles.wrapper}>
+        <Grid gap={2} width={["100%", "40%", "24%"]}>
+          {/* {allProducts.slice(offset, limit).map((products, i) => { */}
+          {allProducts.map((products, i) => {
+            return (
+              <CollectionCard
+                key={String(products.id) + i}
+                // {...(highlightCard?.index === i ? highlightCard : cardProps)}
+                category={products}
+                type={"products"}
+              />
+            );
+          })}
+        </Grid>
+      </div>
     );
   }
 };

@@ -75,6 +75,7 @@ export default function Page({ products, page }) {
         data={{ products, theme }}
         {...(page && { content: page })}
       />
+      {/* <ProductsViewHome /> */}
     </div>
   );
 }
