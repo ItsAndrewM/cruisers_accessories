@@ -2,11 +2,11 @@ import { Input } from "@builder.io/sdk";
 import dynamic from "next/dynamic";
 import { productGridSchema } from "../productGrid/productGrid.builder";
 import { restrictedRegister } from "blocks/utils";
-const LazyCollectionView = dynamic(() => import(`./productsViewHome`));
+const LazyAllProductsView = dynamic(() => import(`./productsViewHome`));
 
-const collectionBoxSchema = [
+const allProductsBoxSchema = [
   {
-    name: "productGridOptions",
+    name: "allProductsGridOptions",
     type: "object",
     subFields: productGridSchema,
     defaultValue: {
@@ -30,12 +30,12 @@ const collectionBoxSchema = [
 ];
 
 restrictedRegister(
-  LazyCollectionView,
+  LazyAllProductsView,
   {
     name: "CollectionBox",
     description: "Pick a collection to display its details",
     image: "https://unpkg.com/css.gg@2.0.0/icons/svg/collage.svg",
-    inputs: collectionBoxSchema
+    inputs: allProductsBoxSchema
       .concat([
         {
           name: "collection",
@@ -48,12 +48,11 @@ restrictedRegister(
 );
 
 restrictedRegister(
-  LazyCollectionView,
+  LazyAllProductsView,
   {
     name: "AllProductsView",
-    description:
-      "Dynamic all products, autobinds to the collection in context, use only on product page",
-    inputs: collectionBoxSchema,
+    description: "Dynamic all products",
+    inputs: allProductsBoxSchema,
     defaults: {
       bindings: {
         "component.options.collection": "state.collection",

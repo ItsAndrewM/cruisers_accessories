@@ -3,10 +3,10 @@ import { NextSeo } from "next-seo";
 import styles from "../collectionViewHome/collectionViewHome.module.css";
 import { AllProductsGrid } from "../allProductsGrid/allProductsGrid";
 
-const ProductsViewHome = ({ productGridOptions, renderSeo }) => {
+const ProductsViewHome = ({ allProductsGridOptions, renderSeo }) => {
   const title = "CAS Products collections";
   const description = "CAS Products collections";
-  console.log(productGridOptions);
+  console.log(allProductsGridOptions);
 
   return (
     <div className={styles.wrapper}>
@@ -28,7 +28,7 @@ const ProductsViewHome = ({ productGridOptions, renderSeo }) => {
         {/* <div dangerouslySetInnerHTML={{ __html: collection.description }} /> */}
       </div>
       <div className={styles.padding5}>
-        <AllProductsGrid {...productGridOptions} />
+        <AllProductsGrid {...allProductsGridOptions} />
       </div>
     </div>
   );
