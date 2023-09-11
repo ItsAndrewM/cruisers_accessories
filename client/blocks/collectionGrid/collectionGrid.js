@@ -55,7 +55,6 @@ export const CollectionGrid = ({
     return <LoadingDots />;
   } else {
     const arr = categories.slice(offset, limit);
-    console.log(arr);
     return (
       <Grid gap={2} width={["100%", "40%", "24%"]}>
         {categories.slice(offset, limit).map((category, i) => {

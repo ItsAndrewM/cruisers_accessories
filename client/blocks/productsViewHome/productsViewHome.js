@@ -6,7 +6,6 @@ import { AllProductsGrid } from "../allProductsGrid/allProductsGrid";
 const ProductsViewHome = ({ allProductsGridOptions, renderSeo }) => {
   const title = "CAS Products collections";
   const description = "CAS Products collections";
-  console.log(allProductsGridOptions);
 
   return (
     <div className={styles.wrapper}>

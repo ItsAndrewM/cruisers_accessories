@@ -39,7 +39,6 @@ export const AllProductsGrid = ({
         router.query?.page || 1,
         "products"
       );
-      console.log(result);
       setAllProducts(result);
       setLoading(false);
     };
