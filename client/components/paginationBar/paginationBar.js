@@ -36,33 +36,41 @@ const PaginationBar = (params) => {
     <div className={styles.wrapper}>
       <ul className={styles.container}>
         {pages.map((pageNum) => {
-          return (
-            <li key={pageNum}>
-              {Number(pageNum) === 1 ? (
-                <button
-                  onClick={() => {
-                    router.push({ pathname: router.pathname });
-                  }}
-                  className={featuredCatStyles.link}
-                >
-                  {pageNum}
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    router.push({ query: { page: Number(pageNum) } });
-                  }}
-                  className={`${featuredCatStyles.link} ${
-                    Number(router.query.page) === Number(pageNum)
-                      ? styles.active
-                      : ""
-                  }`}
-                >
-                  {pageNum}
-                </button>
-              )}
-            </li>
-          );
+          if (typeof pageNum === "string") {
+            return (
+              <li key={pageNum}>
+                <span>{pageNum}</span>
+              </li>
+            );
+          } else {
+            return (
+              <li key={pageNum}>
+                {Number(pageNum) === 1 ? (
+                  <button
+                    onClick={() => {
+                      router.push({ pathname: router.pathname });
+                    }}
+                    className={featuredCatStyles.link}
+                  >
+                    {pageNum}
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      router.push({ query: { page: Number(pageNum) } });
+                    }}
+                    className={`${featuredCatStyles.link} ${
+                      Number(router.query.page) === Number(pageNum)
+                        ? styles.active
+                        : ""
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                )}
+              </li>
+            );
+          }
         })}
       </ul>
     </div>
