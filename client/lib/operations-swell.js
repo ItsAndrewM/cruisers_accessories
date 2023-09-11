@@ -32,12 +32,14 @@ export const searchProducts = async (searchString, limit = 100, offset = 0) => {
 
 export const getAllProducts = async (
   builderConfig,
-  limit = 26
+  limit = 24,
+  offset = 0
   // TODO: add in these params
 ) => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   const productResults = await swell.products.list({
     limit: limit,
+    page: offset,
   });
   return productResults ? normalizeProducts(productResults?.results) : [];
 };
@@ -45,6 +47,46 @@ export const getAllProducts = async (
 export const getAllProductPaths = async () => {
   const products = await getAllProducts();
   return products?.map((entry) => entry.slug) || [];
+};
+
+export const getAllProductPages = async () => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const products = await swell.products.list({ limit: 24 });
+  return Object.keys(products.pages);
+};
+
+export const getPageCount = async (query) => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  if (query === "products") {
+    const products = await swell.products.list({ limit: 24 });
+    return { count: products.count, page_count: products.page_count };
+  } else {
+    const categories = await swell.categories.list({ limit: 24 });
+    return { count: categories.count, page_count: categories.page_count };
+  }
+};
+
+export const getPaginatedItems = async (pageNum, query) => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  if (query === "products") {
+    const products = await swell.products.list({ limit: 24, page: pageNum });
+    return products ? normalizeProducts(products?.results) : [];
+  } else {
+    const categories = await swell.categories.list({
+      limit: 24,
+      page: pageNum,
+    });
+    return categories ? normalizeProducts(categories?.results) : [];
+  }
+};
+
+export const getPaginatedProducts = async (pageNum) => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const products = await swell.products.list({
+    limit: 24,
+    page: Number(pageNum),
+  });
+  return products ? normalizeProducts(products?.results) : [];
 };
 
 export const getProduct = async (options) => {
@@ -67,6 +109,21 @@ export const getAllCollections = async (config, limit = 20, offset = 0) => {
     // limit
   });
   return categories?.results;
+};
+
+export const getPaginatedCategories = async (pageNum) => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const categories = await swell.categories.list({
+    limit: 24,
+    page: Number(pageNum),
+  });
+  return categories?.results;
+};
+
+export const getAllCategoryPages = async () => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const categories = await swell.categories.list({ limit: 24 });
+  return Object.keys(categories.pages);
 };
 
 export const getAllCollectionPaths = async (config, limit) => {

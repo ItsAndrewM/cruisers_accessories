@@ -1,0 +1,28 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.container li > button {
+  background-color: inherit;
+  outline: none;
+  border: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.active {
+  color: var(--teal);
+  border-bottom: 1px solid var(--teal) !important;
+}

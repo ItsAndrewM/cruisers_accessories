@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { Suspense, useEffect, useState } from "react";
 import LoadingDots from "../../components/ui/loadingDots/loadingDots";
 import { Grid } from "@theme-ui/components";
-import { getAllProducts } from "../../lib/operations-swell";
-import builderConfig from "../../builder.config";
+import { getPaginatedItems } from "../../lib/operations-swell";
 import CollectionCard from "../../components/collectionCard/collectionCard";
 import styles from "./allProductsGrid.module.css";
+import { useRouter } from "next/router";
+import PaginationBar from "@/components/paginationBar/paginationBar";
 
 export const AllProductsGrid = ({
   offset = 1,
@@ -14,6 +17,8 @@ export const AllProductsGrid = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [allProducts, setAllProducts] = useState();
+  const [pageNums, setPageNums] = useState(1);
+  const router = useRouter();
 
   // useEffect(() => {
   //   // setLoading(false);
@@ -27,13 +32,19 @@ export const AllProductsGrid = ({
   useEffect(() => {
     const fetchAllProducts = async () => {
       setLoading(true);
-      const result = await getAllProducts(builderConfig, limit, offset);
+      // const result = await getAllProducts(builderConfig, limit, offset);
+      // console.log(result);
+      // setAllProducts(result);
+      const result = await getPaginatedItems(
+        router.query?.page || 1,
+        "products"
+      );
       console.log(result);
       setAllProducts(result);
       setLoading(false);
     };
     fetchAllProducts();
-  }, []);
+  }, [router.query]);
 
   // useEffect(() => {
 
@@ -62,6 +73,9 @@ export const AllProductsGrid = ({
             );
           })}
         </Grid>
+        {/* <Suspense fallback={<LoadingDots />}> */}
+        <PaginationBar query={"products"} />
+        {/* </Suspense> */}
       </div>
     );
   }

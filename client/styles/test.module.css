@@ -1,0 +1,43 @@
+.disabled {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.paginate {
+  width: 100%;
+  max-width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.list {
+  max-width: 100%;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  align-content: center;
+  grid-auto-rows: minmax(1em, auto);
+}
+
+.list li > h1 {
+  border: 1px solid red;
+  text-align: center;
+}
+
+.skeleton {
+  border: 1px solid red;
+  min-width: 100px;
+  min-height: 50px;
+}

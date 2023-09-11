@@ -25,3 +25,27 @@
 .p {
   font-size: 12px;
 }
+
+.skeletonImg {
+  max-width: 350px;
+  max-height: 350px;
+  min-height: 350px;
+  min-width: 350px;
+  background-color: grey;
+}
+
+.skeletonTitle {
+  max-height: 22px;
+  min-height: 22px;
+  min-width: 100px;
+  max-width: 100px;
+  background-color: grey;
+}
+
+.skeletonPrice {
+  max-height: 22px;
+  min-height: 22px;
+  min-width: 75px;
+  max-width: 75px;
+  background-color: grey;
+}

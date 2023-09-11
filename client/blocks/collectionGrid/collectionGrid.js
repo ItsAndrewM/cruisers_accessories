@@ -3,9 +3,14 @@ import LoadingDots from "../../components/ui/loadingDots/loadingDots";
 import { Grid } from "@theme-ui/components";
 import ProductCard from "../../components/productCard/productCard";
 import ProductCardDemo from "../../components/productCard/productCardDemo";
-import { getAllCollections } from "../../lib/operations-swell";
+import {
+  getAllCollections,
+  getPaginatedItems,
+} from "../../lib/operations-swell";
 import builderConfig from "../../builder.config";
 import CollectionCard from "../../components/collectionCard/collectionCard";
+import PaginationBar from "@/components/paginationBar/paginationBar";
+import { useRouter } from "next/router";
 
 export const CollectionGrid = ({
   offset = 0,
@@ -13,6 +18,7 @@ export const CollectionGrid = ({
   cardProps,
   highlightCard,
 }) => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState();
 
@@ -28,12 +34,15 @@ export const CollectionGrid = ({
   useEffect(() => {
     const fetchCollection = async () => {
       setLoading(true);
-      const result = await getAllCollections(builderConfig, limit, offset);
+      const result = await await getPaginatedItems(
+        router.query?.page || 1,
+        "collection"
+      );
       setCategories(result);
       setLoading(false);
     };
     fetchCollection();
-  }, []);
+  }, [router.query]);
 
   // useEffect(() => {
 
@@ -59,6 +68,7 @@ export const CollectionGrid = ({
             />
           );
         })}
+        <PaginationBar query={"collection"} />
       </Grid>
     );
   }
