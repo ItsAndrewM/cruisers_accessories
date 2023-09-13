@@ -47,13 +47,6 @@ export const CollectionGrid = ({
     fetchCollection();
   }, [router.query]);
 
-  // useEffect(() => {
-
-  // }, [collection])
-  // const CollectionComponent =
-  // process.env.IS_DEMO
-  // ? ProductCardDemo
-  // CollectionCard;
   if (loading || !categories) {
     return <LoadingDots />;
   } else {
