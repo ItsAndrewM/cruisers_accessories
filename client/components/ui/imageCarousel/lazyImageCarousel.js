@@ -8,7 +8,7 @@ import {
 import Image from "next/image";
 import styles from "./imageCarousel.module.css";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { IconButton } from 'theme-ui'
+import { IconButton } from "theme-ui";
 const CustomDotGroup = ({ images, onThumbnailClick, ...imageProps }) => {
   return (
     <div className={styles.wrapper}>
@@ -30,7 +30,7 @@ const CustomDotGroup = ({ images, onThumbnailClick, ...imageProps }) => {
               ></Image>
             </Dot>
           </IconButton>
-        )
+        );
       })}
     </div>
   );
@@ -43,32 +43,36 @@ const ImageCarousel = ({
   currentSlide,
   ...imageProps
 }) => (
-  <CarouselProvider
-    currentSlide={currentSlide}
-    naturalSlideWidth={1}
-    naturalSlideHeight={1}
-    hasMasterSpinner={false}
-    totalSlides={images.length}
-  >
-    <Slider>
-      {images.map((image, index) => (
-        <Slide index={index} key={index}>
-          {showZoom ? (
-            <ImageWithZoom src={image.src} />
-          ) : (
-            <Image src={image.src} {...imageProps} />
-          )}
-        </Slide>
-      ))}
-    </Slider>
-    {showZoom && (
-      <CustomDotGroup
-        {...imageProps}
-        onThumbnailClick={onThumbnailClick}
-        images={images}
-      />
-    )}
-  </CarouselProvider>
+  <>
+    <CarouselProvider
+      currentSlide={currentSlide}
+      naturalSlideWidth={1}
+      naturalSlideHeight={1}
+      hasMasterSpinner={false}
+      totalSlides={images.length}
+    >
+      <div className={styles.carousel}>
+        {showZoom && (
+          <CustomDotGroup
+            {...imageProps}
+            onThumbnailClick={onThumbnailClick}
+            images={images}
+          />
+        )}
+        <Slider>
+          {images.map((image, index) => (
+            <Slide index={index} key={index} className={styles.box}>
+              {showZoom ? (
+                <ImageWithZoom src={image.src} />
+              ) : (
+                <Image src={image.src} {...imageProps} />
+              )}
+            </Slide>
+          ))}
+        </Slider>
+      </div>
+    </CarouselProvider>
+  </>
 );
 
 export default ImageCarousel;
