@@ -28,21 +28,9 @@ export const AllProductsGrid = ({
   const [results, setResults] = useState();
   const router = useRouter();
 
-  // useEffect(() => {
-  //   // setLoading(false);
-  //   if (!categories && collection) {
-  //     setLoading(true);
-  //     setCategories(collection);
-  //     setLoading(false);
-  //   }
-  // }, [collection]);
-
   useEffect(() => {
     const fetchAllProducts = async () => {
       setLoading(true);
-      // const result = await getAllProducts(builderConfig, limit, offset);
-      // console.log(result);
-      // setAllProducts(result);
       const query = router.asPath.split("?")[1];
       const filtered = await getFilteredProducts(query);
       const data = await filtered.json();
@@ -71,13 +59,6 @@ export const AllProductsGrid = ({
     fetchAllAttributes();
   }, []);
 
-  // useEffect(() => {
-
-  // }, [collection])
-  // const CollectionComponent =
-  // process.env.IS_DEMO
-  // ? ProductCardDemo
-  // CollectionCard;
   if (loading || !allProducts) {
     return <LoadingDots />;
   } else {
@@ -92,7 +73,6 @@ export const AllProductsGrid = ({
               return (
                 <CollectionCard
                   key={String(products.id) + i}
-                  // {...(highlightCard?.index === i ? highlightCard : cardProps)}
                   category={products}
                   type={"products"}
                 />

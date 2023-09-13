@@ -64,7 +64,6 @@ export const CollectionGrid = ({
           return (
             <CollectionCard
               key={String(category.id) + i}
-              // {...(highlightCard?.index === i ? highlightCard : cardProps)}
               category={category}
               type={"collection"}
             />

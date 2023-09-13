@@ -8,7 +8,6 @@ const AttributesFilter = ({ attributes }) => {
   const handleApply = (e) => {
     // e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    console.log(formData);
     const data = [...formData.entries()]
       .map((entry) => {
         return { [entry[0]]: entry[1] };
