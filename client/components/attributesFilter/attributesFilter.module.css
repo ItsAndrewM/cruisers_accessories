@@ -1,0 +1,97 @@
+.wrapper {
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1em;
+  margin-top: 16px;
+}
+
+.wrapper form {
+  width: 100%;
+}
+
+.buttonBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.buttonBox input[type="submit"] {
+  padding: 10px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+}
+
+.container ul {
+  width: 100%;
+}
+
+.container h1 {
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.accordian {
+  position: relative;
+  overflow: hidden;
+}
+
+.accordian > summary {
+  list-style: none;
+  padding: 1em 0.5em;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.accordian summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordian > summary::before,
+.accordian > summary::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 1.5rem;
+  border-bottom: 0.2rem solid black;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+
+.accordian:not([open]) > summary::after {
+  transform: translateX(-50%) rotateZ(-90deg);
+}
+
+.content {
+  /* box-sizing: border-box; */
+  max-width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 400ms ease;
+  padding: 0 0.5em;
+  border-bottom: 2px solid var(--cream);
+}
+
+.accordian[open] + .content {
+  max-height: 800px; /* Set a max-height value enough to show all the content */
+  transition: all 400ms ease-in-out;
+  padding-bottom: 1em;
+}
+
+.filterOption {
+  display: flex;
+  gap: 0.5em;
+}

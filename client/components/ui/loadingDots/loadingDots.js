@@ -1,13 +1,15 @@
-import styles from './loadingDots.module.css'
+import styles from "./loadingDots.module.css";
 
 const LoadingDots = () => {
-    return (
-        <span className={styles.wrapper}>
-            <span />
-            <span />
-            <span />
-        </span>
-    )
-}
+  return (
+    <div className={styles.container}>
+      <span className={styles.wrapper}>
+        <span />
+        <span />
+        <span />
+      </span>
+    </div>
+  );
+};
 
-export default LoadingDots
+export default LoadingDots;

@@ -3,9 +3,9 @@ import { dotts } from "../components/paginationBar/paginationBar";
 
 const getPages = (length, inc = 1) => Array.from({ length }, (_, i) => i + inc);
 
-export default async function usePagination(currentPage, query) {
-  const paginationData = await getPageCount(query);
-  const totalPages = paginationData.page_count;
+export default async function usePagination(currentPage, query, totalPages) {
+  // const paginationData = await getPageCount(query);
+  // const totalPages = paginationData.page_count;
   //   const totalPages = pages.map((page) => Number(page));
 
   // -> 1 2 3 4 5

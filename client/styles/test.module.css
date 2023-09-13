@@ -1,3 +1,9 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+}
+
 .disabled {
   display: none;
 }
@@ -40,4 +46,23 @@
   border: 1px solid red;
   min-width: 100px;
   min-height: 50px;
+}
+
+.box {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.results {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.results > ul {
+  width: 100%;
 }

@@ -12,7 +12,8 @@ const PaginationBar = (params) => {
   try {
     usePagination(
       Number(router.query?.page || router.pathname),
-      params?.query
+      params?.query,
+      params?.page_count
     ).then((data) => {
       setPages(data);
     });
@@ -50,7 +51,9 @@ const PaginationBar = (params) => {
                     onClick={() => {
                       router.push({ pathname: router.pathname });
                     }}
-                    className={featuredCatStyles.link}
+                    className={`${featuredCatStyles.link} ${
+                      !router.query.page ? styles.active : ""
+                    }`}
                   >
                     {pageNum}
                   </button>

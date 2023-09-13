@@ -8,6 +8,23 @@ import swellConfig from "../swell.config";
 //     isDemo?: boolean
 // }
 
+export const getFilteredProducts = async (query) => {
+  // swell.init(swellConfig.storeId, swellConfig.publicKey);
+  // const products = await swell.products.list({ limit: 24 });
+  // return products;
+
+  const products = await fetch(`http://localhost:3000/api/products?${query}`);
+  return products;
+};
+
+export const getAllAttributes = async () => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const attributes = await swell.attributes.list({
+    limit: 100,
+  });
+  return attributes?.results ? attributes.results : [];
+};
+
 const normalizeProduct = (product) => {
   const variants = product.variants?.results ?? [];
   const images =
