@@ -13,7 +13,9 @@ export const getFilteredProducts = async (query) => {
   // const products = await swell.products.list({ limit: 24 });
   // return products;
 
-  const products = await fetch(`http://localhost:3000/api/products?${query}`);
+  const products = await fetch(
+    `https://cruiser-accessories.vercel.app/api/products?${query}`
+  );
   return products;
 };
 
