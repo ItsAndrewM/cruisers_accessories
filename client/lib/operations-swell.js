@@ -14,8 +14,8 @@ export const getFilteredProducts = async (query) => {
   // return products;
 
   const products = await fetch(
-    // `https://cruiser-accessories.vercel.app/api/products?${query}`
-    `http://localhost:3000/api/products?${query}`
+    `https://cruiser-accessories.vercel.app/api/products?${query}`
+    // `http://localhost:3000/api/products?${query}`
   );
   return products;
 };
