@@ -60,7 +60,16 @@ const PaginationBar = (params) => {
                 ) : (
                   <button
                     onClick={() => {
-                      router.push({ query: { page: Number(pageNum) } });
+                      router.push(
+                        params?.handle
+                          ? {
+                              query: {
+                                handle: params.handle,
+                                page: Number(pageNum),
+                              },
+                            }
+                          : { query: { page: Number(pageNum) } }
+                      );
                     }}
                     className={`${featuredCatStyles.link} ${
                       Number(router.query.page) === Number(pageNum)

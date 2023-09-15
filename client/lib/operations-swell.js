@@ -14,7 +14,8 @@ export const getFilteredProducts = async (query) => {
   // return products;
 
   const products = await fetch(
-    `https://cruiser-accessories.vercel.app/api/products?${query}`
+    // `https://cruiser-accessories.vercel.app/api/products?${query}`
+    `http://localhost:3000/api/products?${query}`
   );
   return products;
 };
@@ -117,6 +118,7 @@ export const getProduct = async (options) => {
   const result = await swell.products.get(options.id || options.slug, {
     expand: ["variants"],
   });
+
   return result ? normalizeProduct(result) : null;
 };
 
@@ -125,7 +127,7 @@ export const getProduct = async (options) => {
 export const getAllCollections = async (config, limit = 20, offset = 0) => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   const categories = await swell.categories.list({
-    // limit
+    limit: 100,
   });
   return categories?.results;
 };
@@ -150,26 +152,43 @@ export const getAllCollectionPaths = async (config, limit) => {
   return collections?.map((entry) => entry.slug) || [];
 };
 
-export const getCollection = async (config, options) => {
+export const getCollection = async (config, options, pageNum) => {
   if (Boolean(options.id) === Boolean(options.handle)) {
     throw new Error("Either a handle or id is required");
   }
 
   const query = options.id || options.handle;
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
-  const category = await swell.categories.get(query, { expand: ["products"] });
-  const products = category?.products?.results
-    ? normalizeProducts(category?.products?.results)
-    : [];
-  // const { page, count } = products;
-  // TODO: add pagination logic
-  const hasNextPage = false;
-  const nextPageCursor = null;
+  const category = await swell.categories.get(query, {});
+  const categoryParent = category.parent_id
+    ? await swell.categories.get(category.parent_id, {})
+    : null;
 
+  const result = await swell.products.list({
+    categories: query,
+    limit: 24,
+    page: !pageNum ? 1 : pageNum,
+  });
+
+  const products = result?.results ? normalizeProducts(result?.results) : [];
+
+  const count = result?.count ? result.count : 0;
+  const page_count = result?.page_count ? result.page_count : 0;
+  const page = result?.page ? result.page : 0;
+  const children = category?.children?.results
+    ? normalizeProducts(category?.children?.results)
+    : [];
+  const hasNextPage = category?.products?.page_count > 1 ? true : false;
+  const nextPageCursor = null;
   return {
     ...category,
+    children,
     products,
     nextPageCursor,
     hasNextPage,
+    count,
+    page_count,
+    page,
+    categoryParent,
   };
 };

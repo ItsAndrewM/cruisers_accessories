@@ -14,6 +14,7 @@ import { getLayoutProps } from "../../../lib/get-layout-props";
 import { useThemeUI } from "theme-ui";
 import builderConfig from "@/builder.config";
 import { NextSeo } from "next-seo";
+import LoadingDots from "@/components/ui/loadingDots/loadingDots";
 // Replace with your Public API Key.
 builder.init("20988483cda74747b3e814c30d7ff832");
 
@@ -81,7 +82,7 @@ const Page = ({ product, page, builderModel }) => {
   }
 
   return router.isFallback && isLive ? (
-    <h1>Loading...</h1> // TODO (BC) Add Skeleton Views
+    <LoadingDots /> // TODO (BC) Add Skeleton Views
   ) : (
     <div>
       {title && (

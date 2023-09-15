@@ -12,6 +12,8 @@ import builderConfig from "../../builder.config";
 import CollectionCard from "../../components/collectionCard/collectionCard";
 import PaginationBar from "@/components/paginationBar/paginationBar";
 import { useRouter } from "next/router";
+import styles from "../allProductsGrid/allProductsGrid.module.css";
+import CardSkeleton from "@/components/ui/cardSkeleton/cardSkeleton";
 
 export const CollectionGrid = ({
   offset = 0,
@@ -48,22 +50,25 @@ export const CollectionGrid = ({
   }, [router.query]);
 
   if (loading || !categories) {
-    return <LoadingDots />;
+    return <CardSkeleton />;
   } else {
-    const arr = categories.slice(offset, limit);
     return (
-      <Grid gap={2} width={["100%", "40%", "24%"]}>
-        {categories.slice(offset, limit).map((category, i) => {
-          return (
-            <CollectionCard
-              key={String(category.id) + i}
-              category={category}
-              type={"collection"}
-            />
-          );
-        })}
-        <PaginationBar query={"collection"} page_count={pageNums} />
-      </Grid>
+      <div className={styles.container}>
+        <div className={styles.wrapper}>
+          <Grid gap={2} width={["100%", "40%", "24%"]}>
+            {categories.map((category, i) => {
+              return (
+                <CollectionCard
+                  key={String(category.id) + i}
+                  category={category}
+                  type={"collection"}
+                />
+              );
+            })}
+          </Grid>
+          <PaginationBar query={"collection"} page_count={pageNums} />
+        </div>
+      </div>
     );
   }
 };

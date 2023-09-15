@@ -21,6 +21,8 @@ Builder.register("insertMenu", {
     { name: "FeaturedCat" },
     { name: "ProductGrid" },
     { name: "CollectionGrid" },
+    { name: "CollectionView" },
+    { name: "CollectionViewHome" },
   ],
 });
 
