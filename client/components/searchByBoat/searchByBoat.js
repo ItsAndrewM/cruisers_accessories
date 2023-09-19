@@ -4,8 +4,13 @@ import styles from "./searchByBoat.module.css";
 import LoadingDots from "../ui/loadingDots/loadingDots";
 import { getCategoryByBoat } from "@/lib/operations-swell";
 import { useRouter } from "next/router";
+import swellConfig from "@/swell.config";
+import swell from "swell-js";
 
-const SearchByBoat = ({ boatMake, boatModel, categories }) => {
+const SearchByBoat = () => {
+  const [boatMake, setBoatMake] = useState([]);
+  const [boatModel, setBoatModel] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [make, setMake] = useState();
   const [model, setModel] = useState([]);
   const [category, setCategory] = useState();
@@ -14,6 +19,21 @@ const SearchByBoat = ({ boatMake, boatModel, categories }) => {
   const [errors, setErrors] = useState({});
   const [filteredCategories, setFilteredCategories] = useState();
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchBoats = async () => {
+      await swell.init(swellConfig.storeId, swellConfig.publicKey);
+      const boatModel = await swell.attributes.get("boat_model");
+      const boatMake = await swell.attributes.get("boat_make");
+      const categoriesData = await swell.categories.list({ limit: 100 });
+      const categoriesArr =
+        (await categoriesData.results.map((entry) => entry.name)) || [];
+      setBoatMake(boatMake);
+      setBoatModel(boatModel);
+      setCategories(categoriesArr);
+    };
+    fetchBoats();
+  }, []);
 
   useEffect(() => {
     if (make) {
