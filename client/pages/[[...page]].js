@@ -41,7 +41,7 @@ export async function getStaticPaths({ locales }) {
   });
   return {
     paths: pages.map((page) => `${page.data?.url}`),
-    fallback: false,
+    fallback: true,
   };
 }
 
