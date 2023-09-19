@@ -29,3 +29,10 @@ Builder.registerComponent(
     name: "FeaturedCat",
   }
 );
+
+Builder.registerComponent(
+  dynamic(() => import("./components/searchByBoat/searchByBoat")),
+  {
+    name: "SearchByBoat",
+  }
+);

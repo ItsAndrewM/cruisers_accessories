@@ -8,14 +8,39 @@ import swellConfig from "../swell.config";
 //     isDemo?: boolean
 // }
 
+export const getCategoryByBoat = async (boatModel, boatMake) => {
+  const data = await fetch(
+    `http://localhost:3000/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+  );
+  const jsonData = await data.json();
+  const categories = jsonData.data.results.map((product) => {
+    return product.category_index;
+  });
+  const allCategories = [];
+  for (const category of categories) {
+    for (const id of category.id) {
+      console.log(id);
+      const categoryName = await swell.categories.get(id);
+      allCategories.push(categoryName);
+    }
+  }
+  const formatted = {
+    count: Number(allCategories.length),
+    page_count: Math.ceil(allCategories.length / 24),
+    page: 1,
+    results: allCategories,
+  };
+  return formatted;
+};
+
 export const getFilteredProducts = async (query) => {
   // swell.init(swellConfig.storeId, swellConfig.publicKey);
   // const products = await swell.products.list({ limit: 24 });
   // return products;
 
   const products = await fetch(
-    `https://cruiser-accessories.vercel.app/api/products?${query}`
-    // `http://localhost:3000/api/products?${query}`
+    // `https://cruiser-accessories.vercel.app/api/products?${query}`
+    `http://localhost:3000/api/products?${query}`
   );
   return products;
 };
