@@ -1,0 +1,23 @@
+.footer {
+  min-width: 100%;
+  width: 100%;
+  max-width: 1920px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 300px;
+  max-height: 300px;
+  padding: 2em 5em;
+  background-color: var(--casBlue);
+  color: white;
+}
+
+.footer ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.logoWrapper {
+  min-width: fit-content;
+}

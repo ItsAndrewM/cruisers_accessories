@@ -13,7 +13,6 @@ export const getQueriedProducts = async (query) => {
     }
     return acc;
   }, {});
-  console.log(query["categories"]);
   return await swell.get("/products", {
     where: {
       $and: [{ active: true }, data],
@@ -29,7 +28,6 @@ const handler = async (req, res) => {
   const query = req.query;
   try {
     const jsonData = await getQueriedProducts(query);
-    console.log(jsonData);
     res.status(200).json({
       status: 200,
       message: jsonData.messageDetails,

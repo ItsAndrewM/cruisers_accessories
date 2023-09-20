@@ -17,6 +17,7 @@ import seoConfig from "../../config/seo.json";
 import NoSSR from "../ui/noSSR/noSSR";
 import styles from "./layout.module.css";
 import siteTheme from "../../builder/theme/site-theme.json";
+import Footer from "../ui/footer/footer";
 
 const FeatureBar = dynamic(() => import("../featuredBar/featureBar"), {
   ssr: false,
@@ -91,6 +92,7 @@ const InnerLayout = ({ themeName, children, colorOverrides }) => {
           }
         />
       </NoSSR>
+      <Footer />
     </ThemeUIProvider>
   );
 };

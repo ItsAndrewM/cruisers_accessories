@@ -19,7 +19,6 @@ export const getCategoryByBoat = async (boatModel, boatMake) => {
   const allCategories = [];
   for (const category of categories) {
     for (const id of category.id) {
-      console.log(id);
       const categoryName = await swell.categories.get(id);
       allCategories.push(categoryName);
     }
@@ -86,7 +85,27 @@ export const getAllProducts = async (
     limit: limit,
     page: offset,
   });
-  return productResults ? normalizeProducts(productResults?.results) : [];
+  // console.log(productResults);
+
+  if (productResults.count > 24) {
+    let results = productResults.results;
+    const pages = [];
+    for (let i = 1; i <= productResults.page_count; i++) {
+      pages.push(i);
+    }
+    for (const page in pages) {
+      if (page !== 1) {
+        const nextPage = await swell.products.list({
+          limit: limit,
+          page: Number(page),
+        });
+        results = [...results].concat(nextPage.results);
+      }
+    }
+    return results ? normalizeProducts(results) : [];
+  } else {
+    return productResults ? normalizeProducts(productResults?.results) : [];
+  }
 };
 
 export const getAllProductPaths = async () => {

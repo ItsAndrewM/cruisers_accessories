@@ -24,6 +24,7 @@
 .link {
   position: relative;
   transition: color 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .link::before {

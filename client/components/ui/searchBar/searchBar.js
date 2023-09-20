@@ -1,26 +1,25 @@
-
-import { useState, useEffect, useCallback, useRef, Fragment } from 'react'
-import { useRouter } from 'next/router'
-import LoadingDots from '../loadingDots/loadingDots'
-import { ProductGrid } from '../../../blocks/productGrid/productGrid'
-import { Button, jsx, Input, Label } from 'theme-ui'
-import { searchProducts } from '../../../lib/operations-swell'
-import { ExpandModal } from 'react-spring-modal'
-import { throttle } from 'lodash'
-import 'react-spring-modal/styles.css'
-import Cross from '../../icons/cross'
-import styles from "./searchBar.module.css"
-
+import { useState, useEffect, useCallback, useRef, Fragment } from "react";
+import { useRouter } from "next/router";
+import LoadingDots from "../loadingDots/loadingDots";
+import { ProductGrid } from "../../../blocks/productGrid/productGrid";
+import { Button, jsx, Input, Label } from "theme-ui";
+import { searchProducts } from "../../../lib/operations-swell";
+import { ExpandModal } from "react-spring-modal";
+import { throttle } from "lodash";
+import "react-spring-modal/styles.css";
+import Cross from "../../icons/cross";
+import styles from "./searchBar.module.css";
+import { SearchGrid } from "@/blocks/searchGrid/searchGrid";
 
 const Searchbar = () => {
-  const router = useRouter()
-  const { q } = router.query
-  const [isOpen, setIsOpen] = useState(false)
-  const buttonRef = useRef(null)
+  const router = useRouter();
+  const { q } = router.query;
+  const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef(null);
 
   useEffect(() => {
-    setIsOpen(false)
-  }, [router.asPath.split('?')[0]])
+    setIsOpen(false);
+  }, [router.asPath.split("?")[0]]);
 
   return (
     <Fragment>
@@ -30,9 +29,9 @@ const Searchbar = () => {
         overlayProps={{
           style: {
             maxWidth: 1920,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            overflow: 'auto',
+            left: "50%",
+            transform: "translateX(-50%)",
+            overflow: "auto",
             top: (buttonRef.current?.getBoundingClientRect().bottom || 0) + 15,
           },
         }}
@@ -41,13 +40,13 @@ const Searchbar = () => {
         <SearchModalContent
           initialSearch={q && String(q)}
           onSearch={(term) => {
-            const op = q ? 'replace' : 'push'
+            const op = q ? "replace" : "push";
             router[op]({
-              pathname: router.asPath.split('?')[0],
+              pathname: router.asPath.split("?")[0],
               query: {
                 q: term,
               },
-            })
+            });
           }}
         />
       </ExpandModal>
@@ -78,47 +77,48 @@ const Searchbar = () => {
         )}
       </div>
     </Fragment>
-  )
-}
+  );
+};
 
 const SearchModalContent = ({ props }) => {
-  const [search, setSearch] = useState(props && props.initialSearch && String(props.initialSearch),
-  )
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const [search, setSearch] = useState(
+    props && props.initialSearch && String(props.initialSearch)
+  );
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const getProducts = async (searchTerm) => {
-    setLoading(true)
+    setLoading(true);
     const results = await searchProducts(
       String(searchTerm),
       // TODO: pagination
       20,
-      0,
-    )
-    setSearch(searchTerm)
-    setProducts(results)
-    setLoading(false)
+      0
+    );
+    setSearch(searchTerm);
+    setProducts(results);
+    setLoading(false);
     if (searchTerm && props) {
-      props.onSearch(searchTerm)
+      props.onSearch(searchTerm);
     }
-  }
+  };
 
   useEffect(() => {
     if (search) {
-      getProducts(search)
+      getProducts(search);
     }
-  }, [])
+  }, []);
 
-  const throttleSearch = useCallback(throttle(getProducts), [])
+  const throttleSearch = useCallback(throttle(getProducts), []);
 
   return (
     <div
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
         p: [1, 2],
-        width: '100%',
+        width: "100%",
       }}
     >
       <Input
@@ -135,7 +135,7 @@ const SearchModalContent = ({ props }) => {
           <Label>
             Search Results for "<strong>{search}</strong>"
           </Label>
-          <ProductGrid
+          <SearchGrid
             cardProps={{
               imgHeight: 540,
               imgWidth: 540,
@@ -144,7 +144,7 @@ const SearchModalContent = ({ props }) => {
             products={products}
             offset={0}
             limit={products.length}
-          ></ProductGrid>
+          ></SearchGrid>
         </>
       ) : (
         <span>
@@ -158,7 +158,7 @@ const SearchModalContent = ({ props }) => {
         </span>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Searchbar
+export default Searchbar;

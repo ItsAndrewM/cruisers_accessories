@@ -18,7 +18,6 @@ builder.init(builderConfig.apiKey);
 const isProduction = process.env.NODE_ENV === "production";
 
 export async function getStaticProps({ params }) {
-  console.log(params);
   const page = await resolveSwellContent("page", {
     urlPath: "/" + (params?.page?.join("/") || ""),
   });

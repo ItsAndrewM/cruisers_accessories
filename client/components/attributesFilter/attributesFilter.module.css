@@ -2,8 +2,6 @@
   width: 100%;
   max-width: 400px;
   height: 100%;
-  border-right: 1px solid black;
-  border-top: 1px solid black;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -86,7 +84,7 @@
 }
 
 .accordian[open] + .content {
-  max-height: 800px; /* Set a max-height value enough to show all the content */
+  max-height: fit-content; /* Set a max-height value enough to show all the content */
   transition: all 400ms ease-in-out;
   padding-bottom: 1em;
 }
@@ -94,4 +92,21 @@
 .filterOption {
   display: flex;
   gap: 0.5em;
+}
+
+.submit {
+  padding: 5px 30px;
+  outline: none;
+  color: var(--casBlue);
+  letter-spacing: 0.075em;
+  text-transform: capitalize;
+  font-weight: bold;
+  background-color: inherit;
+  border: 2px solid var(--casBlue);
+  transition: all 0.3s ease-in-out;
+}
+
+.submit:hover {
+  color: white;
+  background-color: var(--casBlue);
 }

@@ -16,6 +16,7 @@
   --cream: #f3f0e7;
   --green: #64ffda;
   --babyblue: #4a90e2;
+  --casBlue: rgb(51, 0, 204);
   --grey: #8892b0;
   --lightGrey: #666;
   --lighterGrey: rgba(0, 0, 0, 0.2);
@@ -91,7 +92,6 @@ h6 {
 /* //////////////////////////////////////////////////////////////// */
 
 @media (max-width: 600px) {
-
   h1,
   h2 {
     font-size: var(--mobile-h);

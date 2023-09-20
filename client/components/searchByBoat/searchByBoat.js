@@ -51,11 +51,9 @@ const SearchByBoat = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       const jsonData = await getCategoryByBoat(model, make);
-      console.log(jsonData);
       const categoryWithIds = jsonData.results.map((cat) => {
         return { name: cat.name, id: cat.id };
       });
-      console.log(categoryWithIds);
       setCategoryIds(categoryWithIds);
       const categoryNames = jsonData.results.map((category) => {
         return category.name;
@@ -72,7 +70,6 @@ const SearchByBoat = () => {
     const isValid = e.target.checkValidity();
     const form = e.target;
     const formData = new FormData(e.currentTarget);
-    console.log(formData);
     const validationMessages = Array.from(formData.keys()).reduce(
       (acc, key) => {
         acc[key] = form.elements[key].validationMessage;
@@ -92,7 +89,6 @@ const SearchByBoat = () => {
           : categoryIds.find((category) => {
               return data.category === category.name;
             });
-        console.log(find);
         try {
           router.push({
             pathname: "/products",

@@ -11,7 +11,7 @@ const PaginationBar = (params) => {
   const router = useRouter();
   try {
     usePagination(
-      Number(router.query?.page || router.pathname),
+      Number(router.query?.page || 1),
       params?.query,
       params?.page_count
     ).then((data) => {

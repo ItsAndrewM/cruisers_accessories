@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import styles from "./attributesFilter.module.css";
 import { Fragment } from "react";
+import searchByBoatStyles from "../searchByBoat/searchByBoat.module.css";
 
 const AttributesFilter = ({ attributes }) => {
   const router = useRouter();
@@ -31,7 +32,7 @@ const AttributesFilter = ({ attributes }) => {
     <div className={styles.wrapper}>
       <form onSubmit={handleApply}>
         <div className={styles.buttonBox}>
-          <input type="submit" value={"Apply"} />
+          <input type="submit" value={"Apply"} className={styles.submit} />
         </div>
         <div className={styles.container}>
           <ul>
