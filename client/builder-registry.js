@@ -17,6 +17,24 @@ Builder.registerComponent(
 );
 
 Builder.registerComponent(
+  dynamic(() => import("./components/accordion/accordion")),
+  {
+    name: "Accordion",
+    inputs: [
+      {
+        name: "tabs",
+        type: "list",
+        subFields: [
+          { name: "text", type: "text" },
+          { name: "content", type: "text" },
+        ],
+      },
+      { name: "title", type: "text" },
+    ],
+  }
+);
+
+Builder.registerComponent(
   dynamic(() => import("./components/catCarousel/catCarousel")),
   {
     name: "CatCarousel",

@@ -171,9 +171,28 @@ export const getProduct = async (options) => {
 export const getAllCollections = async (config, limit = 20, offset = 0) => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   const categories = await swell.categories.list({
-    limit: 100,
+    limit: 24,
+    page: 1,
   });
-  return categories?.results;
+  if (categories.count > 24) {
+    let results = categories.results;
+    const pages = [];
+    for (let i = 1; i <= categories.page_count; i++) {
+      pages.push(i);
+    }
+    for (const page in pages) {
+      if (page !== 1) {
+        const nextPage = await swell.categories.list({
+          limit: limit,
+          page: Number(page),
+        });
+        results = [...results].concat(nextPage.results);
+      }
+    }
+    return results ? results : [];
+  } else {
+    return categories?.results ? categories.results : [];
+  }
 };
 
 export const getPaginatedCategories = async (pageNum) => {
@@ -193,6 +212,7 @@ export const getAllCategoryPages = async () => {
 
 export const getAllCollectionPaths = async (config, limit) => {
   const collections = await getAllCollections(config, limit);
+
   return collections?.map((entry) => entry.slug) || [];
 };
 

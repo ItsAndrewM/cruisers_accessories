@@ -42,18 +42,20 @@ const Footer = () => {
             {!link.subLinks?.length ? (
               <></>
             ) : (
-              link.subLinks?.map((subLink, index) => {
-                return (
-                  <li key={subLink.title}>
-                    <Link
-                      href={subLink.link}
-                      className={`${featuredCatStyles.link} ${utilStyles.capitalize}`}
-                    >
-                      {subLink.title}
-                    </Link>
-                  </li>
-                );
-              })
+              <ul>
+                {link.subLinks?.map((subLink, index) => {
+                  return (
+                    <li key={subLink.title}>
+                      <Link
+                        href={subLink.link}
+                        className={`${featuredCatStyles.link} ${utilStyles.capitalize}`}
+                      >
+                        {subLink.title}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
             )}
           </li>
         ))}

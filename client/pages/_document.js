@@ -1,10 +1,5 @@
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-} from 'next/document'
-import cheerio from 'cheerio'
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import cheerio from "cheerio";
 
 /**
  * See this issue for more details https://github.com/emotion-js/emotion/issues/2040
@@ -12,55 +7,55 @@ import cheerio from 'cheerio'
  * A/B test variations on the server, this fixes this issue by extracting those styles and appending them to body
  */
 const extractABTestingStyles = (body) => {
-  let globalStyles = ''
+  let globalStyles = "";
 
-  if (body.includes('<template')) {
-    const $ = cheerio.load(body)
-    const templates = $('template')
+  if (body.includes("<template")) {
+    const $ = cheerio.load(body);
+    const templates = $("template");
     templates.toArray().forEach((element) => {
-      const str = $(element).html()
-      const styles = cheerio.load(String(str))('style')
+      const str = $(element).html();
+      const styles = cheerio.load(String(str))("style");
       globalStyles += styles
         .toArray()
         .map((el) => $(el).html())
-        .join(' ')
-    })
+        .join(" ");
+    });
   }
-  return globalStyles
-}
+  return globalStyles;
+};
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const originalRenderPage = ctx.renderPage
+    const originalRenderPage = ctx.renderPage;
 
-    let globalStyles = ''
+    let globalStyles = "";
     ctx.renderPage = async (options) => {
-      const render = await originalRenderPage(options)
-      globalStyles = extractABTestingStyles(render.html)
-      return render
-    }
-    const initialProps = await Document.getInitialProps(ctx)
+      const render = await originalRenderPage(options);
+      globalStyles = extractABTestingStyles(render.html);
+      return render;
+    };
+    const initialProps = await Document.getInitialProps(ctx);
     return {
       ...initialProps,
       globalStyles,
-    }
+    };
   }
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head />
         <body>
           <style
             dangerouslySetInnerHTML={{
-              __html: (this.props).globalStyles,
+              __html: this.props.globalStyles,
             }}
           ></style>
           <Main />
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;
