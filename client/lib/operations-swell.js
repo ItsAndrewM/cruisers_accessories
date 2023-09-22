@@ -65,13 +65,19 @@ const normalizeProducts = (productResults) => {
   });
 };
 
-export const searchProducts = async (searchString, limit = 100, offset = 0) => {
+export const searchProducts = async (
+  searchString,
+  limit = 100,
+  offset = 0,
+  pageNum
+) => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   const products = await swell.products.list({
     search: searchString,
-    limit,
+    limit: 24,
+    page: !pageNum ? 1 : pageNum,
   });
-  return products?.results ? normalizeProducts(products?.results) : [];
+  return products;
 };
 
 export const getAllProducts = async (

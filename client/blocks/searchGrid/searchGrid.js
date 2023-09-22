@@ -59,7 +59,7 @@ export const SearchGrid = ({
       <Grid
         gap={2}
         width={["100%", "40%", "24%"]}
-        style={{ border: "1px solid red", justifyItems: "center" }}
+        style={{ justifyItems: "center" }}
       >
         {products.slice(offset, limit).map((product, i) => (
           <SearchCard

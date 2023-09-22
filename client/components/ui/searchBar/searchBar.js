@@ -74,8 +74,8 @@ const Searchbar = () => {
             />
           </svg>
         )}
+        <small>Search for a product, part, or sailboat model</small>
       </div>
-      <small>Search for a product, part, or sailboat model</small>
     </div>
   );
 };
@@ -96,7 +96,7 @@ const SearchModalContent = ({ props }) => {
       0
     );
     setSearch(searchTerm);
-    setProducts(results);
+    setProducts(results.results);
     setLoading(false);
     if (searchTerm && props) {
       props.onSearch(searchTerm);

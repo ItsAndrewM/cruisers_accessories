@@ -14,7 +14,8 @@ import ProductsViewHome from "@/blocks/productsViewHome/productsViewHome";
 const builderModel = "all-products";
 builder.init(builderConfig.apiKey);
 
-export async function getStaticProps() {
+// export async function getStaticProps() {
+export async function getServerSideProps(context) {
   const products = await getAllProducts(builderConfig);
   const page = await resolveSwellContent(builderModel);
   return {

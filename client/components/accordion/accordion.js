@@ -1,7 +1,6 @@
 import styles from "./accordion.module.css";
 
 const Accordion = ({ tabs, title }) => {
-  console.log(tabs);
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
