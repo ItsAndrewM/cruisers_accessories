@@ -42,6 +42,7 @@ Builder.registerComponent(
   dynamic(() => import("./components/catCarousel/catCarousel")),
   {
     name: "CatCarousel",
+    image: "https://unpkg.com/css.gg@2.0.0/icons/svg/carousel.svg",
   }
 );
 
@@ -49,6 +50,7 @@ Builder.registerComponent(
   dynamic(() => import("./components/featuredCat/featuredCat")),
   {
     name: "FeaturedCat",
+    image: "https://unpkg.com/css.gg@2.0.0/icons/svg/more-r.svg",
   }
 );
 
