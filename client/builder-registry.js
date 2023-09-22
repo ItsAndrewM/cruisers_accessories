@@ -56,6 +56,17 @@ Builder.registerComponent(
   dynamic(() => import("./components/searchByBoat/searchByBoat")),
   {
     name: "SearchByBoat",
-    description: "Drop down list for ",
+    description: "Drop down list for boat models, makes and categories.",
+    image: "https://unpkg.com/css.gg@2.0.0/icons/svg/browse.svg",
   }
 );
+
+Builder.register("insertMenu", {
+  name: "UI Components",
+  items: [
+    { name: "SearchByBoat" },
+    { name: "Accordion" },
+    { name: "FeaturedCat" },
+    { name: "CatCarousel" },
+  ],
+});
