@@ -1,58 +1,65 @@
 .header {
-    min-width: 100%;
-    width: 100%;
-    max-width: 1920px;
-    display: flex;
-    flex-direction: column;
+  min-width: 100%;
+  width: 100%;
+  max-width: 1920px;
+  display: flex;
+  flex-direction: column;
 }
 
 .wrapper {
-    min-width: 100%;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+  min-width: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
 .container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .logo {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2em;
+  align-items: center;
 }
 
 .logo a {
-    letter-spacing: -1;
-    text-decoration: none;
-    /* padding-left: 5px; */
+  letter-spacing: -1;
+  text-decoration: none;
+  /* padding-left: 5px; */
 }
 
 .navlinks li {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 .navlinks {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .navlinks:first-child:hover {
-    opacity: .7;
-    cursor: pointer;
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 .navlinks:first-child {
-    transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }

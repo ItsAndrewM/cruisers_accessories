@@ -42,6 +42,27 @@ const Navbar = () => {
       />
       <div className={styles.wrapper}>
         <div className={styles.logo}>
+          <div className={styles.cart}>
+            <span>
+              <Link
+                href={"tel:1-888-958-5638"}
+                className={featuredCatStyles.link}
+              >
+                1-888-958-5638
+              </Link>
+            </span>
+            <span>
+              <Link
+                href={"mailto:info@precisionsailloft.com"}
+                className={featuredCatStyles.link}
+              >
+                info@precisionsailloft.com
+              </Link>
+            </span>
+          </div>
+          <UserNav />
+        </div>
+        <div className={styles.logo}>
           <h1>
             {logo && logo.image && (
               <Link href="/">
@@ -58,13 +79,10 @@ const Navbar = () => {
               <Link href="/">{logo.text}</Link>
             )}
           </h1>
-          <UserNav />
+          <Searchbar />
         </div>
         <nav className={styles.container}>
           <ul className={styles.navlinks}>
-            <li>
-              <Searchbar />
-            </li>
             {navigationLinks?.map((link, index) => (
               <li key={index}>
                 <Link href={link.link} className={featuredCatStyles.link}>

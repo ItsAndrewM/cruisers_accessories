@@ -22,7 +22,7 @@ const Searchbar = () => {
   }, [router.asPath.split("?")[0]]);
 
   return (
-    <Fragment>
+    <div className={styles.wrapper}>
       <ExpandModal
         transitionConfig={{}}
         contentTransition={{}}
@@ -50,9 +50,8 @@ const Searchbar = () => {
           }}
         />
       </ExpandModal>
-
       <div
-        className={styles.margin}
+        className={`${styles.margin}`}
         ref={buttonRef}
         as={Button}
         onClick={() => setIsOpen(!isOpen)}
@@ -76,7 +75,8 @@ const Searchbar = () => {
           </svg>
         )}
       </div>
-    </Fragment>
+      <small>Search for a product, part, or sailboat model</small>
+    </div>
   );
 };
 

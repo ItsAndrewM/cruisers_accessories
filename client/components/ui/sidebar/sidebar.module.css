@@ -1,7 +1,11 @@
 .close {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px 0;
-    /* bg: 'text'; */
-    /* color: 'background'; */
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  /* bg: 'text'; */
+  /* color: 'background'; */
+}
+
+.close svg {
+  cursor: pointer;
 }
