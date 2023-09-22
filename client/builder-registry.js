@@ -20,6 +20,9 @@ Builder.registerComponent(
   dynamic(() => import("./components/accordion/accordion")),
   {
     name: "Accordion",
+    description:
+      "Accordion component.  Add a title then add tabs with a Tag/Headline and content.",
+    image: "https://unpkg.com/browse/css.gg@2.0.0/icons/svg/board.svg",
     inputs: [
       {
         name: "tabs",
