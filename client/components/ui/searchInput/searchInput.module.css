@@ -1,0 +1,36 @@
+.dropdown {
+  background-color: var(--cream);
+  position: absolute;
+  top: 0;
+  margin-top: 35px;
+  z-index: 3;
+  height: fit-content;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.wrapper fieldset {
+  border: none;
+}
+
+.wrapper input {
+  width: 100%;
+  height: 35px;
+  background-color: inherit;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+.wrapper input::placeholder {
+  color: white;
+}
+
+.listItem:hover {
+  background-color: azure;
+}

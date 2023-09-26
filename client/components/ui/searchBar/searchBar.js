@@ -10,6 +10,7 @@ import "react-spring-modal/styles.css";
 import Cross from "../../icons/cross";
 import styles from "./searchBar.module.css";
 import { SearchGrid } from "@/blocks/searchGrid/searchGrid";
+import SearchInput from "../searchInput/searchInput";
 
 const Searchbar = () => {
   const router = useRouter();
@@ -21,9 +22,22 @@ const Searchbar = () => {
     setIsOpen(false);
   }, [router.asPath.split("?")[0]]);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(e.currentTarget);
+    const data = Array.from(formData.keys()).reduce((acc, key) => {
+      acc[key] = formData.get(key);
+      return acc;
+    }, {});
+    if (Object.values(data)[0].length !== 0) {
+      router.push({ pathname: "/products", query: { search: data.search } });
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
-      <ExpandModal
+      {/* <ExpandModal
         transitionConfig={{}}
         contentTransition={{}}
         overlayProps={{
@@ -49,32 +63,37 @@ const Searchbar = () => {
             });
           }}
         />
-      </ExpandModal>
+      </ExpandModal> */}
       <div
         className={`${styles.margin}`}
-        ref={buttonRef}
-        as={Button}
-        onClick={() => setIsOpen(!isOpen)}
+        // ref={buttonRef}
+        // as={Button}
+        // onClick={() => setIsOpen(!isOpen)}
         aria-label="Search"
       >
         {isOpen ? (
           <Cross />
         ) : (
-          <svg
-            width="20"
-            height="22"
-            viewBox="0 0 20 22"
-            fill="none"
-            stroke="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-            />
-          </svg>
+          <form className={styles.searchForm} onSubmit={handleSearch}>
+            <button type="submit">
+              <svg
+                width="20"
+                height="22"
+                viewBox="0 0 20 22"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                />
+              </svg>
+            </button>
+            <SearchInput props={handleSearch} />
+          </form>
         )}
-        <small>Search for a product, part, or sailboat model</small>
+        {/* <small>Search for a product, part, or sailboat model</small> */}
       </div>
     </div>
   );
