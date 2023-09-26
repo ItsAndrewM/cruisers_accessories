@@ -65,7 +65,7 @@ const CollectionCard = ({
             src={
               category.images?.length > 0
                 ? category.images[0].file.url
-                : `https://via.placeholder.com/${imgWidth}x${imgHeight}`
+                : `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
             }
             priority={imgPriority}
             height={imgHeight}

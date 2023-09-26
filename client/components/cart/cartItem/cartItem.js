@@ -1,76 +1,72 @@
-
-import { Grid, Button, Input, Text, IconButton } from 'theme-ui'
-import { useEffect, useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import Plus from '../../icons/plus'
-import Minus from "../../icons/minus"
-import { getPrice } from '../../../lib/utils/product'
-import { useUpdateItemQuantity } from "../../../lib/hooks/useUpdateItemQuantity"
-import { useRemoveItemFromCart } from "../../../lib/hooks/useRemoveItemFromCart"
-import styles from "./cartItem.module.css"
-const CartItem = ({
-  item,
-  currencyCode,
-}) => {
-  const updateItem = useUpdateItemQuantity()
-  const removeItem = useRemoveItemFromCart()
-  const [quantity, setQuantity] = useState(item.quantity)
-  const [removing, setRemoving] = useState(false)
+import { Grid, Button, Input, Text, IconButton } from "theme-ui";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import Plus from "../../icons/plus";
+import Minus from "../../icons/minus";
+import { getPrice } from "../../../lib/utils/product";
+import { useUpdateItemQuantity } from "../../../lib/hooks/useUpdateItemQuantity";
+import { useRemoveItemFromCart } from "../../../lib/hooks/useRemoveItemFromCart";
+import styles from "./cartItem.module.css";
+const CartItem = ({ item, currencyCode }) => {
+  const updateItem = useUpdateItemQuantity();
+  const removeItem = useRemoveItemFromCart();
+  const [quantity, setQuantity] = useState(item.quantity);
+  const [removing, setRemoving] = useState(false);
   const updateQuantity = async (quantity) => {
-    await updateItem(item.id, quantity)
-  }
+    await updateItem(item.id, quantity);
+  };
   const handleQuantity = (e) => {
-    const val = Number(e.target.value)
+    const val = Number(e.target.value);
 
     if (Number.isInteger(val) && val >= 0) {
-      setQuantity(val)
+      setQuantity(val);
     }
-  }
+  };
   const handleBlur = () => {
-    const val = Number(quantity)
+    const val = Number(quantity);
 
     if (val !== item.quantity) {
-      updateQuantity(val)
+      updateQuantity(val);
     }
-  }
+  };
   const increaseQuantity = (n = 1) => {
-    const val = Number(quantity) + n
+    const val = Number(quantity) + n;
 
     if (Number.isInteger(val) && val >= 0) {
-      setQuantity(val)
-      updateQuantity(val)
+      setQuantity(val);
+      updateQuantity(val);
     }
-  }
+  };
   const handleRemove = async () => {
-    setRemoving(true)
+    setRemoving(true);
 
     try {
       // If this action succeeds then there's no need to do `setRemoving(true)`
       // because the component will be removed from the view
-      await removeItem(item.product.id)
+      await removeItem(item.product.id);
     } catch (error) {
-      console.error(error)
-      setRemoving(false)
+      console.error(error);
+      setRemoving(false);
     }
-  }
+  };
 
   useEffect(() => {
     // Reset the quantity state if the item quantity changes
     if (item.quantity !== Number(quantity)) {
-      setQuantity(item.quantity)
+      setQuantity(item.quantity);
     }
-  }, [item.quantity])
+  }, [item.quantity]);
 
   return (
-    <Grid gap={2} sx={{ width: '100%', m: 12 }} columns={[2]}>
+    <Grid gap={2} sx={{ width: "100%", m: 12 }} columns={[2]}>
       <div
         sx={{
           padding: 1,
-          border: '1px solid gray',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          border: "1px solid gray",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Image
@@ -80,7 +76,7 @@ const CartItem = ({
           alt={item.product.meta_description}
           src={
             (item.product.images && item.product.images[0].file?.url) ??
-            'https://via.placeholder.com/1050x1050'
+            "https://placehold.co/1050/jpeg"
           }
         />
       </div>
@@ -96,17 +92,17 @@ const CartItem = ({
               sx={{
                 fontSize: 4,
                 fontWeight: 700,
-                display: 'block',
-                marginLeft: 'auto',
+                display: "block",
+                marginLeft: "auto",
               }}
             >
               {getPrice(item.price, currencyCode)}
             </Text>
           </>
         </div>
-        <ul sx={{ mt: 2, mb: 0, padding: 0, listStyle: 'none' }}>
+        <ul sx={{ mt: 2, mb: 0, padding: 0, listStyle: "none" }}>
           <li>
-            <div style={{ display: 'flex', justifyItems: 'center' }}>
+            <div style={{ display: "flex", justifyItems: "center" }}>
               <IconButton onClick={() => increaseQuantity(-1)}>
                 <Minus width={18} height={18} />
               </IconButton>
@@ -114,8 +110,8 @@ const CartItem = ({
               <label>
                 <Input
                   sx={{
-                    height: '100%',
-                    textAlign: 'center',
+                    height: "100%",
+                    textAlign: "center",
                   }}
                   type="number"
                   max={99}
@@ -138,6 +134,6 @@ const CartItem = ({
         </ul>
       </div>
     </Grid>
-  )
-}
-export default CartItem
+  );
+};
+export default CartItem;

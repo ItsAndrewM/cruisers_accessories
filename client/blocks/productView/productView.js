@@ -128,7 +128,7 @@ const ProductBox = ({
               {
                 url:
                   product.images[0]?.file?.url ||
-                  "https://via.placeholder.com/800x600",
+                  "https://placehold.co/800x600/jpeg",
                 width: 800,
                 height: 600,
                 alt: title,
@@ -157,7 +157,7 @@ const ProductBox = ({
                     ? allImages
                     : [
                         {
-                          src: `https://via.placeholder.com/1050x1050`,
+                          src: `https://placehold.co/1050/jpeg`,
                         },
                       ]
                 }

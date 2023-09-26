@@ -8,6 +8,7 @@ export const dotts = "...";
 
 const PaginationBar = (params) => {
   const [pages, setPages] = useState([1]);
+  const [queries, setQueries] = useState();
   const router = useRouter();
   try {
     usePagination(
@@ -31,6 +32,13 @@ const PaginationBar = (params) => {
   //   };
   //   fetchPaginated();
   // }, [router.query]);
+
+  // useEffect(() => {
+  //   // const data = Array.from(formData.keys()).reduce((acc, key) => {
+  //   //   acc[key] = formData.get(key);
+  //   //   return acc;
+  //   // }, {});
+  // });
 
   return pages.length > 1 ? (
     // (
@@ -60,15 +68,20 @@ const PaginationBar = (params) => {
                 ) : (
                   <button
                     onClick={() => {
+                      console.log(router);
                       router.push(
-                        params?.handle
-                          ? {
-                              query: {
-                                handle: params.handle,
-                                page: Number(pageNum),
-                              },
-                            }
-                          : { query: { page: Number(pageNum) } }
+                        // ? {
+                        //     query: {
+                        //       handle: params.handle,
+                        //       page: Number(pageNum),
+                        //     },
+                        //   }
+                        {
+                          query: {
+                            ...router.query,
+                            page: Number(pageNum),
+                          },
+                        }
                       );
                     }}
                     className={`${featuredCatStyles.link} ${

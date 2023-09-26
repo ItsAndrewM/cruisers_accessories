@@ -1,8 +1,8 @@
-import { Card, Text } from '@theme-ui/components'
-import ImageCarousel from '../ui/imageCarousel/lazyImageCarousel'
-import Link from '../ui/link/link'
-import { getPrice } from '../../lib/utils/product'
-import styles from "./productCard.module.css"
+import { Card, Text } from "@theme-ui/components";
+import ImageCarousel from "../ui/imageCarousel/lazyImageCarousel";
+import Link from "../ui/link/link";
+import { getPrice } from "../../lib/utils/product";
+import styles from "./productCard.module.css";
 
 const ProductCard = ({
   product,
@@ -11,18 +11,18 @@ const ProductCard = ({
   imgPriority,
   imgLoading,
   imgSizes,
-  imgLayout = 'responsive',
+  imgLayout = "responsive",
 }) => {
-  const handle = product.slug
-  const price = getPrice(product.price, product.currency ?? 'USD')
+  const handle = product.slug;
+  const price = getPrice(product.price, product.currency ?? "USD");
 
   return (
     <Card
       sx={{
         maxWidth: [700, imgWidth || 540],
         p: 3,
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <Link href={`/product/${handle}/`}>
@@ -39,20 +39,20 @@ const ProductCard = ({
               product.images?.length
                 ? product.images
                 : [
-                  {
-                    src: `https://via.placeholder.com/${imgWidth}x${imgHeight}`,
-                  },
-                ]
+                    {
+                      src: `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`,
+                    },
+                  ]
             }
           />
         </div>
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: "center" }}>
           <h2 className={styles.h2}>{product.name}</h2>
           <Text sx={{ fontSize: 12, mb: 2 }}>{price}</Text>
         </div>
       </Link>
     </Card>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

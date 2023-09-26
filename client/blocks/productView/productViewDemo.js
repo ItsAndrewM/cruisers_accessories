@@ -1,9 +1,9 @@
-import { Fragment, useState } from 'react'
-import OptionPicker from '../../components/optionPicker/optionPicker'
-import { NextSeo } from 'next-seo'
-import { getPrice } from '../../lib/utils/product'
-import ProductLoader from './productLoader'
-import ImageCarousel from '../../components/ui/imageCarousel/lazyImageCarousel'
+import { Fragment, useState } from "react";
+import OptionPicker from "../../components/optionPicker/optionPicker";
+import { NextSeo } from "next-seo";
+import { getPrice } from "../../lib/utils/product";
+import ProductLoader from "./productLoader";
+import ImageCarousel from "../../components/ui/imageCarousel/lazyImageCarousel";
 
 const ProductBox = ({
   product,
@@ -11,13 +11,13 @@ const ProductBox = ({
   description = product.body_html,
   title = product.title,
 }) => {
-  const variants = product.variants
-  const images = product.images
-  const variant = variants.find((v) => v.available) || variants[0]
-  const price = getPrice(variant.compare_at_price || variant.price, 'USD')
+  const variants = product.variants;
+  const images = product.images;
+  const variant = variants.find((v) => v.available) || variants[0];
+  const price = getPrice(variant.compare_at_price || variant.price, "USD");
   const [image, setImage] = useState(
     variant.featured_image || product.images[0]
-  )
+  );
 
   return (
     <Fragment>
@@ -26,7 +26,7 @@ const ProductBox = ({
           title={title}
           description={description}
           openGraph={{
-            type: 'website',
+            type: "website",
             title: title,
             description: description,
             images: [
@@ -40,7 +40,7 @@ const ProductBox = ({
           }}
         />
       )}
-      <div className={styles.outerGrid} >
+      <div className={styles.outerGrid}>
         <div>
           <div className={styles.box}>
             <ImageCarousel
@@ -54,9 +54,15 @@ const ProductBox = ({
               //     setColor(images[index].color)
               //   }
               // }}
-              images={allImages?.length > 0 ? allImages : [{
-                src: `https://via.placeholder.com/1050x1050`,
-              }]}
+              images={
+                allImages?.length > 0
+                  ? allImages
+                  : [
+                      {
+                        src: `https://placehold.co/1050/jpeg`,
+                      },
+                    ]
+              }
             ></ImageCarousel>
           </div>
         </div>
@@ -64,28 +70,34 @@ const ProductBox = ({
           <span className={styles.span}>
             <h1>{title}</h1>
             <h4 aria-label="price" className={styles.span}>
-              {getPrice(variant ? variant?.price : product.price, product.currency ?? 'USD')}
+              {getPrice(
+                variant ? variant?.price : product.price,
+                product.currency ?? "USD"
+              )}
             </h4>
           </span>
           <div dangerouslySetInnerHTML={{ __html: description }} />
           <div>
-            {productOptions?.length > 0 && productOptions?.map((option) => {
-              return (
-                <div className={styles.grid} key={option.id}>
-                  {Boolean(option.values?.length) && (
-                    <OptionPicker
-                      key={option.id}
-                      name={option.name}
-                      options={formatOptionValues(option.values)}
-                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment     
-                      // @ts-ignore
-                      selected={selections[option.id]}
-                      onChange={(event) => { inputChangeHandler(option, event.target.value) }}
-                    />
-                  )}
-                </div>
-              )
-            })}
+            {productOptions?.length > 0 &&
+              productOptions?.map((option) => {
+                return (
+                  <div className={styles.grid} key={option.id}>
+                    {Boolean(option.values?.length) && (
+                      <OptionPicker
+                        key={option.id}
+                        name={option.name}
+                        options={formatOptionValues(option.values)}
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        selected={selections[option.id]}
+                        onChange={(event) => {
+                          inputChangeHandler(option, event.target.value);
+                        }}
+                      />
+                    )}
+                  </div>
+                );
+              })}
           </div>
           <button
             className={styles.button}
@@ -98,14 +110,14 @@ const ProductBox = ({
         </div>
       </div>
     </Fragment>
-  )
-}
+  );
+};
 
 const ProductView = ({ product, ...props }) => {
   return (
     <ProductLoader product={product}>
       {(productObject) => <ProductBox {...props} product={productObject} />}
     </ProductLoader>
-  )
-}
-export default ProductView
+  );
+};
+export default ProductView;

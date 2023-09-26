@@ -18,7 +18,7 @@ const CategoryBar = ({ children }) => {
                   src={
                     child.images?.length > 0
                       ? category.images[0].file.url
-                      : `https://via.placeholder.com/150x150`
+                      : `https://placehold.co/150/jpeg`
                   }
                   priority={true}
                   height={150}
