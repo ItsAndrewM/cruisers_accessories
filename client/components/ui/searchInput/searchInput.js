@@ -53,6 +53,7 @@ const SearchInput = ({ props }) => {
           placeholder="Search for a product, part, or sailboat model..."
           onChange={(event) => throttleSearch(event.target.value)}
           onKeyDown={props.handleSearch}
+          autoComplete="off"
         />
       </fieldset>
       {/* 
