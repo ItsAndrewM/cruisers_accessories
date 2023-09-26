@@ -68,7 +68,6 @@ const PaginationBar = (params) => {
                 ) : (
                   <button
                     onClick={() => {
-                      console.log(router);
                       router.push(
                         // ? {
                         //     query: {

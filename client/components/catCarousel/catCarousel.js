@@ -43,7 +43,8 @@ const CatCarousel = () => {
               <div>
                 <h4>
                   <Link
-                    href={`/products/product-category/${cats.slug}`}
+                    // href={`/products/product-category/${cats.slug}`}
+                    href={`/collection/${cats.slug}`}
                     className={styles.link}
                   >
                     SHOP {cats.name}

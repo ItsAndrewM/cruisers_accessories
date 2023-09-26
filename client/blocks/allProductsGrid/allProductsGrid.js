@@ -28,7 +28,6 @@ export const AllProductsGrid = ({
   const [attributes, setAttributes] = useState();
   const [results, setResults] = useState();
   const router = useRouter();
-  console.log(router);
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -59,7 +58,6 @@ export const AllProductsGrid = ({
           router.query.search,
           router.query.page || 1
         );
-        console.log(data);
         setAllProducts(data.results);
         setPageNums(data.page_count);
         // const filtered = await getFilteredProducts(query);

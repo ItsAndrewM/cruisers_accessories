@@ -10,7 +10,7 @@ import swellConfig from "../swell.config";
 
 export const getCategoryByBoat = async (boatModel, boatMake) => {
   const data = await fetch(
-    //   `http://localhost:3000/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+    // `http://localhost:3000/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
     // );
     `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
   );
@@ -78,6 +78,7 @@ export const searchProducts = async (
     search: searchString,
     limit: 24,
     page: !pageNum ? 1 : pageNum,
+    sort: "name asc",
   });
   return products;
 };
@@ -92,6 +93,36 @@ export const getAllProducts = async (
   const productResults = await swell.products.list({
     limit: limit,
     page: offset,
+  });
+  // console.log(productResults);
+
+  // if (productResults.count > 24) {
+  //   let results = productResults.results;
+  //   const pages = [];
+  //   for (let i = 1; i <= productResults.page_count; i++) {
+  //     pages.push(i);
+  //   }
+  //   for (const page in pages) {
+  //     if (page !== 1) {
+  //       const nextPage = await swell.products.list({
+  //         limit: limit,
+  //         page: Number(page),
+  //       });
+  //       results = [...results].concat(nextPage.results);
+  //     }
+  //   }
+  //   return results ? normalizeProducts(results) : [];
+  // } else {
+  return productResults ? normalizeProducts(productResults?.results) : [];
+  // }
+};
+
+export const getAllProductPaths = async () => {
+  // const products = await getAllProducts();
+
+  const productResults = await swell.products.list({
+    limit: 24,
+    page: 1,
   });
   // console.log(productResults);
 
@@ -110,15 +141,8 @@ export const getAllProducts = async (
         results = [...results].concat(nextPage.results);
       }
     }
-    return results ? normalizeProducts(results) : [];
-  } else {
-    return productResults ? normalizeProducts(productResults?.results) : [];
+    return results?.map((entry) => entry.slug) || [];
   }
-};
-
-export const getAllProductPaths = async () => {
-  const products = await getAllProducts();
-  return products?.map((entry) => entry.slug) || [];
 };
 
 export const getAllProductPages = async () => {

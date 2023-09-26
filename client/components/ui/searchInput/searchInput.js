@@ -15,7 +15,6 @@ const SearchInput = ({ props }) => {
   const router = useRouter();
   const getProducts = async (searchTerm) => {
     setLoading(true);
-    console.log(searchTerm.length);
     if (searchTerm.length === 0) {
       setProducts([]);
     } else {
