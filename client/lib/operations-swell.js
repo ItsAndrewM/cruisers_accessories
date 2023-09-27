@@ -12,7 +12,8 @@ export const getCategoryByBoat = async (boatModel, boatMake) => {
   const data = await fetch(
     // `http://localhost:3000/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
     // );
-    `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+    // `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+    `/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
   );
   const jsonData = await data.json();
   const categories = jsonData.data.results.map((product) => {
@@ -39,10 +40,10 @@ export const getFilteredProducts = async (query) => {
   // const products = await swell.products.list({ limit: 24 });
   // return products;
   console.log("query: " + query);
-  const products = await fetch(
-    `https://cruiser-accessories.vercel.app/api/products?${query}`
-    // `http://localhost:3000/api/products?${query}`
-  );
+  const products = await fetch(`/api/products?${query}`);
+  // `https://cruiser-accessories.vercel.app/api/products?${query}`
+  // `http://localhost:3000/api/products?${query}`
+  // );
   return products;
 };
 
