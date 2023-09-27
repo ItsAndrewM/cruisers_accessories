@@ -11,9 +11,7 @@ import swellConfig from "../swell.config";
 export const getCategoryByBoat = async (boatModel, boatMake) => {
   const data = await fetch(
     // `http://localhost:3000/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
-    // );
-    // `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
-    `/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+    `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
   );
   const jsonData = await data.json();
   const categories = jsonData.data.results.map((product) => {
@@ -40,11 +38,10 @@ export const getFilteredProducts = async (query) => {
   // const products = await swell.products.list({ limit: 24 });
   // return products;
   const products = await fetch(
-    `https://cruiser-accessories.vercel.app/api/products?${query}`,
-    { method: "GET" }
+    `https://cruiser-accessories.vercel.app//api/products?${query}`
+    // `http://localhost:3000/api/products?${query}`
   );
-  // `https://cruiser-accessories.vercel.app/api/products?${query}`
-  // `http://localhost:3000/api/products?${query}`
+
   // );
   return products;
 };
@@ -122,7 +119,7 @@ export const getAllProducts = async (
 
 export const getAllProductPaths = async () => {
   // const products = await getAllProducts();
-
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
   const productResults = await swell.products.list({
     limit: 24,
     page: 1,
@@ -138,7 +135,7 @@ export const getAllProductPaths = async () => {
     for (const page in pages) {
       if (page !== 1) {
         const nextPage = await swell.products.list({
-          limit: limit,
+          limit: 24,
           page: Number(page),
         });
         results = [...results].concat(nextPage.results);
