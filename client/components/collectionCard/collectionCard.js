@@ -21,6 +21,7 @@ const CollectionCard = ({
   if (!imgHeight) {
     imgHeight = 350;
   }
+
   return (
     <Card
       sx={{

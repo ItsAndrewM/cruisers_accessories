@@ -35,6 +35,7 @@ export const AllProductsGrid = ({
       const query = router.asPath.split("?")[1];
       const filtered = await getFilteredProducts(query);
       const data = await filtered.json();
+      console.log(data.data);
       if (data.data.count > 0) {
         setAllProducts(data.data.results);
         setPageNums(data.data.page_count);
