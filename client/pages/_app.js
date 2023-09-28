@@ -23,6 +23,7 @@ Builder.register("insertMenu", {
     { name: "CollectionGrid" },
     { name: "CollectionView" },
     { name: "CollectionViewHome" },
+    { name: "Bread Crumbs" },
   ],
 });
 
@@ -33,6 +34,7 @@ Builder.register("insertMenu", {
     { name: "ProductBox" },
     { name: "ProductGrid" },
     { name: "AllProductsGrid" },
+    { name: "Bread Crumbs" },
   ],
 });
 
