@@ -15,6 +15,7 @@ import styles from "./allProductsGrid.module.css";
 import { useRouter } from "next/router";
 import PaginationBar from "@/components/paginationBar/paginationBar";
 import AttributesFilter from "@/components/attributesFilter/attributesFilter";
+import CategorySidebar from "@/components/categorySidebar/categorySidebar";
 
 export const AllProductsGrid = ({
   offset = 1,
@@ -95,7 +96,10 @@ export const AllProductsGrid = ({
     // console.log(arr);
     return (
       <div className={styles.container}>
-        {attributes ? <AttributesFilter attributes={attributes} /> : <></>}
+        <div>
+          <CategorySidebar />
+          {attributes ? <AttributesFilter attributes={attributes} /> : <></>}
+        </div>
         <div className={styles.wrapper} style={{ padding: "2em 0" }}>
           <Grid gap={2} width={["100%", "40%", "24%"]}>
             {allProducts.map((products, i) => {

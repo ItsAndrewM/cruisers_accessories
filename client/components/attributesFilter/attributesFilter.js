@@ -31,6 +31,7 @@ const AttributesFilter = ({ attributes }) => {
   return (
     <div className={styles.wrapper}>
       <form onSubmit={handleApply}>
+        <h1>Filters</h1>
         <div className={styles.buttonBox}>
           <input type="submit" value={"Apply"} className={styles.submit} />
         </div>
