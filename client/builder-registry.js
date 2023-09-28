@@ -5,6 +5,16 @@ import builderConfig from "./builder.config";
 builder.init(builderConfig.apiKey);
 
 Builder.registerComponent(
+  dynamic(() => import("./components/categorySidebar/categorySidebar")),
+  {
+    name: "Category Sidebar",
+    description:
+      "Sidebar menu that has dropdowns to show all product categories sorted into parent categories",
+    image: "https://unpkg.com/css.gg@2.0.0/icons/svg/list.svg",
+  }
+);
+
+Builder.registerComponent(
   dynamic(() => import("./components/breadCrumbs/breadcrumbs")),
   {
     name: "Bread Crumbs",
@@ -51,7 +61,7 @@ Builder.registerComponent(
 Builder.registerComponent(
   dynamic(() => import("./components/catCarousel/catCarousel")),
   {
-    name: "CatCarousel",
+    name: "Category Carousel",
     image: "https://unpkg.com/css.gg@2.0.0/icons/svg/carousel.svg",
   }
 );
@@ -59,7 +69,7 @@ Builder.registerComponent(
 Builder.registerComponent(
   dynamic(() => import("./components/featuredCat/featuredCat")),
   {
-    name: "FeaturedCat",
+    name: "Featured Category Banner",
     image: "https://unpkg.com/css.gg@2.0.0/icons/svg/more-r.svg",
   }
 );
@@ -67,7 +77,7 @@ Builder.registerComponent(
 Builder.registerComponent(
   dynamic(() => import("./components/searchByBoat/searchByBoat")),
   {
-    name: "SearchByBoat",
+    name: "Search By Boat Banner",
     description: "Drop down list for boat models, makes and categories.",
     image: "https://unpkg.com/css.gg@2.0.0/icons/svg/browse.svg",
   }
@@ -76,9 +86,9 @@ Builder.registerComponent(
 Builder.register("insertMenu", {
   name: "UI Components",
   items: [
-    { name: "SearchByBoat" },
+    { name: "Search By Boat Banner" },
     { name: "Accordion" },
-    { name: "FeaturedCat" },
-    { name: "CatCarousel" },
+    { name: "Featured Category Banner" },
+    { name: "Category Carousel" },
   ],
 });

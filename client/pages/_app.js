@@ -18,12 +18,13 @@ const Noop = ({ children }) => <>{children}</>;
 Builder.register("insertMenu", {
   name: "Swell Category Components",
   items: [
-    { name: "FeaturedCat" },
+    { name: "Featured Category Banner" },
     { name: "ProductGrid" },
     { name: "CollectionGrid" },
     { name: "CollectionView" },
     { name: "CollectionViewHome" },
     { name: "Bread Crumbs" },
+    { name: "Category Sidebar" },
   ],
 });
 

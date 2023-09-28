@@ -38,11 +38,11 @@
 }
 
 .link::before {
-  background-color: var(--teal);
+  background-color: var(--casBlue);
 }
 
 .link:hover {
-  color: var(--teal);
+  color: var(--casBlue);
 }
 
 .link:hover::before {

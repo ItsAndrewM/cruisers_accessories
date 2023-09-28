@@ -12,6 +12,6 @@
 }
 
 .active {
-  border-bottom: 1px solid var(--teal);
-  color: var(--teal);
+  border-bottom: 1px solid var(--casBlue);
+  color: var(--casBlue);
 }

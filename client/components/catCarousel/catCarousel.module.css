@@ -54,12 +54,12 @@
 .textContainer h1 {
   width: 100%;
   text-align: center;
-  color: white;
+  color: var(--cream);
   text-transform: uppercase;
 }
 
 .textContainer h4 {
-  color: white;
+  color: var(--cream);
   text-transform: uppercase;
 }
 
@@ -84,11 +84,11 @@
 }
 
 .link::before {
-  background-color: var(--teal);
+  background-color: var(--babyblue);
 }
 
 .link:hover {
-  color: var(--teal);
+  color: var(--babyblue);
 }
 
 .link:hover::before {
