@@ -40,11 +40,17 @@ const BreadCrumbs = () => {
             return (
               <>
                 <span>/</span>
-                <li
-                  key={path}
-                  className={router.asPath === url ? styles.active : ""}
-                >
-                  <Link href={url}>{path}</Link>
+                <li key={path}>
+                  <Link
+                    href={url}
+                    className={
+                      router.asPath === url
+                        ? styles.active
+                        : featuredCatStyles.link
+                    }
+                  >
+                    {path}
+                  </Link>
                 </li>
               </>
             );
