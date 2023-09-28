@@ -9,6 +9,7 @@ import swellConfig from "../swell.config";
 // }
 
 export const getCategoryByBoat = async (boatModel, boatMake) => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
   const data = await fetch(
     process.env.NODE_ENV === "production"
       ? `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
@@ -35,13 +36,13 @@ export const getCategoryByBoat = async (boatModel, boatMake) => {
 };
 
 export const getFilteredProducts = async (query) => {
-  // swell.init(swellConfig.storeId, swellConfig.publicKey);
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
   // const products = await swell.products.list({ limit: 24 });
   // return products;
   const products = await fetch(
     process.env.NODE_ENV === "production"
-      ? `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
-      : `http://localhost:3000/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+      ? `https://cruiser-accessories.vercel.app/api/products?${query}`
+      : `http://localhost:3000/api/products?${query}`
   );
 
   // );
