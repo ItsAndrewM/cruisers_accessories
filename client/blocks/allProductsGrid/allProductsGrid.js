@@ -59,6 +59,7 @@ export const AllProductsGrid = ({
           router.query.search,
           router.query.page || 1
         );
+        setResults(data.count);
         setAllProducts(data.results);
         setPageNums(data.page_count);
         // const filtered = await getFilteredProducts(query);
@@ -100,7 +101,19 @@ export const AllProductsGrid = ({
           <CategorySidebar />
           {attributes ? <AttributesFilter attributes={attributes} /> : <></>}
         </div>
+
         <div className={styles.wrapper} style={{ padding: "2em 0" }}>
+          <div>
+            {results ? (
+              <h1>
+                {results > 24
+                  ? `Displaying 24 of ${results} results for <span>${router.query.search}</span>`
+                  : `Displaying ${results} results for <span>${router.query.search}</span> `}
+              </h1>
+            ) : (
+              <></>
+            )}
+          </div>
           <Grid gap={2} width={["100%", "40%", "24%"]}>
             {allProducts.map((products, i) => {
               return (
