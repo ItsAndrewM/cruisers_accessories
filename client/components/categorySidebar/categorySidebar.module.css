@@ -1,0 +1,14 @@
+.children {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.children > li > span {
+  /* border: 1px solid red; */
+  font-weight: bold;
+}
+
+.children > li > ul {
+  padding: 0 0.25em;
+}

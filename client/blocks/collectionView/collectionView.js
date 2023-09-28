@@ -7,11 +7,15 @@ import { getCollection } from "../../lib/operations-swell";
 import styles from "./collectionView.module.css";
 import CardSkeleton from "@/components/ui/cardSkeleton/cardSkeleton";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
 
 const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
+  const router = useRouter();
   const [category, setCategory] = useState();
   const [loading, setLoading] = useState(false);
   const [pageNums, setPageNums] = useState(1);
+  const [children, setChildren] = useState([]);
   // useEffect(() => setCollection(initialCollection), [initialCollection]);
   useEffect(() => {
     const fetchCollection = async () => {
@@ -30,7 +34,6 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
   if (!collection || typeof collection === "string" || loading) {
     return <CardSkeleton />;
   }
-
   const { name, description, products } = collection;
 
   return (
@@ -50,13 +53,13 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
         <div className={styles.wrapper}>
           <span style={{ marginTop: 0, marginBottom: 2 }}>
             <h1>
-              {collection?.categoryParent ? (
+              {/* {collection?.categoryParent ? (
                 <Link href={`/collection/${collection.categoryParent.slug}`}>
                   {collection.categoryParent.name}:{" "}
                 </Link>
               ) : (
                 <></>
-              )}
+              )} */}
               {collection.name}
             </h1>
           </span>

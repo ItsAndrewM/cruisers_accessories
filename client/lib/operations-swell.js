@@ -10,8 +10,9 @@ import swellConfig from "../swell.config";
 
 export const getCategoryByBoat = async (boatModel, boatMake) => {
   const data = await fetch(
-    // `http://localhost:3000/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
-    `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+    process.env.NODE_ENV === "production"
+      ? `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+      : `http://localhost:3000/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
   );
   const jsonData = await data.json();
   const categories = jsonData.data.results.map((product) => {
@@ -38,8 +39,9 @@ export const getFilteredProducts = async (query) => {
   // const products = await swell.products.list({ limit: 24 });
   // return products;
   const products = await fetch(
-    `https://cruiser-accessories.vercel.app//api/products?${query}`
-    // `http://localhost:3000/api/products?${query}`
+    process.env.NODE_ENV === "production"
+      ? `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+      : `http://localhost:3000/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
   );
 
   // );
@@ -206,25 +208,30 @@ export const getAllCollections = async (config, limit = 20, offset = 0) => {
     limit: 24,
     page: 1,
   });
-  if (categories.count > 24) {
-    let results = categories.results;
-    const pages = [];
-    for (let i = 1; i <= categories.page_count; i++) {
-      pages.push(i);
-    }
-    for (const page in pages) {
-      if (page !== 1) {
-        const nextPage = await swell.categories.list({
-          limit: limit,
-          page: Number(page),
-        });
-        results = [...results].concat(nextPage.results);
-      }
-    }
-    return results ? results : [];
-  } else {
-    return categories?.results ? categories.results : [];
-  }
+  return categories?.results ? categories.results : [];
+};
+
+export const getParentCategories = async () => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const categories = await swell.categories.list({
+    limit: 100,
+  });
+  const parents = categories?.results?.filter((category) => {
+    return !category.parent_id;
+  });
+
+  return parents;
+};
+
+export const getChildCategories = async () => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const categories = await swell.categories.list({
+    limit: 100,
+  });
+  const children = categories?.results?.filter((category) => {
+    return category.parent_id !== null;
+  });
+  return children;
 };
 
 export const getPaginatedCategories = async (pageNum) => {
@@ -243,10 +250,36 @@ export const getAllCategoryPages = async () => {
 };
 
 export const getAllCollectionPaths = async (config, limit) => {
-  const collections = await getAllCollections(config, limit);
-
-  return collections?.map((entry) => entry.slug) || [];
+  // const collections = await getAllCollections(config, limit);
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const categories = await swell.categories.list({
+    limit: 24,
+    page: 1,
+  });
+  if (categories.count > 24) {
+    let results = categories.results;
+    const pages = [];
+    for (let i = 1; i <= categories.page_count; i++) {
+      pages.push(i);
+    }
+    for (const page in pages) {
+      if (page !== 1) {
+        const nextPage = await swell.categories.list({
+          limit: limit,
+          page: Number(page),
+        });
+        results = [...results].concat(nextPage.results);
+      }
+    }
+    return results?.map((entry) => entry.slug) || [];
+  } else {
+    return categories?.map((entry) => entry.slug) || [];
+  }
 };
+
+// export const getCollectionChildren = async (collectionId) => {
+//   await swell.init(swellConfig.storeId, swellConfig.publicKey);
+// }
 
 export const getCollection = async (config, options, pageNum) => {
   if (Boolean(options.id) === Boolean(options.handle)) {

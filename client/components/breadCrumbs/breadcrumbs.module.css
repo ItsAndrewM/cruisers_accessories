@@ -1,0 +1,17 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.wrapper > ul {
+  display: flex;
+  gap: 0.5em;
+}
+
+.active {
+  border-bottom: 1px solid var(--teal);
+  color: var(--teal);
+}

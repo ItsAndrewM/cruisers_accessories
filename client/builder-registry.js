@@ -5,6 +5,16 @@ import builderConfig from "./builder.config";
 builder.init(builderConfig.apiKey);
 
 Builder.registerComponent(
+  dynamic(() => import("./components/breadCrumbs/breadcrumbs")),
+  {
+    name: "Bread Crumbs",
+    description:
+      "Dynamically adds the url as a breadcrumb path. Will also highlight current active path",
+    image: "https://unpkg.com/css.gg@2.0.0/icons/svg/list-tree.svg",
+  }
+);
+
+Builder.registerComponent(
   dynamic(() => import("./components/button/button")),
   {
     name: "Button",

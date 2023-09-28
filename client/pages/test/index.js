@@ -4,6 +4,8 @@ import styles from "../../styles/test.module.css";
 import swellConfig from "@/swell.config";
 import swell from "swell-js";
 import SearchByBoat from "@/components/searchByBoat/searchByBoat";
+import CategorySidebar from "@/components/categorySidebar/categorySidebar";
+import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
 
 export async function getServerSideProps(context) {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
@@ -31,12 +33,9 @@ const Page = ({ boatModel, boatMake, categories }) => {
 
   return (
     <div className={styles.wrapper}>
+      <BreadCrumbs />
       <div className={styles.box}>
-        <SearchByBoat
-          boatMake={boatMake}
-          boatModel={boatModel}
-          categories={categories}
-        />
+        <CategorySidebar />
       </div>
     </div>
   );
