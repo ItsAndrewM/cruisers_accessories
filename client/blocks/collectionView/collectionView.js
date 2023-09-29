@@ -32,7 +32,7 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
     // }
   }, [collection]);
 
-  const { name, description, products } = collection;
+  // const { name, description, products } = collection;
 
   return (
     <>
@@ -43,8 +43,8 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
             description={collection.description}
             openGraph={{
               type: "website",
-              name,
-              description,
+              // name,
+              // description,
             }}
           />
         )}
@@ -61,7 +61,7 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
         <div className={styles.padding5}>
           <ProductGrid
             {...productGridOptions}
-            products={products}
+            products={collection.products}
             collection={collection}
           />
         </div>
