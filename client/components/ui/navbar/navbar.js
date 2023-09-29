@@ -101,6 +101,7 @@ const Navbar = () => {
                 index={index}
                 setCurrent={setCurrent}
                 current={current}
+                key={index}
               />
             ))}
           </ul>
