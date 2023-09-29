@@ -98,3 +98,7 @@
   align-items: center;
   gap: 1em;
 }
+
+.top h4 {
+  text-align: left;
+}

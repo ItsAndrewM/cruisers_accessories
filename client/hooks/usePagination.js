@@ -13,7 +13,7 @@ export default async function usePagination(currentPage, query, totalPages) {
     return getPages(totalPages);
   }
   // -> 1 2 3 4 ... 10
-  if (currentPage <= 1) {
+  if (currentPage <= 3) {
     return [1, 2, 3, 4, dotts, totalPages];
   }
   // -> 1 ... 4 5 6 ... 10

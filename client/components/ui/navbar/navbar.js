@@ -11,9 +11,10 @@ import Image from "next/image";
 import Searchbar from "../searchBar/searchBar";
 import styles from "./navbar.module.css";
 import featuredCatStyles from "../../featuredCat/featuredCat.module.css";
+import NavigationLinkItem from "./navigationLinkItem";
 
 const Navbar = () => {
-  const [show, setShow] = useState(false);
+  const [current, setCurrent] = useState();
   const [announcement, setAnnouncement] = useState();
   const { theme } = useThemeUI();
   const { navigationLinks, logo } = useUI();
@@ -95,63 +96,12 @@ const Navbar = () => {
         <nav className={styles.container}>
           <ul className={styles.navlinks}>
             {navigationLinks?.map((link, index) => (
-              <li key={index}>
-                <Link
-                  href={link.link}
-                  className={featuredCatStyles.link}
-                  onMouseEnter={link.subLinks && handleHover}
-                >
-                  {link.title}
-                </Link>
-                {!link.subLinks?.length ? (
-                  <></>
-                ) : (
-                  <ul
-                    className={`${
-                      !show ? styles.subMenuItemHide : styles.subMenuItemShow
-                    }`}
-                    onMouseLeave={handleLeave}
-                  >
-                    {link?.subLinks.map((subLink, index) => {
-                      return (
-                        <li
-                          key={`${subLink.title} + ${String(index)}`}
-                          className={styles.top}
-                        >
-                          <Link
-                            href={subLink.link}
-                            className={featuredCatStyles.link}
-                          >
-                            {subLink.title}
-                          </Link>
-                          {!subLink.subLinks?.length ? (
-                            <></>
-                          ) : (
-                            <ul className={styles.subSubLinkList}>
-                              {subLink.subLinks.map((subSubLink, index) => {
-                                return (
-                                  <li
-                                    key={`${subSubLink.title} + ${String(
-                                      index
-                                    )}`}
-                                  >
-                                    <Link
-                                      href={subSubLink.link}
-                                      className={featuredCatStyles.link}
-                                    >
-                                      {subSubLink.title}
-                                    </Link>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </li>
+              <NavigationLinkItem
+                link={link}
+                index={index}
+                setCurrent={setCurrent}
+                current={current}
+              />
             ))}
           </ul>
         </nav>

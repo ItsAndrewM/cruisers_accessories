@@ -61,7 +61,7 @@ Builder.registerComponent(
 Builder.registerComponent(
   dynamic(() => import("./components/catCarousel/catCarousel")),
   {
-    name: "Category Carousel",
+    name: "CatCarousel",
     image: "https://unpkg.com/css.gg@2.0.0/icons/svg/carousel.svg",
   }
 );
