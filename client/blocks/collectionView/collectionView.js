@@ -9,6 +9,7 @@ import CardSkeleton from "@/components/ui/cardSkeleton/cardSkeleton";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
+import Loading from "./loading";
 
 const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
   const router = useRouter();
@@ -31,9 +32,6 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
     // }
   }, [collection]);
 
-  if (!collection || typeof collection === "string" || loading) {
-    return <CardSkeleton />;
-  }
   const { name, description, products } = collection;
 
   return (
@@ -50,21 +48,16 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
             }}
           />
         )}
-        <div className={styles.wrapper}>
-          <span style={{ marginTop: 0, marginBottom: 2 }}>
-            <h1>
-              {/* {collection?.categoryParent ? (
-                <Link href={`/collection/${collection.categoryParent.slug}`}>
-                  {collection.categoryParent.name}:{" "}
-                </Link>
-              ) : (
-                <></>
-              )} */}
-              {collection.name}
-            </h1>
-          </span>
-          <div dangerouslySetInnerHTML={{ __html: collection.description }} />
-        </div>
+        {!category ? (
+          <Loading />
+        ) : (
+          <div className={styles.wrapper}>
+            <span style={{ marginTop: 0, marginBottom: 2 }}>
+              <h1>{collection.name}</h1>
+            </span>
+            <div dangerouslySetInnerHTML={{ __html: collection.description }} />
+          </div>
+        )}
         <div className={styles.padding5}>
           <ProductGrid
             {...productGridOptions}

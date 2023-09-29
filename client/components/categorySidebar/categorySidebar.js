@@ -7,6 +7,7 @@ import {
   getChildCategories,
 } from "@/lib/operations-swell";
 import Link from "next/link";
+import SkeletonCategory from "./skeletonCategory";
 
 const CategorySidebar = () => {
   const [parents, setParents] = useState([]);
@@ -20,6 +21,10 @@ const CategorySidebar = () => {
     };
     fetchParents();
   }, []);
+
+  if (!children.length || !parents.length) {
+    return <SkeletonCategory />;
+  }
 
   return (
     <div>

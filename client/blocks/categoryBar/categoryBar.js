@@ -2,10 +2,11 @@ import Image from "next/image";
 import styles from "./categoryBar.module.css";
 import Link from "next/link";
 import featuredCatStyles from "../../components/featuredCat/featuredCat.module.css";
+import Loading from "./loading";
 
 const CategoryBar = ({ children }) => {
   if (!children.length) {
-    return <></>;
+    return <Loading />;
   }
   return (
     <div className={styles.wrapper}>
@@ -16,9 +17,9 @@ const CategoryBar = ({ children }) => {
               <Link href={`/collection/${child.slug}`}>
                 <Image
                   src={
-                    child.images?.length > 0
-                      ? category.images[0].file.url
-                      : `https://placehold.co/150/jpeg`
+                    !child?.images?.length
+                      ? `https://placehold.co/150/jpeg`
+                      : child.images[0].file.url
                   }
                   priority={true}
                   height={150}

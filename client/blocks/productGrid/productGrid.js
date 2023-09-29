@@ -10,6 +10,7 @@ import PaginationBar from "@/components/paginationBar/paginationBar";
 import CollectionCard from "@/components/collectionCard/collectionCard";
 import { useRouter } from "next/router";
 import CategoryBar from "../categoryBar/categoryBar";
+import Loading from "./loading";
 
 export const ProductGrid = ({
   products: initialProducts,
@@ -63,23 +64,24 @@ export const ProductGrid = ({
     }
   }, [collection, router.query]);
 
-  if (loading) {
-    return <LoadingDots />;
-  }
   return (
     <>
       <CategoryBar children={!collectionChildren ? [] : collectionChildren} />
       <div className={styles.container}>
         <div className={styles.wrapper}>
-          <Grid gap={2} width={["100%", "40%", "24%"]}>
-            {collectionProducts.map((product, i) => (
-              <CollectionCard
-                key={String(product.id) + i}
-                {...(highlightCard?.index === i ? highlightCard : cardProps)}
-                category={product}
-              />
-            ))}
-          </Grid>
+          {loading ? (
+            <Loading />
+          ) : (
+            <Grid gap={2} width={["100%", "40%", "24%"]}>
+              {collectionProducts.map((product, i) => (
+                <CollectionCard
+                  key={String(product.id) + i}
+                  {...(highlightCard?.index === i ? highlightCard : cardProps)}
+                  category={product}
+                />
+              ))}
+            </Grid>
+          )}
           <PaginationBar
             query={"collection"}
             page_count={pageNums}

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import styles from "./attributesFilter.module.css";
 import { Fragment } from "react";
 import searchByBoatStyles from "../searchByBoat/searchByBoat.module.css";
+import accordianStyles from "../accordion/accordion.module.css";
 
 const AttributesFilter = ({ attributes }) => {
   const router = useRouter();
@@ -43,7 +44,7 @@ const AttributesFilter = ({ attributes }) => {
               }
               return (
                 <li key={attribute.id} className={styles.summary}>
-                  <details className={styles.accordian}>
+                  <details className={accordianStyles.accordian}>
                     <summary>{attribute.name}</summary>
                   </details>
 

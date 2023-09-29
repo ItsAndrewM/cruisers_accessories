@@ -14,6 +14,7 @@ import PaginationBar from "@/components/paginationBar/paginationBar";
 import { useRouter } from "next/router";
 import styles from "../allProductsGrid/allProductsGrid.module.css";
 import CardSkeleton from "@/components/ui/cardSkeleton/cardSkeleton";
+import Loading from "./loading";
 
 export const CollectionGrid = ({
   offset = 0,
@@ -50,7 +51,7 @@ export const CollectionGrid = ({
   }, [router.query]);
 
   if (loading || !categories) {
-    return <CardSkeleton />;
+    return <Loading />;
   } else {
     return (
       <div className={styles.container}>

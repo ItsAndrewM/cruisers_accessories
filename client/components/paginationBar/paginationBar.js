@@ -3,6 +3,7 @@ import styles from "./paginationBar.module.css";
 import featuredCatStyles from "../featuredCat/featuredCat.module.css";
 import { useEffect, useState } from "react";
 import usePagination from "@/hooks/usePagination";
+import SkeletonPagination from "@/blocks/collectionGrid/skeletonPagination";
 
 export const dotts = "...";
 
@@ -99,7 +100,9 @@ const PaginationBar = (params) => {
       </ul>
     </div>
   ) : (
-    <></>
+    <div className={styles.wrapper}>
+      <SkeletonPagination />
+    </div>
   );
 };
 

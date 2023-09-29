@@ -16,6 +16,9 @@ import { useRouter } from "next/router";
 import PaginationBar from "@/components/paginationBar/paginationBar";
 import AttributesFilter from "@/components/attributesFilter/attributesFilter";
 import CategorySidebar from "@/components/categorySidebar/categorySidebar";
+import SkeletonGrid from "@/components/skeletonGrid/skeletonGrid";
+import SkeletonPagination from "../collectionGrid/skeletonPagination";
+import SkeletonFilter from "@/components/attributesFilter/skeletonFilter";
 
 export const AllProductsGrid = ({
   offset = 1,
@@ -24,7 +27,7 @@ export const AllProductsGrid = ({
   highlightCard,
 }) => {
   const [loading, setLoading] = useState(false);
-  const [allProducts, setAllProducts] = useState();
+  const [allProducts, setAllProducts] = useState([]);
   const [pageNums, setPageNums] = useState(1);
   const [attributes, setAttributes] = useState();
   const [results, setResults] = useState();
@@ -90,30 +93,34 @@ export const AllProductsGrid = ({
     fetchAllAttributes();
   }, []);
 
-  if (loading || !allProducts) {
-    return <LoadingDots />;
-  } else {
-    // const arr = allProducts.slice(offset, limit);
-    // console.log(arr);
-    return (
-      <div className={styles.container}>
-        <div>
-          <CategorySidebar />
-          {attributes ? <AttributesFilter attributes={attributes} /> : <></>}
-        </div>
+  // const arr = allProducts.slice(offset, limit);
+  // console.log(arr);
+  return (
+    <div className={styles.container}>
+      <div>
+        <CategorySidebar />
+        {!attributes ? (
+          <SkeletonFilter />
+        ) : (
+          <AttributesFilter attributes={attributes} />
+        )}
+      </div>
 
-        <div className={styles.wrapper} style={{ padding: "2em 0" }}>
-          <div>
-            {results ? (
-              <h1>
-                {results > 24
-                  ? `Displaying 24 of ${results} results for <span>${router.query.search}</span>`
-                  : `Displaying ${results} results for <span>${router.query.search}</span> `}
-              </h1>
-            ) : (
-              <></>
-            )}
-          </div>
+      <div className={styles.wrapper} style={{ padding: "2em 0" }}>
+        <div>
+          {results ? (
+            <h1>
+              {results > 24
+                ? `Displaying 24 of ${results} results for <span>${router.query.search}</span>`
+                : `Displaying ${results} results for <span>${router.query.search}</span> `}
+            </h1>
+          ) : (
+            <></>
+          )}
+        </div>
+        {!allProducts.length ? (
+          <SkeletonGrid />
+        ) : (
           <Grid gap={2} width={["100%", "40%", "24%"]}>
             {allProducts.map((products, i) => {
               return (
@@ -125,9 +132,13 @@ export const AllProductsGrid = ({
               );
             })}
           </Grid>
+        )}
+        {!pageNums && loading ? (
+          <SkeletonPagination />
+        ) : (
           <PaginationBar query={"products"} page_count={pageNums} />
-        </div>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 };
