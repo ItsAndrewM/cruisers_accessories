@@ -48,7 +48,7 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
             }}
           />
         )}
-        {!category && loading ? (
+        {!category || (!collection && loading) ? (
           <Loading />
         ) : (
           <div className={styles.wrapper}>
