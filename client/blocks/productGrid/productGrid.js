@@ -54,7 +54,13 @@ export const ProductGrid = ({
         handle: collection?.slug,
         pageNum: router.query?.page || 1,
       });
-      setCollectionChildren(result.children);
+      console.log(result.children);
+      if (!result.children.length) {
+        console;
+        setCollectionChildren(null);
+      } else {
+        setCollectionChildren(result.children);
+      }
       setCollectionProducts(result.products);
       setPageNums(result.page_count);
       setLoading(false);
@@ -66,7 +72,11 @@ export const ProductGrid = ({
 
   return (
     <>
-      <CategoryBar children={!collectionChildren ? [] : collectionChildren} />
+      {!collectionChildren ? (
+        <></>
+      ) : (
+        <CategoryBar children={!collectionChildren ? [] : collectionChildren} />
+      )}
       <div className={styles.container}>
         <div className={styles.wrapper}>
           {loading ? (

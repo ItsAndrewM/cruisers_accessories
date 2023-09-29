@@ -23,7 +23,7 @@ const BreadCrumbs = () => {
   return (
     <div className={styles.wrapper}>
       <ul>
-        <li>
+        <li key={"home"}>
           <Link href={"/"} className={featuredCatStyles.link}>
             Home
           </Link>
@@ -36,23 +36,20 @@ const BreadCrumbs = () => {
             for (let i = 0; i <= index; i++) {
               url += "/" + asLink[i];
             }
-            console.log(url);
             return (
-              <>
-                <span>/</span>
-                <li key={path}>
-                  <Link
-                    href={url}
-                    className={
-                      router.asPath === url
-                        ? styles.active
-                        : featuredCatStyles.link
-                    }
-                  >
-                    {path}
-                  </Link>
-                </li>
-              </>
+              <li key={path}>
+                <span key={index}>/ </span>
+                <Link
+                  href={url}
+                  className={
+                    router.asPath === url
+                      ? styles.active
+                      : featuredCatStyles.link
+                  }
+                >
+                  {path}
+                </Link>
+              </li>
             );
           })
         )}

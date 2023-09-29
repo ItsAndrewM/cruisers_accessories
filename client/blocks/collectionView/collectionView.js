@@ -14,19 +14,19 @@ import Loading from "./loading";
 const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
   const router = useRouter();
   const [category, setCategory] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [pageNums, setPageNums] = useState(1);
   const [children, setChildren] = useState([]);
   // useEffect(() => setCollection(initialCollection), [initialCollection]);
   useEffect(() => {
     const fetchCollection = async () => {
-      setLoading(true);
       const result = await getCollection(builderConfig, {
         handle: collection?.slug,
       });
       setCategory(result);
       setLoading(false);
     };
+    console.log("called");
     // if (typeof collection === "string") {
     fetchCollection();
     // }
@@ -48,7 +48,7 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
             }}
           />
         )}
-        {!category ? (
+        {!category && loading ? (
           <Loading />
         ) : (
           <div className={styles.wrapper}>
