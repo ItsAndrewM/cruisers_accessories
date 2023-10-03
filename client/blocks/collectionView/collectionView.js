@@ -59,11 +59,15 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
           </div>
         )}
         <div className={styles.padding5}>
-          <ProductGrid
-            {...productGridOptions}
-            products={collection.products}
-            collection={collection}
-          />
+          {!collection?.products ? (
+            <></>
+          ) : (
+            <ProductGrid
+              {...productGridOptions}
+              products={collection.products}
+              collection={collection}
+            />
+          )}
         </div>
       </div>
     </>
