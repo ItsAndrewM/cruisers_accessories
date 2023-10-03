@@ -6,6 +6,7 @@ import { ProductGrid, ProductGridProps } from "../productGrid/productGrid";
 import { getCollection } from "../../lib/operations-swell";
 import styles from "./collectionView.module.css";
 import CardSkeleton from "@/components/ui/cardSkeleton/cardSkeleton";
+import SkeletonGrid from "./skeletonGrid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
@@ -60,11 +61,15 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
           </div>
         )}
         <div className={styles.padding5}>
-          <ProductGrid
-            {...productGridOptions}
-            products={!collection?.products ? [] : collection?.products}
-            collection={collection}
-          />
+          {!collection?.products ? (
+            <SkeletonGrid />
+          ) : (
+            <ProductGrid
+              {...productGridOptions}
+              products={!collection?.products ? [] : collection?.products}
+              collection={collection}
+            />
+          )}
         </div>
       </div>
     </>
