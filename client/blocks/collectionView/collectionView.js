@@ -34,11 +34,11 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
 
   return (
     <>
-      <div className={styles.wrapper} key={collection.id || ""}>
+      <div className={styles.wrapper} key={!collection.id ? "" : collection.id}>
         {renderSeo && (
           <NextSeo
-            title={collection.name || ""}
-            description={collection.description || ""}
+            title={!collection?.name ? "" : collection?.name}
+            description={!collection.description ? "" : collection.description}
             openGraph={{
               type: "website",
               // name,
@@ -53,9 +53,7 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
             <span style={{ marginTop: 0, marginBottom: 2 }}>
               <h1>{collection.name}</h1>
             </span>
-            <div
-              dangerouslySetInnerHTML={{ __html: collection.description || "" }}
-            />
+            <div dangerouslySetInnerHTML={{ __html: collection.description }} />
           </div>
         )}
         <div className={styles.padding5}>
