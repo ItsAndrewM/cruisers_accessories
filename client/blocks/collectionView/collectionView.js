@@ -36,10 +36,10 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
 
   return (
     <>
-      <div className={styles.wrapper} key={collection.id}>
+      <div className={styles.wrapper} key={collection.id || ""}>
         {renderSeo && (
           <NextSeo
-            title={collection.name}
+            title={collection.name || ""}
             description={collection.description}
             openGraph={{
               type: "website",
@@ -59,15 +59,11 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
           </div>
         )}
         <div className={styles.padding5}>
-          {!collection?.products ? (
-            <></>
-          ) : (
-            <ProductGrid
-              {...productGridOptions}
-              products={collection.products}
-              collection={collection}
-            />
-          )}
+          <ProductGrid
+            {...productGridOptions}
+            products={collection.products || []}
+            collection={collection}
+          />
         </div>
       </div>
     </>
