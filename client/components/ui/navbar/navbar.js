@@ -12,6 +12,7 @@ import Searchbar from "../searchBar/searchBar";
 import styles from "./navbar.module.css";
 import featuredCatStyles from "../../featuredCat/featuredCat.module.css";
 import NavigationLinkItem from "./navigationLinkItem";
+import MobileNavbar from "../mobileNavbar/mobileNavbar";
 
 const Navbar = () => {
   const [current, setCurrent] = useState();
@@ -52,6 +53,7 @@ const Navbar = () => {
         data={{ theme }}
         model="announcement-bar"
       />
+      <MobileNavbar />
       <div className={styles.wrapper}>
         <div className={styles.logo}>
           <div className={styles.cart}>

@@ -4,6 +4,8 @@
   --font-sm: 16px;
   --font-med: 28px;
   --font-lg: 32px;
+  --font-xl: 36px;
+  --font-xxl: 40px;
   --body-font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono",
     "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace",
     "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
