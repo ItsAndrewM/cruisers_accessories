@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useUI } from "../context";
 import navbarStyles from "../navbar/navbar.module.css";
+import Image from "next/image";
 
 const MobileNavbar = () => {
   const { navigationLinks, logo } = useUI();
@@ -49,7 +50,7 @@ const MobileNavbar = () => {
               height={logo.height}
               src={logo.image}
               alt={logo.text}
-            ></Image>
+            />
           </Link>
         )}
         {logo && logo.text && !logo.image && <Link href="/">{logo.text}</Link>}
