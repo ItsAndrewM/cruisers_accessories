@@ -1,5 +1,6 @@
-import NextHead from 'next/head'
-import { DefaultSeo } from 'next-seo'
+import NextHead from "next/head";
+import { DefaultSeo } from "next-seo";
+import Script from "next/script";
 
 const Head = (props) => {
   return (
@@ -14,8 +15,19 @@ const Head = (props) => {
           href="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F2d86a5bb30f44d2db3564aa2962bb093"
         />
       </NextHead>
-    </>
-  )
-}
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-B60G9F71G8"
+      ></Script>
+      <Script>
+        {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-export default Head
+  gtag('config', 'G-B60G9F71G8');`}
+      </Script>
+    </>
+  );
+};
+
+export default Head;
