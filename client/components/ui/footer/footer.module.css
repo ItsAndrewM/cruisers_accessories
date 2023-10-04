@@ -21,3 +21,35 @@
 .logoWrapper {
   min-width: fit-content;
 }
+
+/* //////////////////////////////////////////////////////////////// */
+/* /////////////////////////mobile styling///////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    height: fit-content;
+    max-height: fit-content;
+    justify-content: space-between;
+    padding: 0 1em;
+  }
+  .footer > ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(49%, 1fr));
+    padding-bottom: 1em;
+  }
+  .footer > ul > li:nth-child(even) {
+    text-align: right;
+  }
+  .footer > ul > li {
+    padding-top: 1em;
+  }
+  .logoWrapper {
+    padding-top: 1em;
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -7,6 +7,7 @@ import SearchByBoat from "@/components/searchByBoat/searchByBoat";
 import CategorySidebar from "@/components/categorySidebar/categorySidebar";
 import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
 import navbarStyles from "../../components/ui/navbar/navbar.module.css";
+import CatCarousel from "@/components/catCarousel/catCarousel";
 
 export async function getServerSideProps(context) {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
@@ -35,16 +36,7 @@ const Page = ({ boatModel, boatMake, categories }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.box}>
-        <div
-          className={navbarStyles.subMenuToggle}
-          style={{ marginTop: "5em" }}
-        >
-          <input type="checkbox" />
-          <span></span>
-          <span></span>
-          <span></span>
-          <ul></ul>
-        </div>
+        <CatCarousel />
       </div>
     </div>
   );
