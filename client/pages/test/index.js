@@ -36,7 +36,9 @@ const Page = ({ boatModel, boatMake, categories }) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.box}></div>
+      <div className={styles.box}>
+        <BreadCrumbs />
+      </div>
     </div>
   );
 };
