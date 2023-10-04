@@ -24,6 +24,7 @@
   }
   .wrapper > ul {
     gap: 0em;
+    flex-wrap: wrap;
   }
   .wrapper > ul > li > span {
     padding-left: 0.25em;

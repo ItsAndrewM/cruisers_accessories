@@ -56,7 +56,7 @@ export const CollectionGrid = ({
     return (
       <div className={styles.container}>
         <div className={styles.wrapper}>
-          <Grid gap={2} width={["100%", "40%", "24%"]}>
+          <Grid gap={2} width={["100%", "40%", "24%"]} className={styles.grid}>
             {categories.map((category, i) => {
               return (
                 <CollectionCard

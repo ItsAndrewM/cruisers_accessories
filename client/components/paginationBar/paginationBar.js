@@ -42,7 +42,6 @@ const PaginationBar = (params) => {
   // });
 
   return pages.length > 1 ? (
-    // (
     <div className={styles.wrapper}>
       <ul className={styles.container}>
         {pages.map((pageNum) => {
@@ -69,20 +68,12 @@ const PaginationBar = (params) => {
                 ) : (
                   <button
                     onClick={() => {
-                      router.push(
-                        // ? {
-                        //     query: {
-                        //       handle: params.handle,
-                        //       page: Number(pageNum),
-                        //     },
-                        //   }
-                        {
-                          query: {
-                            ...router.query,
-                            page: Number(pageNum),
-                          },
-                        }
-                      );
+                      router.push({
+                        query: {
+                          ...router.query,
+                          page: Number(pageNum),
+                        },
+                      });
                     }}
                     className={`${featuredCatStyles.link} ${
                       Number(router.query.page) === Number(pageNum)
@@ -101,7 +92,7 @@ const PaginationBar = (params) => {
     </div>
   ) : (
     <div className={styles.wrapper}>
-      <SkeletonPagination />
+      {pages.length === 1 ? <></> : <SkeletonPagination />}
     </div>
   );
 };

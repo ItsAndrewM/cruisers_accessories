@@ -34,6 +34,7 @@ const CollectionCard = ({
         minWidth: [700, imgWidth || 540],
         mb: 2,
       }}
+      className={styles.container}
     >
       <Link
         href={

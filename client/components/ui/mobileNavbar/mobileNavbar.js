@@ -6,9 +6,13 @@ import SubLinksNav from "./subLinksNav";
 import featuredCatStyles from "../../featuredCat/featuredCat.module.css";
 import SearchInput from "../searchInput/searchInput";
 import SearchBar from "../searchBar/searchBar";
+import Cart from "@/components/icons/cart";
+import { useCart } from "@/lib/hooks/useCart";
 
 const MobileNavbar = () => {
   const { navigationLinks, logo } = useUI();
+  const cart = useCart();
+  const items = cart?.items ?? [];
   return (
     <nav className={navbarStyles.navigation}>
       <div id={navbarStyles.menuToggle}>
@@ -56,6 +60,23 @@ const MobileNavbar = () => {
               );
             }
           })}
+          <li
+            key={"cart"}
+            style={{
+              display: "flex",
+              width: "100%",
+              borderBottom: "1px solid black",
+              borderTop: "1px solid black",
+            }}
+          >
+            <Link
+              href={"/cart"}
+              style={{ display: "flex", width: "100%", gap: "1em" }}
+            >
+              <Cart />
+              Cart ({items.length})
+            </Link>
+          </li>
           <SearchBar />
         </ul>
       </div>

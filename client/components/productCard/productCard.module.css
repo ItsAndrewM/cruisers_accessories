@@ -49,3 +49,18 @@
   max-width: 75px;
   background-color: grey;
 }
+
+/* //////////////////////////////////////////////////////////////// */
+/* /////////////////////////mobile styling///////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 !important;
+    max-width: 300px !important;
+    max-height: 300px !important;
+    min-width: 300px !important;
+    min-height: 300px !important;
+    margin-bottom: 50px !important;
+  }
+}
