@@ -36,7 +36,7 @@ const Page = ({ boatModel, boatMake, categories }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.box}>
-        <CatCarousel />
+        <SearchByBoat />
       </div>
     </div>
   );

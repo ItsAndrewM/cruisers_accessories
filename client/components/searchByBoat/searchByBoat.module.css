@@ -67,3 +67,18 @@
   line-height: 1.2;
   height: 14.4px;
 }
+
+/* //////////////////////////////////////////////////////////////// */
+/* /////////////////////////mobile styling///////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+
+@media (max-width: 600px) {
+  .container form {
+    flex-direction: column;
+    align-items: center;
+  }
+  .container label {
+    text-align: center;
+    padding-left: 0;
+  }
+}
