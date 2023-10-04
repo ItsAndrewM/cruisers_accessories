@@ -59,7 +59,7 @@ const ImageCarousel = ({
             images={images}
           />
         )}
-        <Slider>
+        <Slider className={styles.slider}>
           {images.map((image, index) => (
             <Slide index={index} key={index} className={styles.box}>
               {showZoom ? (

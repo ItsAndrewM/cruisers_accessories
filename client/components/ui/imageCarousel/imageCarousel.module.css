@@ -30,3 +30,30 @@
   width: 100%;
   max-width: 100%;
 }
+
+/* //////////////////////////////////////////////////////////////// */
+/* /////////////////////////mobile styling///////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+
+@media (max-width: 600px) {
+  .carousel {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    justify-content: center;
+    max-height: fit-content !important;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 100px !important;
+    max-height: 100px !important;
+  }
+
+  .slider {
+    max-height: 300px !important;
+  }
+}

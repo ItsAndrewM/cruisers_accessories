@@ -178,7 +178,7 @@ const ProductBox = ({
               {productOptions?.length > 0 &&
                 productOptions?.map((option) => {
                   return (
-                    <Grid padding={2} columns={2} key={option.id}>
+                    <Grid padding={2} columns={1} key={option.id}>
                       {Boolean(option.values?.length) && (
                         <OptionPicker
                           key={option.id}
@@ -207,7 +207,10 @@ const ProductBox = ({
             <div></div>
           </div>
         </Grid>
-        <div dangerouslySetInnerHTML={{ __html: description }} />
+        <div
+          dangerouslySetInnerHTML={{ __html: description }}
+          style={{ marginBottom: "1em" }}
+        />
       </div>
     </>
   );
