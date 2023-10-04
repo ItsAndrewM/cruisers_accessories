@@ -8,6 +8,7 @@ import CategorySidebar from "@/components/categorySidebar/categorySidebar";
 import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
 import navbarStyles from "../../components/ui/navbar/navbar.module.css";
 import CatCarousel from "@/components/catCarousel/catCarousel";
+import { ProductGrid } from "@/blocks/productGrid/productGrid";
 
 export async function getServerSideProps(context) {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
@@ -35,9 +36,7 @@ const Page = ({ boatModel, boatMake, categories }) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.box}>
-        <SearchByBoat />
-      </div>
+      <div className={styles.box}></div>
     </div>
   );
 };
