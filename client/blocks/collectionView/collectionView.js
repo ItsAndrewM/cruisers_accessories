@@ -27,7 +27,6 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
       setCategory(result);
       setLoading(false);
     };
-    console.log("called");
     // if (typeof collection === "string") {
     fetchCollection();
     // }

@@ -2,6 +2,10 @@ import Link from "next/link";
 import { useUI } from "../context";
 import navbarStyles from "../navbar/navbar.module.css";
 import Image from "next/image";
+import SubLinksNav from "./subLinksNav";
+import featuredCatStyles from "../../featuredCat/featuredCat.module.css";
+import SearchInput from "../searchInput/searchInput";
+import SearchBar from "../searchBar/searchBar";
 
 const MobileNavbar = () => {
   const { navigationLinks, logo } = useUI();
@@ -21,7 +25,18 @@ const MobileNavbar = () => {
             ) {
               return (
                 <li key={link.title}>
-                  <Link href={link.link}>{link.title}</Link>
+                  <Link href={link.link} className={featuredCatStyles.link}>
+                    {link.title}
+                  </Link>
+                  {link.subLinks && link.subLinks.length ? (
+                    <SubLinksNav
+                      sublinks={link.subLinks}
+                      link={link.link}
+                      title={link.title}
+                    />
+                  ) : (
+                    <></>
+                  )}
                 </li>
               );
             }
@@ -34,11 +49,14 @@ const MobileNavbar = () => {
             ) {
               return (
                 <li key={link.title}>
-                  <Link href={link.link}>{link.title}</Link>
+                  <Link href={link.link} className={featuredCatStyles.link}>
+                    {link.title}
+                  </Link>
                 </li>
               );
             }
           })}
+          <SearchBar />
         </ul>
       </div>
       <h1>

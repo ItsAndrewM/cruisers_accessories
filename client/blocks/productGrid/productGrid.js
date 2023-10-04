@@ -54,7 +54,6 @@ export const ProductGrid = ({
         handle: collection?.slug,
         pageNum: router.query?.page || 1,
       });
-      console.log(result.children);
       if (!result.children.length) {
         console;
         setCollectionChildren(null);

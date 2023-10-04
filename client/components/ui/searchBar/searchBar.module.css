@@ -40,3 +40,33 @@
   border: none;
   background-color: inherit;
 }
+
+/* //////////////////////////////////////////////////////////////// */
+/* /////////////////////////mobile styling///////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+
+@media (max-width: 600px) {
+  .searchForm button {
+    padding: 0;
+  }
+  .searchForm {
+    height: 100%;
+  }
+  .wrapper {
+    width: 100%;
+    border: 1px solid black;
+    padding: 0;
+  }
+
+  .wrapper div:first-child {
+    height: 100%;
+    justify-content: center;
+  }
+
+  .wrapper input[type="search"] {
+    width: 100% !important;
+    opacity: 1 !important;
+    cursor: text !important;
+    max-width: 146px;
+  }
+}

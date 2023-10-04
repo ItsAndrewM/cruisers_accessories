@@ -10,7 +10,7 @@ const RightArrow = ({ ...props }) => {
     >
       <path
         d="M5 12H19"
-        stroke="white"
+        stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -23,7 +23,7 @@ const RightArrow = ({ ...props }) => {
         strokeLinejoin="round"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default RightArrow
+export default RightArrow;

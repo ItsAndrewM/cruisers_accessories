@@ -5,7 +5,6 @@ import featuredCatStyles from "../../components/featuredCat/featuredCat.module.c
 import Loading from "./loading";
 
 const CategoryBar = ({ children }) => {
-  console.log(children);
   if (!children.length) {
     return <Loading />;
   }

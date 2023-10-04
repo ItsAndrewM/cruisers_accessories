@@ -10,6 +10,7 @@ const SearchInput = ({ props }) => {
   const [search, setSearch] = useState(
     props && props.initialSearch && String(props.initialSearch)
   );
+  const [isMobile, setIsMobile] = useState(false);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -40,22 +41,33 @@ const SearchInput = ({ props }) => {
     if (search) {
       getProducts(search);
     }
+    window.addEventListener("resize", handleResize);
   }, []);
+
+  const handleResize = () => {
+    if (window.innerWidth <= 600) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
 
   const throttleSearch = useCallback(throttle(getProducts), []);
   return (
     <div className={styles.wrapper}>
-      <fieldset>
-        <input
-          type="search"
-          name="search"
-          //   defaultValue={props && props.initialSearch}
-          placeholder="Search for a product, part, or sailboat model..."
-          onChange={(event) => throttleSearch(event.target.value)}
-          onKeyDown={props.handleSearch}
-          autoComplete="off"
-        />
-      </fieldset>
+      <input
+        type="search"
+        name="search"
+        //   defaultValue={props && props.initialSearch}
+        placeholder={
+          isMobile
+            ? "Search for a product..."
+            : "Search for a product, part, or sailboat model..."
+        }
+        onChange={(event) => throttleSearch(event.target.value)}
+        onKeyDown={props.handleSearch}
+        autoComplete="off"
+      />
       {/* 
       <ul className={styles.dropdown}>
         {products.map((product) => {
