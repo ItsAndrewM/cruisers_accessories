@@ -54,7 +54,7 @@ const CollectionCard = ({
           ).toFixed(2);
 
           if (max === min) {
-            setPrice(Number(min).toFixed(2));
+            setPrice(`$${Number(min).toFixed(2)}`);
           } else {
             setPrice(`$${min} - $${max}`);
           }
@@ -138,9 +138,9 @@ const CollectionCard = ({
           {type !== "collection" && (
             <p className={styles.p}>
               {typeof price === "string" ? (
-                <span>${price}</span>
-              ) : (
                 <span>{price}</span>
+              ) : (
+                <span>${price.toFixed(2)}</span>
               )}
             </p>
           )}
