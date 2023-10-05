@@ -19,6 +19,7 @@
     "@theme-ui/match-media": "^0.16.1",
     "@theme-ui/mdx": "^0.16.1",
     "@theme-ui/presets": "^0.16.1",
+    "@vercel/analytics": "^1.0.2",
     "cheerio": "^1.0.0-rc.12",
     "encoding": "^0.1.13",
     "eslint": "8.46.0",

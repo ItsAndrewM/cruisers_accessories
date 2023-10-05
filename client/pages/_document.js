@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import cheerio from "cheerio";
+import { Analytics } from "@vercel/analytics/react";
 
 /**
  * See this issue for more details https://github.com/emotion-js/emotion/issues/2040
@@ -52,6 +53,7 @@ class MyDocument extends Document {
           ></style>
           <Main />
           <NextScript />
+          <Analytics />
         </body>
       </Html>
     );
