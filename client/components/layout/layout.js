@@ -18,6 +18,7 @@ import NoSSR from "../ui/noSSR/noSSR";
 import styles from "./layout.module.css";
 import siteTheme from "../../builder/theme/site-theme.json";
 import Footer from "../ui/footer/footer";
+import Script from "next/script";
 
 const FeatureBar = dynamic(() => import("../featuredBar/featureBar"), {
   ssr: false,
@@ -43,6 +44,17 @@ const Layout = ({ children, pageProps }) => {
             <ManagedUIContext key={data.id} siteSettings={siteSettings}>
               {/* <ManagedUIContext > */}
               <Head seoInfo={siteSeoInfo || seoConfig} />
+              <div className="google-analytics-container">
+                {" "}
+                <Script async id="google-analytics">
+                  {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-B60G9F71G8');`}
+                </Script>
+                <Script src="https://www.googletagmanager.com/gtag/js?id=G-B60G9F71G8" />
+              </div>
               {/* <Head seoInfo={seoConfig} /> */}
               <InnerLayout
                 themeName={data.theme || "base"}
