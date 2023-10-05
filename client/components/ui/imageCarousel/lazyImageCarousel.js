@@ -46,7 +46,7 @@ const ImageCarousel = ({
   <>
     <CarouselProvider
       currentSlide={currentSlide}
-      naturalSlideWidth={1}
+      naturalSlideWidth={2}
       naturalSlideHeight={1}
       hasMasterSpinner={false}
       totalSlides={images.length}

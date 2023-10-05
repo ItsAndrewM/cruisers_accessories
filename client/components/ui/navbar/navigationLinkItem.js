@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import featuredCatStyles from "../../featuredCat/featuredCat.module.css";
 import SubLinkItem from "./subLinkItem";
 import Link from "next/link";
+import { v4 as uuidv4 } from "uuid";
 
 const NavigationLinkItem = ({ link, index, setCurrent, current }) => {
   const [show, setShow] = useState(false);
@@ -20,7 +21,7 @@ const NavigationLinkItem = ({ link, index, setCurrent, current }) => {
 
   return (
     <li
-      key={index}
+      key={uuidv4()}
       onMouseEnter={handleHover}
       data-key={link.title}
       //   onMouseLeave={() => setShow(false)}

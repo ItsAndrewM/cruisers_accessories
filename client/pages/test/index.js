@@ -3,12 +3,7 @@ import Layout from "../../components/layout/layout";
 import styles from "../../styles/test.module.css";
 import swellConfig from "@/swell.config";
 import swell from "swell-js";
-import SearchByBoat from "@/components/searchByBoat/searchByBoat";
-import CategorySidebar from "@/components/categorySidebar/categorySidebar";
 import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
-import navbarStyles from "../../components/ui/navbar/navbar.module.css";
-import CatCarousel from "@/components/catCarousel/catCarousel";
-import { ProductGrid } from "@/blocks/productGrid/productGrid";
 
 export async function getServerSideProps(context) {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
@@ -17,11 +12,6 @@ export async function getServerSideProps(context) {
   const categoriesData = await swell.categories.list({ limit: 100 });
   const categories =
     (await categoriesData.results.map((entry) => entry.name)) || [];
-  // const test = await fetch(
-  //   "http://localhost:3000/api/boat-model?boat_model=Abbott"
-  // );
-  // const data = await test.json();
-  // console.log(data);
   return {
     props: {
       boatModel: boatModel,

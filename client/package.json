@@ -36,7 +36,8 @@
     "swell-js": "^3.22.1",
     "swell-node": "^5.2.0",
     "swr": "^2.2.1",
-    "theme-ui": "^0.16.1"
+    "theme-ui": "^0.16.1",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "20.5.7",

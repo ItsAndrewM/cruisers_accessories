@@ -16,9 +16,12 @@ const ImageCarousel = ({
   ...imageProps
 }) => {
   return (
-    <div id="butt">
+    <div>
       <UntilInteraction
-        skeleton={<Image src={images[0].src} {...imageProps} alt="" />}
+        // skeleton={<Image src={images[0].src} {...imageProps} alt="" />}
+        skeleton={
+          <div style={{ backgroundColor: "lightgrey" }} {...imageProps}></div>
+        }
       >
         <LazyCarousel
           images={images}
@@ -26,7 +29,6 @@ const ImageCarousel = ({
           currentSlide={currentSlide}
           onThumbnailClick={onThumbnailClick}
           {...imageProps}
-          id="test"
         />
       </UntilInteraction>
     </div>

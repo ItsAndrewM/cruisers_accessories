@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./navbar.module.css";
 import Link from "next/link";
 import featuredCatStyles from "../../featuredCat/featuredCat.module.css";
+import { v4 as uuidv4 } from "uuid";
 
 const SubLinkItem = ({ link, setShow, show }) => {
   const handleLeave = (e) => {
@@ -16,10 +17,7 @@ const SubLinkItem = ({ link, setShow, show }) => {
     >
       {link?.subLinks.map((subLink, index) => {
         return (
-          <li
-            key={`${subLink.title} + ${String(index)}`}
-            className={styles.top}
-          >
+          <li key={uuidv4()} className={styles.top}>
             <h4>
               <Link href={subLink.link} className={featuredCatStyles.link}>
                 {subLink.title}
@@ -31,7 +29,7 @@ const SubLinkItem = ({ link, setShow, show }) => {
               <ul className={styles.subSubLinkList}>
                 {subLink.subLinks.map((subSubLink, index) => {
                   return (
-                    <li key={`${subSubLink.title} + ${String(index)}`}>
+                    <li key={uuidv4()}>
                       <Link
                         href={subSubLink.link}
                         className={featuredCatStyles.link}

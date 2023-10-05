@@ -13,6 +13,7 @@ import styles from "./navbar.module.css";
 import featuredCatStyles from "../../featuredCat/featuredCat.module.css";
 import NavigationLinkItem from "./navigationLinkItem";
 import MobileNavbar from "../mobileNavbar/mobileNavbar";
+import { v4 as uuidv4 } from "uuid";
 
 const Navbar = () => {
   const [current, setCurrent] = useState();
@@ -103,7 +104,7 @@ const Navbar = () => {
                 index={index}
                 setCurrent={setCurrent}
                 current={current}
-                key={index}
+                key={uuidv4()}
               />
             ))}
           </ul>

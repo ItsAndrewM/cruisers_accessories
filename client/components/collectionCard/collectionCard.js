@@ -3,6 +3,11 @@ import ImageCarousel from "../ui/imageCarousel/lazyImageCarousel";
 import Link from "../ui/link/link";
 import styles from "../productCard/productCard.module.css";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import swellConfig from "@/swell.config";
+import swell from "swell-js";
+import { getProduct } from "@/lib/operations-swell";
+import SkeletonCollectionCard from "./skeletonCollectionCard";
 
 const CollectionCard = ({
   category,
@@ -14,12 +19,64 @@ const CollectionCard = ({
   imgLayout = "responsive",
   type,
 }) => {
+  const [imageSrc, setImageSrc] = useState();
+  const [maxPrice, setMaxPrice] = useState();
+  const [minPrice, setMinPrice] = useState();
+  const [price, setPrice] = useState();
   const handle = category.slug;
   if (!imgWidth) {
     imgWidth = 350;
   }
   if (!imgHeight) {
     imgHeight = 350;
+  }
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      await swell.init(swellConfig.storeId, swellConfig.publicKey);
+      if (category) {
+        const options = await getProduct({ id: category.id });
+        setPrice(Number(options.price));
+        setImageSrc(
+          !options.images.length
+            ? `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
+            : options.images[0].file.url
+        );
+        if (options.variants.length) {
+          setImageSrc(
+            !options.variants[0].images && imageSrc
+              ? `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
+              : options.variants[0].images[0].file.url
+          );
+          const min = Number(options.variants[0].price).toFixed(2);
+          const max = Number(
+            options.variants[options.variants.length - 1].price
+          ).toFixed(2);
+
+          if (max === min) {
+            setPrice(Number(min).toFixed(2));
+          } else {
+            setPrice(`$${min} - $${max}`);
+          }
+          setMaxPrice(Number(!max ? 0 : max).toFixed(2));
+          setMinPrice(Number(min).toFixed(2));
+          // if (max !== min) {
+          //   setMaxPrice(Number(!max ? 0 : max).toFixed(2));
+          //   setMinPrice(Number(min).toFixed(2));
+          // } else {
+          //   setMaxPrice(Number(min).toFixed(2));
+          // }
+        }
+        // console.log(options);
+      }
+    };
+    if (category) {
+      fetchOptions();
+    }
+  }, [category]);
+
+  if (!imageSrc) {
+    return <SkeletonCollectionCard />;
   }
 
   return (
@@ -65,20 +122,27 @@ const CollectionCard = ({
           /> */}
           <Image
             src={
-              category.images?.length > 0
-                ? category.images[0].file.url
-                : `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
+              !imageSrc
+                ? `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
+                : imageSrc
             }
             priority={imgPriority}
             height={imgHeight}
             width={imgWidth}
             alt={category.name}
+            key={category.id}
           />
         </div>
         <div style={{ textAlign: "center" }}>
           <h2 className={styles.h2}>{category.name}</h2>
           {type !== "collection" && (
-            <p className={styles.p}>${Number(category.price).toFixed(2)}</p>
+            <p className={styles.p}>
+              {typeof price === "string" ? (
+                <span>${price}</span>
+              ) : (
+                <span>{price}</span>
+              )}
+            </p>
           )}
         </div>
       </Link>

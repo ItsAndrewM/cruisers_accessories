@@ -8,6 +8,7 @@ import SearchInput from "../searchInput/searchInput";
 import SearchBar from "../searchBar/searchBar";
 import Cart from "@/components/icons/cart";
 import { useCart } from "@/lib/hooks/useCart";
+import { v4 as uuidv4 } from "uuid";
 
 const MobileNavbar = () => {
   const { navigationLinks, logo } = useUI();
@@ -21,14 +22,23 @@ const MobileNavbar = () => {
         <span></span>
         <span></span>
         <ul id={navbarStyles.menu}>
-          <h4>Categories</h4>
+          <li>
+            <Link href={"/collection"}>
+              <h4>Products</h4>
+            </Link>
+          </li>
+          <li className={navbarStyles.menuHeader}>
+            <Link href={"/collection"}>
+              <h4>Categories</h4>
+            </Link>
+          </li>
           {navigationLinks?.map((link) => {
             if (
               !link.link.includes("/about-us") &&
               !link.link.includes("/contact-us")
             ) {
               return (
-                <li key={link.title}>
+                <li key={uuidv4()}>
                   <Link href={link.link} className={featuredCatStyles.link}>
                     {link.title}
                   </Link>
@@ -52,7 +62,7 @@ const MobileNavbar = () => {
               link.link.includes("/contact-us")
             ) {
               return (
-                <li key={link.title}>
+                <li key={uuidv4()}>
                   <Link href={link.link} className={featuredCatStyles.link}>
                     {link.title}
                   </Link>
@@ -60,15 +70,7 @@ const MobileNavbar = () => {
               );
             }
           })}
-          <li
-            key={"cart"}
-            style={{
-              display: "flex",
-              width: "100%",
-              borderBottom: "1px solid black",
-              borderTop: "1px solid black",
-            }}
-          >
+          <li key={"cart"} className={navbarStyles.menuHeader}>
             <Link
               href={"/cart"}
               style={{ display: "flex", width: "100%", gap: "1em" }}
