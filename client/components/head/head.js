@@ -14,18 +14,15 @@ const Head = (props) => {
           type="image/png"
           href="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F2d86a5bb30f44d2db3564aa2962bb093"
         />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-B60G9F71G8"
-        ></Script>
-        <Script id="google-analytics">
-          {`window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B60G9F71G8');`}
-        </Script>
       </NextHead>
+      <Script id="google-analytics">
+        {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-B60G9F71G8');`}
+      </Script>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-B60G9F71G8" />
     </>
   );
 };
