@@ -54,6 +54,10 @@
   }
 
   .slider {
-    max-height: 300px !important;
+    max-height: 500px !important;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

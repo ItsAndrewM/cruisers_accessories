@@ -48,7 +48,7 @@ const ImageCarousel = ({
       currentSlide={currentSlide}
       naturalSlideWidth={2}
       naturalSlideHeight={1}
-      hasMasterSpinner={false}
+      hasMasterSpinner={true}
       totalSlides={images.length}
     >
       <div className={styles.carousel}>

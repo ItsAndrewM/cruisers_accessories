@@ -18,7 +18,9 @@
   --cream: #f3f0e7;
   --green: #64ffda;
   --babyblue: #4a90e2;
-  --casBlue: rgb(51, 0, 204);
+  /* --casBlue: rgb(51, 0, 204); */
+  --casBlue: #042337;
+  --casOrange: #eb4a24;
   --grey: #8892b0;
   --lightGrey: #666;
   --lighterGrey: rgba(0, 0, 0, 0.2);

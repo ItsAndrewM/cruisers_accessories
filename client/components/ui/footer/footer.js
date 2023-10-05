@@ -12,12 +12,12 @@ const Footer = () => {
       <div className={styles.logoWrapper}>
         {logo && logo.image && (
           <Link href="/">
-            <Image
+            {/* <Image
               width={logo.width}
               height={logo.height}
               src={logo.image}
               alt={logo.text}
-            />
+            /> */}
           </Link>
         )}
         {logo && logo.text && !logo.image && (
@@ -34,7 +34,7 @@ const Footer = () => {
             <h3>
               <Link
                 href={link.link}
-                className={`${featuredCatStyles.link} ${utilStyles.capitalize}`}
+                className={`${styles.link} ${utilStyles.capitalize}`}
               >
                 {link.title}
               </Link>
@@ -48,7 +48,7 @@ const Footer = () => {
                     <li key={subLink.title}>
                       <Link
                         href={subLink.link}
-                        className={`${featuredCatStyles.link} ${utilStyles.capitalize}`}
+                        className={`${styles.link} ${utilStyles.capitalize}`}
                       >
                         {subLink.title}
                       </Link>

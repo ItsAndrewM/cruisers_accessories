@@ -23,6 +23,7 @@ const ProductCard = ({
         p: 3,
         display: "flex",
         flexDirection: "column",
+        border: "1px solid lightgrey",
       }}
     >
       <Link href={`/product/${handle}/`}>

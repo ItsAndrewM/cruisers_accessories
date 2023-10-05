@@ -28,7 +28,7 @@ const CollectionCard = ({
     imgWidth = 350;
   }
   if (!imgHeight) {
-    imgHeight = 350;
+    imgHeight = 400;
   }
 
   useEffect(() => {
@@ -83,13 +83,18 @@ const CollectionCard = ({
     <Card
       sx={{
         maxWidth: [700, imgWidth || 540],
-        p: 3,
+        pt: 2,
+        pl: 2,
+        pr: 2,
+        pb: 2,
         display: "flex",
         flexDirection: "column",
+        justifyContent: "space-between",
         maxHeight: [700, imgHeight || 540],
         minHeight: [700, imgHeight || 540],
         minWidth: [700, imgWidth || 540],
-        mb: 2,
+        // mb: 4,
+        border: "2px solid lightgrey",
       }}
       className={styles.container}
     >
@@ -99,7 +104,7 @@ const CollectionCard = ({
             ? `/collection/${handle}/`
             : `/products/${handle}/`
         }
-        className={styles.link}
+        className={`${styles.link} ${styles.LinkContainer}`}
       >
         <div className={styles.imgWrapper}>
           {/* <ImageCarousel
@@ -127,8 +132,8 @@ const CollectionCard = ({
                 : imageSrc
             }
             priority={imgPriority}
-            height={imgHeight}
-            width={imgWidth}
+            height={250}
+            width={250}
             alt={category.name}
             key={category.id}
           />

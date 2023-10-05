@@ -4,6 +4,8 @@
   max-width: 1920px;
   display: flex;
   flex-direction: column;
+  border-bottom: 2px solid var(--casBlue);
+  padding-bottom: 1em;
 }
 
 .navigation {

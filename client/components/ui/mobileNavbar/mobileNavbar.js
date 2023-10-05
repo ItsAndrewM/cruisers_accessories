@@ -85,13 +85,13 @@ const MobileNavbar = () => {
       <h1>
         {logo && logo.image && (
           <Link href="/">
-            <Image
+            {/* <Image
               layout="fixed"
               width={logo.width}
               height={logo.height}
               src={logo.image}
               alt={logo.text}
-            />
+            /> */}
           </Link>
         )}
         {logo && logo.text && !logo.image && <Link href="/">{logo.text}</Link>}
