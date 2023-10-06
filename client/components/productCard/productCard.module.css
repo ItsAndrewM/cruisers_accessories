@@ -65,10 +65,19 @@
 @media (max-width: 600px) {
   .container {
     padding: 0 !important;
-    max-width: 300px !important;
+    max-width: 250px !important;
     max-height: 300px !important;
-    min-width: 300px !important;
-    min-height: 300px !important;
+    min-width: 250px !important;
+    min-height: 250px !important;
     margin-bottom: 50px !important;
+  }
+  .imgWrapper img {
+    max-width: 200px !important;
+    max-height: 200px !important;
+    min-width: 200px !important;
+    min-height: 200px !important;
+  }
+  .imgWrapper {
+    padding: 1em;
   }
 }
