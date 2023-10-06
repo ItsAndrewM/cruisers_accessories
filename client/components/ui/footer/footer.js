@@ -4,6 +4,7 @@ import featuredCatStyles from "../../featuredCat/featuredCat.module.css";
 import styles from "./footer.module.css";
 import Image from "next/image";
 import utilStyles from "../../../styles/utils.module.css";
+import logoWhite from "@/assets/images/logo/logo_white.png";
 
 const Footer = () => {
   const { footerLinks, logo } = useUI();
@@ -12,12 +13,12 @@ const Footer = () => {
       <div className={styles.logoWrapper}>
         {logo && logo.image && (
           <Link href="/">
-            {/* <Image
-              width={logo.width}
-              height={logo.height}
-              src={logo.image}
+            <Image
+              width={!logo.width ? 200 : logo.width}
+              height={!logo.height ? 200 : logo.height}
+              src={logoWhite}
               alt={logo.text}
-            /> */}
+            />
           </Link>
         )}
         {logo && logo.text && !logo.image && (

@@ -61,6 +61,7 @@
     max-height: fit-content;
     justify-content: space-between;
     padding: 0 1em;
+    margin-top: 1em;
   }
   .footer > ul {
     display: grid;

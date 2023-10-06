@@ -57,7 +57,11 @@ const Navbar = () => {
       <MobileNavbar />
       <div className={styles.wrapper}>
         <div className={styles.logo}>
-          <div className={styles.cart}>
+          <UserNav />
+          <Searchbar />
+        </div>
+        <div className={styles.logo}>
+          {/* <div className={styles.textWrapper}>
             <span>
               <Link
                 href={"tel:1-888-958-5638"}
@@ -74,42 +78,40 @@ const Navbar = () => {
                 info@precisionsailloft.com
               </Link>
             </span>
-          </div>
-          <UserNav />
-        </div>
-        <div className={styles.logo}>
-          <h1>
+          </div> */}
+          <div>
             {logo && logo.image && (
-              <Link href="/">
-                {/* <Image
+              <Link href="/" className={styles.casLogo}>
+                <Image
                   layout="fixed"
-                  width={logo.width}
-                  height={logo.height}
+                  width={!logo.width ? 200 : logo.width}
+                  height={!logo.height ? 200 : logo.height}
                   src={logo.image}
                   alt={logo.text}
-                ></Image> */}
+                />
               </Link>
             )}
             {logo && logo.text && !logo.image && (
-              <Link href="/">{logo.text}</Link>
+              <h1>
+                <Link href="/">{logo.text}</Link>
+              </h1>
             )}
-          </h1>
-          <Searchbar />
+          </div>
         </div>
-        <nav className={styles.container}>
-          <ul className={styles.navlinks}>
-            {navigationLinks?.map((link, index) => (
-              <NavigationLinkItem
-                link={link}
-                index={index}
-                setCurrent={setCurrent}
-                current={current}
-                key={uuidv4()}
-              />
-            ))}
-          </ul>
-        </nav>
       </div>
+      <nav className={styles.container}>
+        <ul className={styles.navlinks}>
+          {navigationLinks?.map((link, index) => (
+            <NavigationLinkItem
+              link={link}
+              index={index}
+              setCurrent={setCurrent}
+              current={current}
+              key={uuidv4()}
+            />
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 };

@@ -1,6 +1,7 @@
 .header {
   min-width: 100%;
   width: 100%;
+  height: 275px;
   max-width: 1920px;
   display: flex;
   flex-direction: column;
@@ -8,19 +9,13 @@
   padding-bottom: 1em;
 }
 
-.navigation {
-  height: 60px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .wrapper {
   min-width: 100%;
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  height: 100%;
+  /* flex-wrap: wrap; */
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   position: relative;
@@ -34,18 +29,37 @@
   flex-wrap: nowrap;
 }
 
-.logo {
+.textWrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.logo {
+  width: auto;
+  min-height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
   padding: 0 2em;
-  align-items: center;
+  gap: 0.5em;
+  /* align-items: center; */
+  flex-direction: column;
 }
 
 .logo a {
   letter-spacing: -1;
   text-decoration: none;
   /* padding-left: 5px; */
+}
+
+.casLogo {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.casLogo:hover {
+  opacity: 0.7;
 }
 
 .navlinks li {
@@ -167,14 +181,13 @@
   }
   .header {
     z-index: 999;
+    max-height: 115px;
     position: fixed;
     background-color: white;
     border-bottom: 1px solid black;
   }
   .wrapper {
     display: none;
-  }
-  .navigation {
   }
 
   #menuToggle {
@@ -393,5 +406,9 @@
     cursor: pointer;
     border-bottom: 1px solid black;
     padding: 0;
+  }
+
+  .container {
+    display: none;
   }
 }
