@@ -51,12 +51,12 @@
   font-weight: bold;
   background-color: var(--casOrange);
   border: 2px solid white;
-  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
 .submit:hover {
   color: #fff;
-  box-shadow: inset 115px 0 0 0 var(--casBlue);
+  box-shadow: inset 250px 0 0 0 var(--casBlue);
 }
 
 .invalid {
@@ -82,5 +82,13 @@
   .container label {
     text-align: center;
     padding-left: 0;
+  }
+  .submit {
+    display: flex;
+    justify-content: center;
+  }
+  .submit:hover {
+    color: #fff;
+    box-shadow: inset 325px 0 0 0 var(--casBlue);
   }
 }

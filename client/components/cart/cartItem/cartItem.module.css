@@ -5,7 +5,6 @@
 }
 
 .container {
-  border: 1px solid lightgrey;
   display: flex;
   justify-content: center;
   align-items: center;

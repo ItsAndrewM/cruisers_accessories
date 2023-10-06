@@ -68,7 +68,7 @@ const CartItem = ({ item, currencyCode }) => {
           alt={item.product.meta_description}
           src={
             (item.product.images && item.product.images[0].file?.url) ??
-            "https://placehold.co/1050/jpeg"
+            "https://placehold.co/150/jpeg"
           }
         />
       </div>

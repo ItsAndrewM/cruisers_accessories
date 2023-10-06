@@ -31,7 +31,7 @@ const ProductBox = ({
     [product]
   );
 
-  const options = product?.options;
+  const options = product?.options ? product?.options : product?.variants;
 
   const defaultSelections = options
     ?.filter((options) => options.values?.length)
@@ -51,7 +51,6 @@ const ProductBox = ({
   const setSelectedVariant = () => {
     if (selections && variants) {
       const selectedVariant = variants.find((variant) => {
-        console.log(selections);
         // return variant.option_value_ids?.every((id) => {
         return selections.find((selection) => {
           return selection.value == variant.name;

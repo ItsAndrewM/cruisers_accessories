@@ -8,6 +8,9 @@ import env from "../../../config/env";
 import { getPrice } from "../../../lib/utils/product";
 import styles from "./cartSidebarView.module.css";
 import Cart from "@/components/icons/cart";
+import Button from "@/components/button/button";
+import Link from "next/link";
+import searchByBoatStyles from "../../searchByBoat/searchByBoat.module.css";
 
 const CartSidebarView = () => {
   const checkoutUrl = useCheckoutUrl();
@@ -39,7 +42,8 @@ const CartSidebarView = () => {
 
   return (
     <div
-      className={`${styles.wrapper} ${isEmpty ? styles.justifyContent : ""}`}
+      className={`${styles.container} ${isEmpty ? styles.justifyContent : ""}`}
+      style={{ flexDirection: "column", alignItems: "center" }}
     >
       {isEmpty ? (
         <>
@@ -49,41 +53,48 @@ const CartSidebarView = () => {
         </>
       ) : (
         <>
-          {items.map((item) => (
-            <CartItem
-              key={item.id}
-              item={item}
-              currencyCode={cart?.currency ?? "USD"}
-            />
-          ))}
-          <Card sx={{ marginLeft: "auto", minWidth: "10rem", paddingLeft: 5 }}>
-            <Grid gap={1} columns={2} sx={{ my: 3 }}>
-              <Text>Subtotal:</Text>
-              <Text sx={{ marginLeft: "auto" }}>{subTotal}</Text>
-              <Text>Shipping:</Text>
-              <Text sx={{ marginLeft: "auto" }}>{shippingTotal}</Text>
-              <Text>Tax: </Text>
-              <Text sx={{ marginLeft: "auto" }}>{taxTotal}</Text>
-            </Grid>
+          <div className={styles.container}>
+            <div className={`${styles.wrapper}`}>
+              {items.map((item) => (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  currencyCode={cart?.currency ?? "USD"}
+                />
+              ))}
+            </div>
+            <div className={`${styles.wrapper}`}>
+              <Card sx={{ margin: "auto", minWidth: "10rem", paddingLeft: 5 }}>
+                <Grid gap={1} columns={2} sx={{ my: 3 }}>
+                  <Text>Subtotal:</Text>
+                  <Text sx={{ marginLeft: "auto" }}>{subTotal}</Text>
+                  <Text>Shipping:</Text>
+                  <Text sx={{ marginLeft: "auto" }}>{shippingTotal}</Text>
+                  <Text>Tax: </Text>
+                  <Text sx={{ marginLeft: "auto" }}>{taxTotal}</Text>
+                </Grid>
 
-            <Divider />
-            <Grid gap={1} columns={2}>
-              <Text variant="bold">Estimated Total:</Text>
-              <Text variant="bold" sx={{ marginLeft: "auto" }}>
-                {total}
-              </Text>
-            </Grid>
-          </Card>
-          <BuilderComponent content={cartUpsell} model="cart-upsell-sidebar" />
-          {checkoutUrl && (
-            <NavLink
-              variant="nav"
-              sx={{ width: "100%", m: 2, p: 12, textAlign: "center" }}
-              href={checkoutUrl}
-            >
-              Proceed to Checkout
-            </NavLink>
-          )}
+                <Divider />
+                <Grid gap={1} columns={2}>
+                  <Text variant="bold">Estimated Total:</Text>
+                  <Text variant="bold" sx={{ marginLeft: "auto" }}>
+                    {total}
+                  </Text>
+                </Grid>
+              </Card>
+              <BuilderComponent
+                content={cartUpsell}
+                model="cart-upsell-sidebar"
+              />
+            </div>
+          </div>
+          <div className={styles.container}>
+            {checkoutUrl && (
+              <span className={searchByBoatStyles.submit}>
+                <Link href={checkoutUrl}>Proceed to Checkout</Link>
+              </span>
+            )}
+          </div>
         </>
       )}
     </div>

@@ -9,6 +9,7 @@ import SearchBar from "../searchBar/searchBar";
 import Cart from "@/components/icons/cart";
 import { useCart } from "@/lib/hooks/useCart";
 import { v4 as uuidv4 } from "uuid";
+import logoMobile from "@/assets/images/logo/logo_mobile.png";
 
 const MobileNavbar = () => {
   const { navigationLinks, logo } = useUI();
@@ -81,10 +82,10 @@ const MobileNavbar = () => {
           <Link href="/">
             <Image
               layout="fixed"
-              width={!logo.width ? 100 : logo.width}
+              width={!logo.width ? 350 : logo.width}
               height={!logo.height ? 100 : logo.height}
-              src={logo.image}
-              alt={logo.text}
+              src={logoMobile}
+              alt={"mobile Precision Cruising Accessories Logo"}
             />
           </Link>
         )}
