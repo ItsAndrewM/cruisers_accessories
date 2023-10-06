@@ -9,3 +9,7 @@
 .close svg {
   cursor: pointer;
 }
+
+.wrapper {
+  border: 1px solid red;
+}

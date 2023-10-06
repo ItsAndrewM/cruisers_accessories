@@ -13,7 +13,8 @@ import { v4 as uuidv4 } from "uuid";
 const MobileNavbar = () => {
   const { navigationLinks, logo } = useUI();
   const cart = useCart();
-  const items = cart?.items ?? [];
+  const quantity = cart?.item_quantity ?? 0;
+
   return (
     <nav className={navbarStyles.navigation}>
       <div id={navbarStyles.menuToggle}>
@@ -70,32 +71,40 @@ const MobileNavbar = () => {
               );
             }
           })}
-          <li key={"cart"} className={navbarStyles.menuHeader}>
-            <Link
-              href={"/cart"}
-              style={{ display: "flex", width: "100%", gap: "1em" }}
-            >
-              <Cart />
-              Cart ({items.length})
-            </Link>
-          </li>
+          <li key={"cart"} className={navbarStyles.menuHeader}></li>
           <SearchBar />
         </ul>
       </div>
-      <h1>
+
+      <div className={navbarStyles.imageWrapper}>
         {logo && logo.image && (
           <Link href="/">
-            {/* <Image
+            <Image
               layout="fixed"
-              width={logo.width}
-              height={logo.height}
+              width={!logo.width ? 100 : logo.width}
+              height={!logo.height ? 100 : logo.height}
               src={logo.image}
               alt={logo.text}
-            /> */}
+            />
           </Link>
         )}
-        {logo && logo.text && !logo.image && <Link href="/">{logo.text}</Link>}
-      </h1>
+
+        {logo && logo.text && !logo.image && (
+          <h1>
+            <Link href="/">{logo.text}</Link>
+          </h1>
+        )}
+      </div>
+      <div className={navbarStyles.mobileContainer}>
+        {" "}
+        <Link
+          href={"/cart"}
+          style={{ display: "flex", width: "100%", gap: "1em" }}
+        >
+          <Cart />
+          Cart ({quantity})
+        </Link>
+      </div>
     </nav>
   );
 };

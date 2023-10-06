@@ -22,10 +22,7 @@ export const prepareVariantsWithOptions = (product) => {
   });
 };
 
-export const getPrice = (
-  price,
-  currency
-) =>
+export const getPrice = (price, currency) =>
   Intl.NumberFormat(undefined, {
     currency,
     minimumFractionDigits: 2,
@@ -48,4 +45,4 @@ export const prepareVariantsImages = (variants, optionKey) => {
   });
 
   return images;
-}
+};

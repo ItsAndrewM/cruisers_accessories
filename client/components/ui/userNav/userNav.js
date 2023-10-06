@@ -7,6 +7,7 @@ const UserNav = ({ className, children, ...props }) => {
   const { toggleSidebar } = useUI();
   const cart = useCart();
   const items = cart?.items ?? [];
+  const quantity = cart?.item_quantity ?? 0;
 
   return (
     <Button
@@ -21,7 +22,7 @@ const UserNav = ({ className, children, ...props }) => {
         gap: "1em",
       }}
     >
-      <span style={{ color: "black" }}>Cart ({items.length})</span>
+      <span style={{ color: "black" }}>Cart ({quantity})</span>
       <Cart />
     </Button>
   );

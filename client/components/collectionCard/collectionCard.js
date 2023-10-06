@@ -25,7 +25,7 @@ const CollectionCard = ({
   const [price, setPrice] = useState();
   const handle = category.slug;
   if (!imgWidth) {
-    imgWidth = 350;
+    imgWidth = 300;
   }
   if (!imgHeight) {
     imgHeight = 400;
@@ -36,53 +36,61 @@ const CollectionCard = ({
       await swell.init(swellConfig.storeId, swellConfig.publicKey);
       if (category) {
         const options = await getProduct({ id: category.id });
-        setPrice(Number(options.price));
-        setImageSrc(
-          !options.images.length
-            ? `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
-            : options.images[0].file.url
-        );
-        if (options.variants.length) {
+        if (options) {
+          setPrice(Number(options.price));
           setImageSrc(
-            !options.variants[0].images && imageSrc
+            !options.images.length
               ? `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
-              : options.variants[0].images[0].file.url
+              : options.images[0].file.url
           );
-          const min = Number(options.variants[0].price).toFixed(2);
-          const max = Number(
-            options.variants[options.variants.length - 1].price
-          ).toFixed(2);
+          if (options.variants.length) {
+            setImageSrc(
+              !options.variants[0].images && imageSrc
+                ? `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
+                : options.variants[0].images[0].file.url
+            );
+            const min = Number(options.variants[0].price).toFixed(2);
+            const max = Number(
+              options.variants[options.variants.length - 1].price
+            ).toFixed(2);
 
-          if (max === min) {
-            setPrice(`$${Number(min).toFixed(2)}`);
-          } else {
-            setPrice(`$${min} - $${max}`);
+            if (max === min) {
+              setPrice(`$${Number(min).toFixed(2)}`);
+            } else {
+              setPrice(`$${min} - $${max}`);
+            }
+            setMaxPrice(Number(!max ? 0 : max).toFixed(2));
+            setMinPrice(Number(min).toFixed(2));
+            // if (max !== min) {
+            //   setMaxPrice(Number(!max ? 0 : max).toFixed(2));
+            //   setMinPrice(Number(min).toFixed(2));
+            // } else {
+            //   setMaxPrice(Number(min).toFixed(2));
+            // }
           }
-          setMaxPrice(Number(!max ? 0 : max).toFixed(2));
-          setMinPrice(Number(min).toFixed(2));
-          // if (max !== min) {
-          //   setMaxPrice(Number(!max ? 0 : max).toFixed(2));
-          //   setMinPrice(Number(min).toFixed(2));
-          // } else {
-          //   setMaxPrice(Number(min).toFixed(2));
-          // }
         }
         // console.log(options);
       }
     };
-    if (category) {
+    if (category && type !== "collection") {
       fetchOptions();
+    } else {
+      setImageSrc(
+        category.images.length
+          ? category.images[0].src
+          : `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
+      );
     }
   }, [category]);
 
-  if (!imageSrc) {
+  if (type !== "collection" && !imageSrc) {
     return <SkeletonCollectionCard />;
   }
 
   return (
     <Card
       sx={{
-        maxWidth: [700, imgWidth || 540],
+        maxWidth: [700, 300 || 540],
         pt: 2,
         pl: 2,
         pr: 2,
@@ -90,9 +98,9 @@ const CollectionCard = ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        maxHeight: [700, imgHeight || 540],
-        minHeight: [700, imgHeight || 540],
-        minWidth: [700, imgWidth || 540],
+        maxHeight: [700, 400 || 540],
+        minHeight: [700, 400 || 540],
+        minWidth: [700, 300 || 540],
         // mb: 4,
         border: "2px solid lightgrey",
       }}

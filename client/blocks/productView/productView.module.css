@@ -1,6 +1,7 @@
 .button {
   margin: 8px;
   font-family: inherit;
+  cursor: pointer;
 }
 
 .product {
@@ -73,16 +74,30 @@
   width: 100%;
 }
 
+.mobileButton {
+  display: none;
+}
+
 /* //////////////////////////////////////////////////////////////// */
 /* /////////////////////////mobile styling///////////////////////// */
 /* //////////////////////////////////////////////////////////////// */
 
 @media (max-width: 600px) {
+  .mobileButton {
+    margin: 8px;
+    font-family: inherit;
+    display: block;
+    cursor: pointer;
+  }
   .box {
     height: fit-content;
   }
 
   .container {
     width: 100%;
+  }
+
+  .button {
+    display: none;
   }
 }

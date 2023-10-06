@@ -50,11 +50,11 @@ const ProductBox = ({
 
   const setSelectedVariant = () => {
     const selectedVariant = variants.find((variant) => {
-      return variant.option_value_ids?.every((id) => {
-        return selections.find((selection) => {
-          return selection.id == id;
-        });
+      // return variant.option_value_ids?.every((id) => {
+      return selections.find((selection) => {
+        return selection.value == variant.name;
       });
+      // });
     });
     if (selectedVariant) {
       setVariant(selectedVariant);
@@ -66,6 +66,8 @@ const ProductBox = ({
   const [variant, setVariant] = useState(variants[0] || null);
   const [selections, setSelections] = useState(defaultSelections);
   const [productOptions, setProductOptions] = useState(options);
+  const [added, setAdded] = useState(false);
+  const [buttonText, setButtonText] = useState("Add to Cart");
 
   function inputChangeHandler(option, value) {
     const { name, values } = option;
@@ -78,7 +80,6 @@ const ProductBox = ({
     if (selectionToUpdate) {
       selectionToUpdate.value = value;
       selectionToUpdate.id = id;
-
       setSelections(selections);
       setSelectedVariant();
     }
@@ -86,9 +87,27 @@ const ProductBox = ({
 
   const addToCart = async () => {
     setLoading(true);
+
     try {
-      await addItem(product.id, 1, selections);
+      await addItem(product.id, 1, !variant ? selections : variant);
       openSidebar();
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+    }
+  };
+
+  const addToCartMobile = async () => {
+    setLoading(true);
+    try {
+      await addItem(product.id, 1, variant ? variant : selections);
+      setAdded(true);
+      if (added) {
+        setButtonText("Added");
+        setTimeout(() => {
+          setButtonText("Add to Cart");
+        }, 2000);
+      }
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -203,6 +222,14 @@ const ProductBox = ({
               onClick={addToCart}
             >
               Add to Cart {loading && <LoadingDots />}
+            </button>
+            <button
+              className={styles.mobileButton}
+              name="add-to-cart"
+              disabled={loading}
+              onClick={addToCartMobile}
+            >
+              {loading ? <LoadingDots /> : <span>{buttonText}</span>}
             </button>
             <div></div>
           </div>

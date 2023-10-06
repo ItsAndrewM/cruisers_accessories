@@ -60,15 +60,7 @@ const CartItem = ({ item, currencyCode }) => {
 
   return (
     <Grid gap={2} sx={{ width: "100%", m: 12 }} columns={[2]}>
-      <div
-        sx={{
-          padding: 1,
-          border: "1px solid gray",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <div className={styles.container}>
         <Image
           height={130}
           width={130}
@@ -83,11 +75,11 @@ const CartItem = ({ item, currencyCode }) => {
       <div>
         <div
           as={Link}
-          href={`/product/${item.product.slug}/`}
+          href={`/products/${item.product.slug}/`}
           className={styles.wrapper}
         >
           <>
-            {item.product.name}
+            {item.product.name} {item.variant ? `- ${item.variant.name}` : ""}
             <Text
               sx={{
                 fontSize: 4,
@@ -100,7 +92,7 @@ const CartItem = ({ item, currencyCode }) => {
             </Text>
           </>
         </div>
-        <ul sx={{ mt: 2, mb: 0, padding: 0, listStyle: "none" }}>
+        <ul className={styles.list}>
           <li>
             <div style={{ display: "flex", justifyItems: "center" }}>
               <IconButton onClick={() => increaseQuantity(-1)}>
