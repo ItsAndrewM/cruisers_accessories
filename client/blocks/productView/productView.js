@@ -49,15 +49,18 @@ const ProductBox = ({
   );
 
   const setSelectedVariant = () => {
-    const selectedVariant = variants.find((variant) => {
-      // return variant.option_value_ids?.every((id) => {
-      return selections.find((selection) => {
-        return selection.value == variant.name;
+    if (selections && variants) {
+      const selectedVariant = variants.find((variant) => {
+        console.log(selections);
+        // return variant.option_value_ids?.every((id) => {
+        return selections.find((selection) => {
+          return selection.value == variant.name;
+        });
+        // });
       });
-      // });
-    });
-    if (selectedVariant) {
-      setVariant(selectedVariant);
+      if (selectedVariant) {
+        setVariant(selectedVariant);
+      }
     }
   };
 
@@ -236,7 +239,13 @@ const ProductBox = ({
         </Grid>
         <div
           dangerouslySetInnerHTML={{ __html: description }}
-          style={{ marginBottom: "1em" }}
+          style={{
+            marginBottom: "1em",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-start",
+          }}
         />
       </div>
     </>
