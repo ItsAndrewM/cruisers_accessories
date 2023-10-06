@@ -224,7 +224,7 @@ const ProductBox = ({
               disabled={loading}
               onClick={addToCart}
             >
-              Add to Cart {loading && <LoadingDots />}
+              {loading ? <LoadingDots /> : <span>{buttonText}</span>}
             </button>
             <button
               className={styles.mobileButton}
