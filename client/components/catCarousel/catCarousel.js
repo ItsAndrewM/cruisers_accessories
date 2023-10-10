@@ -6,6 +6,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import searchByBoatStyles from "../searchByBoat/searchByBoat.module.css";
 
 const CatCarousel = () => {
   const [items, setItems] = useState([]);
@@ -45,7 +46,8 @@ const CatCarousel = () => {
                   <Link
                     // href={`/products/product-category/${cats.slug}`}
                     href={`/collection/${cats.slug}`}
-                    className={styles.link}
+                    className={searchByBoatStyles.submit}
+                    style={{ border: "none" }}
                   >
                     SHOP {cats.name}
                   </Link>
