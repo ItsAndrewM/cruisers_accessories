@@ -28,8 +28,8 @@ const FeaturedCat = () => {
 
   useEffect(() => {
     const getCategories = async () => {
-      const props = await fetch('/api/category-parents');
-      const data = await props.json()
+      const props = await fetch("/api/category-parents");
+      const data = await props.json();
       setItems(data.data.results);
     };
     getCategories();
@@ -51,7 +51,7 @@ const FeaturedCat = () => {
                       src={iconArr[index]}
                       width={125}
                       height={125}
-                      alt=""
+                      alt={val.name}
                     />
                   </Link>
                   <Link

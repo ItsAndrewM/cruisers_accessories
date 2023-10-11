@@ -94,6 +94,7 @@ details[open] + .content {
 }
 
 .submit {
+  cursor: pointer;
   padding: 5px 30px;
   outline: none;
   color: var(--casBlue);

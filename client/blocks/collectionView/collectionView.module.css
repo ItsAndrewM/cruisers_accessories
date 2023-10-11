@@ -5,6 +5,12 @@
   margin: auto;
 }
 
+.first {
+  border-bottom: 2px solid var(--casBlue);
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+}
+
 .padding5 {
   padding: 5px;
 }

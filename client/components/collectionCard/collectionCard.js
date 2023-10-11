@@ -1,6 +1,6 @@
 import { Card } from "@theme-ui/components";
 import ImageCarousel from "../ui/imageCarousel/lazyImageCarousel";
-import Link from "../ui/link/link";
+import Link from "next/link";
 import styles from "../productCard/productCard.module.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";

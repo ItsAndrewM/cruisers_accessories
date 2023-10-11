@@ -17,7 +17,7 @@ const SearchByBoat = () => {
   const [categoryIds, setCategoryIds] = useState();
   const [filtered, setFiltered] = useState([]);
   const [errors, setErrors] = useState({});
-  const [filteredCategories, setFilteredCategories] = useState();
+  const [filteredCategories, setFilteredCategories] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -37,13 +37,15 @@ const SearchByBoat = () => {
 
   useEffect(() => {
     if (make) {
-      const filtered = boatModel.values.filter((boat) => {
-        return boat.toLowerCase().includes(make.toLowerCase());
-      });
-      if (!filtered.length) {
-        return null;
+      if (make.includes("All Boat Makes")) {
+        setFiltered(["All Boat Models"]);
       } else {
-        setFiltered(filtered);
+        const filtered = boatModel.values.filter((boat) => {
+          return boat.toLowerCase().includes(make.toLowerCase());
+        });
+        if (filtered.length) {
+          setFiltered(filtered);
+        }
       }
     }
   }, [make]);
@@ -51,13 +53,16 @@ const SearchByBoat = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       const jsonData = await getCategoryByBoat(model, make);
-      const categoryWithIds = jsonData.results.map((cat) => {
+      let categoryWithIds = jsonData.results.map((cat) => {
         return { name: cat.name, id: cat.id };
       });
+      const mapWithId = new Map(categoryWithIds.map((val) => [val.id, val]));
+      categoryWithIds = [...mapWithId.values()];
       setCategoryIds(categoryWithIds);
-      const categoryNames = jsonData.results.map((category) => {
+      let categoryNames = jsonData.results.map((category) => {
         return category.name;
       });
+      categoryNames = [...new Set(categoryNames)];
       setFilteredCategories(categoryNames);
     };
     if (model && make) {

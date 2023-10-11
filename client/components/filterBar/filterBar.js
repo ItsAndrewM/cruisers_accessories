@@ -16,7 +16,7 @@ const FilterBar = ({ setSort }) => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <button onClick={() => setOpen(!open)}>
-          <Image src={filter} height={50} width={50} />
+          <Image src={filter} height={50} width={50} alt="filter icon" />
         </button>
         <h3>Sort</h3>
       </div>

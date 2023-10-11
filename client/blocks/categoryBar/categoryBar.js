@@ -3,13 +3,14 @@ import styles from "./categoryBar.module.css";
 import Link from "next/link";
 import featuredCatStyles from "../../components/featuredCat/featuredCat.module.css";
 import Loading from "./loading";
+import collectionViewStyles from "../collectionView/collectionView.module.css";
 
 const CategoryBar = ({ children }) => {
   if (!children.length) {
     return <Loading />;
   }
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${collectionViewStyles.first}`}>
       <ul className={styles.box}>
         {children.map((child) => {
           return (

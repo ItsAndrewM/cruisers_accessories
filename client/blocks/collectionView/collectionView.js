@@ -52,7 +52,7 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
         {(!category && loading) || (!collection && loading) ? (
           <Loading />
         ) : (
-          <div className={styles.wrapper}>
+          <div className={`${styles.wrapper} ${styles.first}`}>
             <span style={{ marginTop: 0, marginBottom: 2 }}>
               <h1>{collection.name}</h1>
             </span>

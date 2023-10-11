@@ -120,11 +120,28 @@ export const AllProductsGrid = ({
           <FilterBar />
 
           {results ? (
-            <h1>
-              {results > 24
-                ? `Displaying 24 of ${results} results for <span>${router.query.search}</span>`
-                : `Displaying ${results} results for <span>${router.query.search}</span> `}
-            </h1>
+            <h2>
+              {results > 24 ? (
+                <span>
+                  Displaying 24 of {results} results for{" "}
+                  <span style={{ textDecoration: "underline" }}>
+                    {router.query.search}
+                  </span>
+                </span>
+              ) : (
+                <span>
+                  Displaying {results} results for{" "}
+                  <span
+                    style={{
+                      textDecoration: "underline",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {router.query.search}
+                  </span>
+                </span>
+              )}
+            </h2>
           ) : (
             <></>
           )}

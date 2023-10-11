@@ -9,12 +9,20 @@ const BreadCrumbs = () => {
   const [routes, setRoutes] = useState([]);
   const [asLink, setAsLink] = useState([]);
   useEffect(() => {
-    const path = router.asPath
+    let path = router.asPath
       .split("/")
       .map((route) => {
         return route.replace(/-/g, " ");
       })
       .filter((path) => path !== "");
+    const found = path.find((val) => {
+      return val.includes("?");
+    });
+    if (found) {
+      path = path[path.indexOf(found)].split("?");
+      path.pop();
+    }
+    console.log(found);
     setRoutes(path);
     const url = router.asPath.split("/").filter((path) => path !== "");
     setAsLink(url);
