@@ -321,7 +321,11 @@ const ProductBox = ({
                 {imageArr.map((image) => {
                   if (image.file) {
                     return (
-                      <button onClick={handleClick} value={image.file.url}>
+                      <button
+                        onClick={handleClick}
+                        value={image.file.url}
+                        key={image.file.url}
+                      >
                         <Image
                           src={image.file.url}
                           width={75}
@@ -335,6 +339,7 @@ const ProductBox = ({
                       <button
                         onClick={handleClick}
                         value={image.images[0].file.url}
+                        key={image.images[0].file.url}
                       >
                         <Image
                           src={image.images[0].file.url}
