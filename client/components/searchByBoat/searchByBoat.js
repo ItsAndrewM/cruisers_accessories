@@ -26,6 +26,7 @@ const SearchByBoat = () => {
       const boatModel = await swell.attributes.get("boat_model");
       const boatMake = await swell.attributes.get("boat_make");
       const categoriesData = await swell.categories.list({ limit: 100 });
+      console.log(categoriesData);
       const categoriesArr =
         (await categoriesData.results.map((entry) => entry.name)) || [];
       setBoatMake(boatMake);
@@ -147,7 +148,9 @@ const SearchByBoat = () => {
           <LoadingDots />
         ) : (
           <BoatSelect
-            values={!filteredCategories ? categories : filteredCategories}
+            values={
+              !filteredCategories.length ? categories : filteredCategories
+            }
             label={"Product Categories"}
             setState={setCategory}
             defaultVal={"select a category"}
