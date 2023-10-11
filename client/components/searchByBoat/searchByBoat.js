@@ -20,13 +20,27 @@ const SearchByBoat = () => {
   const [filteredCategories, setFilteredCategories] = useState([]);
   const router = useRouter();
 
+  const fetchCategories = async () => {
+    const jsonData = await getCategoryByBoat(model, make);
+    let categoryWithIds = jsonData.results.map((cat) => {
+      return { name: cat.name, id: cat.id };
+    });
+    const mapWithId = new Map(categoryWithIds.map((val) => [val.id, val]));
+    categoryWithIds = [...mapWithId.values()];
+    setCategoryIds(categoryWithIds);
+    let categoryNames = jsonData.results.map((category) => {
+      return category.name;
+    });
+    categoryNames = [...new Set(categoryNames)];
+    setFilteredCategories(categoryNames);
+  };
+
   useEffect(() => {
     const fetchBoats = async () => {
       await swell.init(swellConfig.storeId, swellConfig.publicKey);
       const boatModel = await swell.attributes.get("boat_model");
       const boatMake = await swell.attributes.get("boat_make");
       const categoriesData = await swell.categories.list({ limit: 100 });
-      console.log(categoriesData);
       const categoriesArr =
         (await categoriesData.results.map((entry) => entry.name)) || [];
       setBoatMake(boatMake);
@@ -46,26 +60,13 @@ const SearchByBoat = () => {
         });
         if (filtered.length) {
           setFiltered(filtered);
+          setModel(filtered[0]);
         }
       }
     }
   }, [make]);
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      const jsonData = await getCategoryByBoat(model, make);
-      let categoryWithIds = jsonData.results.map((cat) => {
-        return { name: cat.name, id: cat.id };
-      });
-      const mapWithId = new Map(categoryWithIds.map((val) => [val.id, val]));
-      categoryWithIds = [...mapWithId.values()];
-      setCategoryIds(categoryWithIds);
-      let categoryNames = jsonData.results.map((category) => {
-        return category.name;
-      });
-      categoryNames = [...new Set(categoryNames)];
-      setFilteredCategories(categoryNames);
-    };
     if (model && make) {
       fetchCategories();
     }
@@ -113,11 +114,17 @@ const SearchByBoat = () => {
     }
   };
 
+  const handleChange = (e) => {
+    if (make && model.toLowerCase().includes(make.toLowerCase())) {
+      fetchCategories();
+    }
+  };
+
   const getError = (field) => errors[field];
 
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSubmit} noValidate>
+      <form onSubmit={handleSubmit} noValidate onChange={handleChange}>
         {!boatMake ? (
           <></>
         ) : (
