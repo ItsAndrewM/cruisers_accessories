@@ -18,7 +18,8 @@
   justify-content: flex-start;
   gap: 0.75em;
   padding: 0 1em;
-  background-color: #d4d4d4;
+  background-color: var(--casBlue);
+  color: white;
   position: relative;
 }
 
@@ -39,6 +40,7 @@
   width: auto;
   border: none;
   background-color: inherit;
+  color: white;
 }
 
 /* //////////////////////////////////////////////////////////////// */

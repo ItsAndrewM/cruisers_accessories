@@ -39,7 +39,9 @@ const Navbar = () => {
         .get("announcement-bar", {
           cachebust: env.isDev,
           userAttributes: {
-            itemInCart: items.map((item) => item.product.slug),
+            itemInCart: items.map((item) => {
+              return item.product.slug;
+            }),
           },
         })
         .toPromise();
@@ -47,6 +49,7 @@ const Navbar = () => {
     }
     fetchContent();
   }, [cart?.items]);
+
   return (
     <header className={styles.header}>
       <BuilderComponent

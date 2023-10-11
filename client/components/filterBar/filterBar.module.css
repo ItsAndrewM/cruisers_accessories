@@ -1,0 +1,53 @@
+.container img {
+  margin-top: 0.5em;
+}
+
+.container {
+  position: relative;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.container button {
+  padding: 0 !important;
+  background-color: inherit;
+  border: none;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.wrapper h3 {
+  display: flex;
+  align-items: center;
+}
+
+.close {
+  opacity: 0;
+}
+
+.filterForm {
+  position: absolute;
+  top: 50px;
+  left: 15px;
+  z-index: 999;
+  background-color: var(--cream);
+  padding: 1em;
+  transition: all 0.3s ease-in-out;
+}
+
+.filterForm ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.open {
+  opacity: 1;
+}

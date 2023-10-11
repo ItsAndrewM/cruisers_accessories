@@ -29,6 +29,7 @@
 
 .wrapper input::placeholder {
   color: white;
+  font-weight: bold;
 }
 
 .listItem:hover {

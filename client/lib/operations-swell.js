@@ -165,15 +165,20 @@ export const getPageCount = async (query) => {
   }
 };
 
-export const getPaginatedItems = async (pageNum, query) => {
+export const getPaginatedItems = async (pageNum, query, sort) => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   if (query === "products") {
-    const products = await swell.products.list({ limit: 24, page: pageNum });
+    const products = await swell.products.list({
+      limit: 24,
+      page: pageNum,
+      sort: !sort ? "name asc" : sort,
+    });
     return products ? normalizeProducts(products?.results) : [];
   } else {
     const categories = await swell.categories.list({
       limit: 24,
       page: pageNum,
+      sort: !sort ? "name asc" : sort,
     });
     return categories ? normalizeProducts(categories?.results) : [];
   }

@@ -28,11 +28,22 @@
   width: 100%;
 }
 
+.mobile {
+  display: none;
+}
+
 /* //////////////////////////////////////////////////////////////// */
 /* /////////////////////////mobile styling///////////////////////// */
 /* //////////////////////////////////////////////////////////////// */
 
 @media (max-width: 600px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: flex;
+    flex-direction: column;
+  }
   .wrapper {
     padding: 0 !important;
   }
@@ -70,5 +81,11 @@
   .grid div:first-child {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
+  }
+  .productGrid {
+    display: grid !important;
+  }
+  .gridBorder {
+    border-top: 2px solid var(--casBlue);
   }
 }

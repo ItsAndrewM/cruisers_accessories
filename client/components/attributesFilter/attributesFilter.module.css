@@ -1,6 +1,5 @@
 .wrapper {
   width: 100%;
-  max-width: 400px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -83,7 +82,7 @@
   border-bottom: 2px solid var(--cream);
 }
 
-.accordian[open] + .content {
+details[open] + .content {
   max-height: fit-content; /* Set a max-height value enough to show all the content */
   transition: all 400ms ease-in-out;
   padding-bottom: 1em;

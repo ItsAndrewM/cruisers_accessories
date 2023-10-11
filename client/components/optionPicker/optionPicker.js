@@ -1,7 +1,6 @@
 import productViewStyles from "../../blocks/productView/productView.module.css";
 
 const OptionPicker = ({ name, options, onChange, selected }) => {
-  console.log(name);
   return (
     <div className={productViewStyles.container}>
       <label htmlFor={name}>{name}</label>

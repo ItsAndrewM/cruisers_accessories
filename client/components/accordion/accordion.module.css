@@ -25,7 +25,7 @@
 
 .accordian > summary {
   list-style: none;
-  padding: 1em 0.5em;
+  padding: 1em 2em 1em 0.5em;
   text-transform: capitalize;
   cursor: pointer;
 }

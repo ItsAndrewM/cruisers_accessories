@@ -19,6 +19,8 @@ import CategorySidebar from "@/components/categorySidebar/categorySidebar";
 import SkeletonGrid from "@/components/skeletonGrid/skeletonGrid";
 import SkeletonPagination from "../collectionGrid/skeletonPagination";
 import SkeletonFilter from "@/components/attributesFilter/skeletonFilter";
+import FilterBar from "@/components/filterBar/filterBar";
+import accordianStyles from "../../components/accordion/accordion.module.css";
 
 export const AllProductsGrid = ({
   offset = 1,
@@ -45,7 +47,8 @@ export const AllProductsGrid = ({
       } else {
         const result = await getPaginatedItems(
           router.query?.page || 1,
-          "products"
+          "products",
+          router.query?.sort || "name asc"
         );
         const paginationData = await getPageCount("products");
         setPageNums(paginationData.page_count);
@@ -65,20 +68,6 @@ export const AllProductsGrid = ({
         setResults(data.count);
         setAllProducts(data.results);
         setPageNums(data.page_count);
-        // const filtered = await getFilteredProducts(query);
-        // const data = await filtered.json();
-        // if (data.data.count > 0) {
-        //   setAllProducts(data.data.results);
-        //   setPageNums(data.data.page_count);
-        // } else {
-        //   const result = await getPaginatedItems(
-        //     router.query?.page || 1,
-        //     "products"
-        //   );
-        //   const paginationData = await getPageCount("products");
-        //   setPageNums(paginationData.page_count);
-        //   setAllProducts(result);
-        // }
         setLoading(false);
       };
       fetchSearchedProducts();
@@ -92,12 +81,9 @@ export const AllProductsGrid = ({
     };
     fetchAllAttributes();
   }, []);
-
-  // const arr = allProducts.slice(offset, limit);
-  // console.log(arr);
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.desktop}>
         <CategorySidebar />
         {!attributes ? (
           <SkeletonFilter />
@@ -105,9 +91,34 @@ export const AllProductsGrid = ({
           <AttributesFilter attributes={attributes} />
         )}
       </div>
+      <div className={styles.mobile}>
+        <details className={`${accordianStyles.accordian}`}>
+          <summary>Filters</summary>
+        </details>
+        <div className={accordianStyles.content}>
+          <details className={`${accordianStyles.accordian}`}>
+            <summary>Categories</summary>
+          </details>
+          <div className={accordianStyles.content}>
+            <CategorySidebar />
+          </div>
+          <details className={`${accordianStyles.accordian}`}>
+            <summary>Filters</summary>
+          </details>
+          <div className={accordianStyles.content}>
+            {!attributes ? (
+              <SkeletonFilter />
+            ) : (
+              <AttributesFilter attributes={attributes} />
+            )}
+          </div>
+        </div>
+      </div>
 
       <div className={styles.wrapper} style={{ padding: "2em 0" }}>
         <div>
+          <FilterBar />
+
           {results ? (
             <h1>
               {results > 24
@@ -121,7 +132,11 @@ export const AllProductsGrid = ({
         {!allProducts.length ? (
           <SkeletonGrid />
         ) : (
-          <Grid gap={2} width={["100%", "40%", "24%"]}>
+          <Grid
+            gap={2}
+            width={["40%", "40%", "24%"]}
+            className={styles.productGrid}
+          >
             {allProducts.map((products, i) => {
               return (
                 <CollectionCard

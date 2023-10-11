@@ -3,6 +3,7 @@ import styles from "./attributesFilter.module.css";
 import { Fragment } from "react";
 import searchByBoatStyles from "../searchByBoat/searchByBoat.module.css";
 import accordianStyles from "../accordion/accordion.module.css";
+import categorySidebarStyles from "../categorySidebar/categorySidebar.module.css";
 
 const AttributesFilter = ({ attributes }) => {
   const router = useRouter();
@@ -32,7 +33,7 @@ const AttributesFilter = ({ attributes }) => {
   return (
     <div className={styles.wrapper}>
       <form onSubmit={handleApply}>
-        <h1>Filters</h1>
+        <h1 className={categorySidebarStyles.header}>Filters</h1>
         <div className={styles.buttonBox}>
           <input type="submit" value={"Apply"} className={styles.submit} />
         </div>
@@ -47,31 +48,23 @@ const AttributesFilter = ({ attributes }) => {
                   <details className={accordianStyles.accordian}>
                     <summary>{attribute.name}</summary>
                   </details>
-
-                  {!attribute.values.length ? (
-                    <></>
-                  ) : (
-                    <div className={styles.content}>
-                      <ul>
-                        {attribute.values.map((value) => {
-                          return (
-                            <li
-                              key={`${attribute.name} ${value}`}
-                              className={styles.filterOption}
-                            >
-                              <input
-                                type={"checkbox"}
-                                id={value}
-                                name={attribute.name}
-                                value={value}
-                              />
-                              <label htmlFor={value}>{value}</label>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  )}
+                  <div className={styles.content}>
+                    <ul>
+                      {attribute.values.map((value) => {
+                        return (
+                          <li key={`${value}`} className={styles.filterOption}>
+                            <input
+                              type={"checkbox"}
+                              id={value}
+                              name={value}
+                              value={value}
+                            />
+                            <label htmlFor={value}>{value}</label>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
                 </li>
               );
             })}

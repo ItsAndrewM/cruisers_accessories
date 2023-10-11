@@ -28,7 +28,7 @@ const CategorySidebar = () => {
 
   return (
     <div>
-      <h1>Categories</h1>
+      <h1 className={styles.header}>Categories</h1>
       <ul>
         {parents.map((parent) => {
           const kids = children.filter(

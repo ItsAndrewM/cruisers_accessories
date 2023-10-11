@@ -8,6 +8,7 @@ import swellConfig from "@/swell.config";
 import swell from "swell-js";
 import { getProduct } from "@/lib/operations-swell";
 import SkeletonCollectionCard from "./skeletonCollectionCard";
+import searchByBoatStyles from "../searchByBoat/searchByBoat.module.css";
 
 const CollectionCard = ({
   category,
@@ -44,23 +45,31 @@ const CollectionCard = ({
               : options.images[0].file.url
           );
           if (options.variants.length) {
-            setImageSrc(
-              !options.variants[0].images && imageSrc
-                ? `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
-                : options.variants[0].images[0].file.url
-            );
-            const min = Number(options.variants[0].price).toFixed(2);
-            const max = Number(
-              options.variants[options.variants.length - 1].price
-            ).toFixed(2);
+            if (
+              options.variants[0].images &&
+              options.variants[0].images.length
+            ) {
+              setImageSrc(
+                !options.variants[0].images &&
+                  imageSrc &&
+                  !options.variants[0].images.length
+                  ? `https://placehold.co/${imgWidth}x${imgHeight}/jpeg`
+                  : options.variants[0].images[0].file.url
+              );
+              const min = Number(options.variants[0].price).toFixed(2);
+              const max = Number(
+                options.variants[options.variants.length - 1].price
+              ).toFixed(2);
 
-            if (max === min) {
-              setPrice(`$${Number(min).toFixed(2)}`);
-            } else {
-              setPrice(`$${min} - $${max}`);
+              if (max === min) {
+                setPrice(`$${Number(min).toFixed(2)}`);
+              } else {
+                setPrice(`$${min} - $${max}`);
+              }
+              setMaxPrice(Number(!max ? 0 : max).toFixed(2));
+              setMinPrice(Number(min).toFixed(2));
             }
-            setMaxPrice(Number(!max ? 0 : max).toFixed(2));
-            setMinPrice(Number(min).toFixed(2));
+
             // if (max !== min) {
             //   setMaxPrice(Number(!max ? 0 : max).toFixed(2));
             //   setMinPrice(Number(min).toFixed(2));
@@ -98,13 +107,15 @@ const CollectionCard = ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        maxHeight: [700, 400 || 540],
-        minHeight: [700, 400 || 540],
+        maxHeight: [700, 350 || 540],
+        minHeight: [700, 350 || 540],
         minWidth: [700, 300 || 540],
         // mb: 4,
         border: "2px solid lightgrey",
       }}
-      className={styles.container}
+      className={`${
+        type !== "collection" ? styles.container : styles.catContainer
+      }`}
     >
       <Link
         href={
@@ -146,7 +157,16 @@ const CollectionCard = ({
             key={category.id}
           />
         </div>
-        <div style={{ textAlign: "center" }}>
+        <div
+          style={{
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            height: "100%",
+            gap: ".25em",
+          }}
+        >
           <h2 className={styles.h2}>{category.name}</h2>
           {type !== "collection" && (
             <p className={styles.p}>
@@ -157,6 +177,18 @@ const CollectionCard = ({
               )}
             </p>
           )}
+
+          <Link
+            href={
+              type === "collection"
+                ? `/collection/${handle}/`
+                : `/products/${handle}/`
+            }
+            className={styles.button}
+            style={{ border: "none" }}
+          >
+            Shop now
+          </Link>
         </div>
       </Link>
     </Card>

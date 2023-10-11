@@ -81,7 +81,11 @@ export const ProductGrid = ({
           {loading ? (
             <Loading />
           ) : (
-            <Grid gap={2} width={["100%", "40%", "24%"]}>
+            <Grid
+              gap={2}
+              width={["40%", "40%", "24%"]}
+              className={styles.gridBorder}
+            >
               {collectionProducts.map((product, i) => (
                 <CollectionCard
                   key={String(product.id) + i}

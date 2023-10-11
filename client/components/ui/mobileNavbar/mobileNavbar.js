@@ -10,22 +10,38 @@ import Cart from "@/components/icons/cart";
 import { useCart } from "@/lib/hooks/useCart";
 import { v4 as uuidv4 } from "uuid";
 import logoMobile from "@/assets/images/logo/logo_mobile.png";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const MobileNavbar = () => {
   const { navigationLinks, logo } = useUI();
   const cart = useCart();
   const quantity = cart?.item_quantity ?? 0;
+  const router = useRouter();
+  const [checked, setChecked] = useState(false);
+  const [prevUrl, setPrevUrl] = useState(router.asPath);
+
+  useEffect(() => {
+    if (router.asPath !== prevUrl) {
+      setChecked(false);
+      setPrevUrl(router.asPath);
+    }
+  }, [router.asPath]);
+
+  const handleChange = (e) => {
+    setChecked(!checked);
+  };
 
   return (
     <nav className={navbarStyles.navigation}>
       <div id={navbarStyles.menuToggle}>
-        <input type="checkbox" />
+        <input type="checkbox" onChange={handleChange} checked={checked} />
         <span></span>
         <span></span>
         <span></span>
         <ul id={navbarStyles.menu}>
           <li>
-            <Link href={"/collection"}>
+            <Link href={"/products"}>
               <h4>Products</h4>
             </Link>
           </li>

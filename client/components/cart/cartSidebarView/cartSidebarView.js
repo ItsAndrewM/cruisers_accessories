@@ -11,6 +11,7 @@ import Cart from "@/components/icons/cart";
 import Button from "@/components/button/button";
 import Link from "next/link";
 import searchByBoatStyles from "../../searchByBoat/searchByBoat.module.css";
+import LoadingDots from "@/components/ui/loadingDots/loadingDots";
 
 const CartSidebarView = () => {
   const checkoutUrl = useCheckoutUrl();
@@ -21,7 +22,7 @@ const CartSidebarView = () => {
   const taxTotal = getPrice(cart?.tax_total, cart?.currency ?? "USD");
 
   const items = cart?.items ?? [];
-  const isEmpty = items.length === 0;
+  const isEmpty = items.length === 0 ? true : false;
   const [cartUpsell, setCartUpsell] = useState();
 
   useEffect(() => {
@@ -55,13 +56,17 @@ const CartSidebarView = () => {
         <>
           <div className={styles.container}>
             <div className={`${styles.wrapper}`}>
-              {items.map((item) => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  currencyCode={cart?.currency ?? "USD"}
-                />
-              ))}
+              {!items.length ? (
+                <LoadingDots />
+              ) : (
+                items.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                    currencyCode={cart?.currency ?? "USD"}
+                  />
+                ))
+              )}
             </div>
             <div className={`${styles.wrapper}`}>
               <Card sx={{ margin: "auto", minWidth: "10rem", paddingLeft: 5 }}>
