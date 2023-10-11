@@ -7,7 +7,11 @@ import swellConfig from "../swell.config";
 //     collectionsModel: string
 //     isDemo?: boolean
 // }
-
+export const getSiteSettings = async () => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const settings = await swell.cart.getSettings();
+  return settings;
+};
 export const getCategoryByBoat = async (boatModel, boatMake) => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   const data = await fetch(

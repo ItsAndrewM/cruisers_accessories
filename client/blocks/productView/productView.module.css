@@ -1,81 +1,146 @@
-.button {
-  margin: 8px;
-  font-family: inherit;
-  cursor: pointer;
-}
-
-.product {
+.wrapper {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  padding: 0 2em;
   gap: 2em;
 }
 
-.grid {
-  display: flex;
+.wrapper > div:first-child {
 }
 
-.wrapper {
-  position: absolute;
-  min-width: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: 0;
+.wrapper > div:first-child > img {
+  border: 1px solid var(--cream);
+  padding: 1em;
+  height: 575px;
+  max-height: 575px;
+  width: 575px;
+  max-width: 575px;
+  object-fit: contain;
+}
+
+.wrapper > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .container {
-  display: flex;
-  gap: 0.5em;
-  align-items: center;
-}
-
-.outerGrid {
-  grid-template-columns: repeat(2, 1fr);
-  display: grid;
-  gap: 32px;
-  padding: 0;
-  margin: 0;
-}
-
-.box {
-  border: 1px solid gray;
-  padding: 8px;
-  margin-bottom: 8px;
-  height: 700px;
-  max-height: 700px;
-}
-.box div {
-  height: 100%;
-  max-height: 600px;
-}
-
-/* .box > div {
-  display: flex;
-} */
-
-.column {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
 }
 
-.span {
-  margin-top: 0;
-  margin-bottom: 8px;
+.container > button {
+  margin-top: 2em;
+  width: 100%;
+  box-shadow: inset 0 0 0 0 var(--casBlue);
+  background-color: var(--casOrange);
+  text-transform: uppercase;
+  background-color: var(--casOrange);
+  transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+  color: white;
+  border: none;
+}
+.container > button:hover {
+  color: #fff;
+  box-shadow: inset 530px 0 0 0 var(--casBlue);
 }
 
-.select {
-  padding: 8px;
-  padding-right: 32px;
-  border-radius: 4px;
-  background-color: var(--cream);
-  font-size: inherit;
-  font-family: inherit;
+.section {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
   width: 100%;
 }
 
-.mobileButton {
-  display: none;
+.textHeader {
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--casBlue);
+  padding-bottom: 0.5em;
+}
+
+.textWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2em;
+}
+
+.options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24%, 1fr));
+  justify-content: space-between;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.option {
+  overflow: hidden;
+  position: absolute;
+  height: 1px;
+  width: 1px;
+}
+
+.options li {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  max-width: 170px;
+  height: 50px;
+  max-height: 50px;
+  border: 2px solid var(--cream);
+}
+
+.options li label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.options li:has(input:checked) {
+  border: 2px solid var(--casBlue);
+}
+
+.container form {
+  width: 100%;
+}
+
+.listContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15%, 1fr));
+  /* gap: 1em; */
+  justify-items: center;
+}
+
+.listContainer > button {
+  margin-bottom: 1em;
+  padding: 0;
+  height: 80px;
+  max-height: 80px;
+  max-width: 80px;
+  width: 80px;
+  background-color: inherit;
+  border: 2px solid var(--cream);
+  transition: all 0.2s ease-in-out;
+}
+
+.listContainer > button:hover {
+  border: 2px solid var(--casBlue);
 }
 
 /* //////////////////////////////////////////////////////////////// */
@@ -83,21 +148,35 @@
 /* //////////////////////////////////////////////////////////////// */
 
 @media (max-width: 600px) {
-  .mobileButton {
-    margin: 8px;
-    font-family: inherit;
-    display: block;
-    cursor: pointer;
+  .listContainer {
+    grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
   }
-  .box {
-    height: fit-content;
-  }
-
-  .container {
-    width: 100%;
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
   }
 
-  .button {
-    display: none;
+  .wrapper h1 {
+    text-transform: uppercase;
+  }
+
+  .wrapper > div:first-child > img {
+    width: 325px;
+    height: 325px;
+  }
+  .options {
+    /* grid-template-columns: repeat(auto-fit, minmax(10%, 1fr)); */
+  }
+  .options li {
+    padding: 1em 0.5em;
+    width: 75px;
+    max-width: 100px;
+    height: 50px;
+    max-height: 115px;
+  }
+
+  .options li label {
+    font-size: 12px;
   }
 }
