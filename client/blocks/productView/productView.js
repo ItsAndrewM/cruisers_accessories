@@ -152,10 +152,16 @@ const ProductBox = ({
       if (product.images.length > 1) {
         setImageArr(product.images);
       } else {
-        if (product.variants[0].images && product.variants[0].images.length) {
+        if (
+          product.variants.length &&
+          product.variants[0].images &&
+          product.variants[0].images.length
+        ) {
           setImageArr(product.variants);
         }
       }
+    } else {
+      setImageArr([]);
     }
     // const fetchSiteSettings = async () => {
     //   const settings = await getSiteSettings();
@@ -335,20 +341,23 @@ const ProductBox = ({
                       </button>
                     );
                   } else {
-                    return (
-                      <button
-                        onClick={handleClick}
-                        value={image.images[0].file.url}
-                        key={image.images[0].file.url}
-                      >
-                        <Image
-                          src={image.images[0].file.url}
-                          width={75}
-                          height={75}
-                          style={{ objectFit: "contain" }}
-                        />
-                      </button>
-                    );
+                    console.log(image);
+                    if (image.images) {
+                      return (
+                        <button
+                          onClick={handleClick}
+                          value={image.images[0].file.url}
+                          key={image.images[0].file.url}
+                        >
+                          <Image
+                            src={image.images[0].file.url}
+                            width={75}
+                            height={75}
+                            style={{ objectFit: "contain" }}
+                          />
+                        </button>
+                      );
+                    }
                   }
                 })}
               </div>
@@ -365,7 +374,7 @@ const ProductBox = ({
               <h1>{product.name}</h1>
               <p>
                 {product.currency} $
-                {!variant.price
+                {!variant
                   ? product.price.toFixed(2)
                   : variant?.price.toFixed(2)}
               </p>
@@ -441,8 +450,7 @@ const ProductBox = ({
                 </div>
               </div>
             </div>
-
-            <div className={styles.container}>
+            <div className={`${styles.container} ${styles.description}`}>
               <p className={styles.textHeader}>Description</p>
               <div dangerouslySetInnerHTML={{ __html: description }} />
             </div>
