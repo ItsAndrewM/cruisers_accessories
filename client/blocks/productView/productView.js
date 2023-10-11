@@ -371,7 +371,7 @@ const ProductBox = ({
               </p>
               <small>Shipping calculated at checkout</small>
             </div>
-            {!product.options.length ? (
+            {!product.options ? (
               <></>
             ) : (
               <div className={styles.container}>
