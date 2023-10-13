@@ -142,6 +142,11 @@ const CartSidebarView = () => {
                 </small>
                 <small>{subTotal}</small>
               </div>
+              <div>
+                <small>
+                  Shipping, taxes, and discount codes calculated at checkout.
+                </small>
+              </div>
             </div>
             {/* <div className={`${styles.wrapper}`}> */}
             {/* <Card sx={{ margin: "auto", minWidth: "10rem", paddingLeft: 5 }}>
