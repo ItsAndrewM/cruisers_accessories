@@ -26,7 +26,7 @@ const CrossSell = () => {
     }
   }, []);
 
-  if (!product.cross_sell) {
+  if ("cross_sell" in product === false) {
     return <></>;
   }
 
