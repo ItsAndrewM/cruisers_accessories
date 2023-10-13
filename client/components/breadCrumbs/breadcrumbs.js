@@ -22,7 +22,6 @@ const BreadCrumbs = () => {
       path = path[path.indexOf(found)].split("?");
       path.pop();
     }
-    console.log(found);
     setRoutes(path);
     const url = router.asPath.split("/").filter((path) => path !== "");
     setAsLink(url);

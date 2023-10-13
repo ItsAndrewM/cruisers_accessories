@@ -206,11 +206,8 @@ const ProductBox = ({
   };
 
   const handleClick = (e) => {
-    console.log(e.currentTarget);
     setCurrentImage(e.currentTarget.value);
   };
-
-  console.log(product);
 
   return (
     <>
@@ -354,7 +351,6 @@ const ProductBox = ({
                       </button>
                     );
                   } else {
-                    console.log(image);
                     if (image.images) {
                       return (
                         <button
