@@ -36,6 +36,7 @@ Builder.register("insertMenu", {
     { name: "ProductGrid" },
     { name: "AllProductsGrid" },
     { name: "Bread Crumbs" },
+    { name: "Cross Sell Grid" },
   ],
 });
 

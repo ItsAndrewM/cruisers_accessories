@@ -5,6 +5,16 @@ import builderConfig from "./builder.config";
 builder.init(builderConfig.apiKey);
 
 Builder.registerComponent(
+  dynamic(() => import("./blocks/crossSell/crossSell")),
+  {
+    name: "Cross Sell Grid",
+    description:
+      "Pulls data from a product that has cross sell enabled.  Will display 5 products max.",
+    image: "https://unpkg.com/css.gg@2.0.0/icons/svg/carousel.svg",
+  }
+);
+
+Builder.registerComponent(
   dynamic(() => import("./components/categorySidebar/categorySidebar")),
   {
     name: "Category Sidebar",

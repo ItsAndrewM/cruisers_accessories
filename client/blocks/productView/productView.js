@@ -18,6 +18,7 @@ import Quantity from "@/components/quantity/quantity";
 import Image from "next/image";
 import accordionStyles from "@/components/accordion/accordion.module.css";
 import { getSiteSettings } from "@/lib/operations-swell";
+import CrossSell from "../crossSell/crossSell";
 
 const ProductBox = ({
   product,
@@ -208,6 +209,8 @@ const ProductBox = ({
     console.log(e.currentTarget);
     setCurrentImage(e.currentTarget.value);
   };
+
+  console.log(product);
 
   return (
     <>
@@ -462,7 +465,10 @@ const ProductBox = ({
             </div>
             <div className={`${styles.container} ${styles.description}`}>
               <p className={styles.textHeader}>Description</p>
-              <div dangerouslySetInnerHTML={{ __html: description }} />
+              <div
+                dangerouslySetInnerHTML={{ __html: description }}
+                className={styles.description}
+              />
             </div>
           </div>
         </div>

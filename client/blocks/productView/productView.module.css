@@ -184,4 +184,7 @@
   .options li label {
     font-size: 12px;
   }
+  .description > iframe {
+    max-width: 325px;
+  }
 }

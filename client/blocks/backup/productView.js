@@ -239,6 +239,7 @@ const ProductBox = ({
           </div>
         </Grid>
         <div
+          className={styles.description}
           dangerouslySetInnerHTML={{ __html: description }}
           style={{
             marginBottom: "1em",
