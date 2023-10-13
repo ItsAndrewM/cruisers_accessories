@@ -395,7 +395,7 @@ const ProductBox = ({
               <div className={styles.container}>
                 {product.options.map((option) => {
                   return (
-                    <div key={option.name}>
+                    <Fragment key={option.name}>
                       <p className={styles.textHeader}>{option.name}</p>
                       <form onChange={handleChange}>
                         <ul className={styles.options}>
@@ -416,7 +416,7 @@ const ProductBox = ({
                           })}
                         </ul>
                       </form>
-                    </div>
+                    </Fragment>
                   );
                 })}
               </div>

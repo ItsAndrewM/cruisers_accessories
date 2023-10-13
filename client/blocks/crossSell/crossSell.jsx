@@ -10,6 +10,7 @@ const CrossSell = () => {
   const router = useRouter();
   const [cross_sells, setCross_sells] = useState([]);
   const [product, setProduct] = useState();
+  const [exists, setExists] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -19,6 +20,7 @@ const CrossSell = () => {
       setProduct(product);
       if (product.cross_sell && product.cross_sell.length) {
         setCross_sells(product.cross_sell);
+        setExists(true);
       }
     };
     if (router.query && router.query.product) {
@@ -26,13 +28,13 @@ const CrossSell = () => {
     }
   }, []);
 
-  if (product && !product.cross_sell) {
+  if (!exists) {
     return <></>;
   }
 
   return (
     <>
-      {product.cross_sell && !cross_sells.length ? (
+      {exists && !cross_sells.length ? (
         <LoadingDots />
       ) : (
         <>
