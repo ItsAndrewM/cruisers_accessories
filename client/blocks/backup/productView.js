@@ -95,6 +95,7 @@ const ProductBox = ({
       openSidebar();
       setLoading(false);
     } catch (err) {
+      console.log(err);
       setLoading(false);
     }
   };
@@ -112,6 +113,7 @@ const ProductBox = ({
       }
       setLoading(false);
     } catch (err) {
+      console.log(err);
       setLoading(false);
     }
   };

@@ -12,6 +12,7 @@ import Button from "@/components/button/button";
 import Link from "next/link";
 import searchByBoatStyles from "../../searchByBoat/searchByBoat.module.css";
 import LoadingDots from "@/components/ui/loadingDots/loadingDots";
+import utilStyles from "@/styles/utils.module.css";
 
 const CartSidebarView = () => {
   const checkoutUrl = useCheckoutUrl();
@@ -42,34 +43,108 @@ const CartSidebarView = () => {
   }, [cart?.items]);
 
   return (
+    // <div
+    //   className={`${styles.container} ${isEmpty ? styles.justifyContent : ""}`}
+    //   style={{ flexDirection: "column", alignItems: "center" }}
+    // >
+    //   {isEmpty ? (
+    //     <>
+    //       <Cart />
+    //       Your cart is empty
+    //       <Text>Continue browsing!</Text>
+    //     </>
+    //   ) : (
+    //     <>
+    //       <div className={styles.container}>
+    //         <div className={`${styles.wrapper}`}>
+    //           {!items.length ? (
+    //             <LoadingDots />
+    //           ) : (
+    //             items.map((item) => (
+    //               <CartItem
+    //                 key={item.id}
+    //                 item={item}
+    //                 currencyCode={cart?.currency ?? "USD"}
+    //               />
+    //             ))
+    //           )}
+    //         </div>
+    //         <div className={`${styles.wrapper}`}>
+    //           <Card sx={{ margin: "auto", minWidth: "10rem", paddingLeft: 5 }}>
+    //             <Grid gap={1} columns={2} sx={{ my: 3 }}>
+    //               <Text>Subtotal:</Text>
+    //               <Text sx={{ marginLeft: "auto" }}>{subTotal}</Text>
+    //               <Text>Shipping:</Text>
+    //               <Text sx={{ marginLeft: "auto" }}>{shippingTotal}</Text>
+    //               <Text>Tax: </Text>
+    //               <Text sx={{ marginLeft: "auto" }}>{taxTotal}</Text>
+    //             </Grid>
+
+    //             <Divider />
+    //             <Grid gap={1} columns={2}>
+    //               <Text variant="bold">Estimated Total:</Text>
+    //               <Text variant="bold" sx={{ marginLeft: "auto" }}>
+    //                 {total}
+    //               </Text>
+    //             </Grid>
+    //           </Card>
+    //           <BuilderComponent
+    //             content={cartUpsell}
+    //             model="cart-upsell-sidebar"
+    //           />
+    //         </div>
+    //       </div>
+    //       <div className={styles.container}>
+    //         {checkoutUrl && (
+    //           <span className={searchByBoatStyles.submit}>
+    //             <Link href={checkoutUrl}>Proceed to Checkout</Link>
+    //           </span>
+    //         )}
+    //       </div>
+    //     </>
+    //   )}
+    // </div>
     <div
       className={`${styles.container} ${isEmpty ? styles.justifyContent : ""}`}
       style={{ flexDirection: "column", alignItems: "center" }}
     >
       {isEmpty ? (
-        <>
-          <Cart />
-          Your cart is empty
-          <Text>Continue browsing!</Text>
-        </>
+        <div className={styles.container}>
+          <div className={`${styles.wrapper}`}>
+            <div className={styles.header}>
+              <h2>Cart</h2>
+            </div>
+            <div className={styles.empty}>
+              <small>Your cart is currently empty.</small>
+            </div>
+          </div>
+        </div>
       ) : (
         <>
           <div className={styles.container}>
             <div className={`${styles.wrapper}`}>
-              {!items.length ? (
-                <LoadingDots />
-              ) : (
-                items.map((item) => (
-                  <CartItem
-                    key={item.id}
-                    item={item}
-                    currencyCode={cart?.currency ?? "USD"}
-                  />
-                ))
-              )}
+              <div className={styles.header}>
+                <h2>Cart</h2>
+              </div>
+              {items.map((item) => (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  currencyCode={cart?.currency ?? "USD"}
+                />
+              ))}
+              <div className={styles.borderBottom}></div>
             </div>
             <div className={`${styles.wrapper}`}>
-              <Card sx={{ margin: "auto", minWidth: "10rem", paddingLeft: 5 }}>
+              <div className={styles.totals}>
+                <small className={`${utilStyles.uppercase} ${utilStyles.bold}`}>
+                  Subtotal
+                </small>
+                <small>{subTotal}</small>
+              </div>
+            </div>
+            {/* <div className={`${styles.wrapper}`}> */}
+            {/* <Card sx={{ margin: "auto", minWidth: "10rem", paddingLeft: 5 }}>
                 <Grid gap={1} columns={2} sx={{ my: 3 }}>
                   <Text>Subtotal:</Text>
                   <Text sx={{ marginLeft: "auto" }}>{subTotal}</Text>
@@ -86,18 +161,14 @@ const CartSidebarView = () => {
                     {total}
                   </Text>
                 </Grid>
-              </Card>
-              <BuilderComponent
-                content={cartUpsell}
-                model="cart-upsell-sidebar"
-              />
-            </div>
+              </Card> */}
+            {/* </div> */}
           </div>
-          <div className={styles.container}>
+          <div className={styles.wrapper}>
             {checkoutUrl && (
-              <span className={searchByBoatStyles.submit}>
-                <Link href={checkoutUrl}>Proceed to Checkout</Link>
-              </span>
+              <Link href={checkoutUrl} className={styles.checkout}>
+                Proceed to Checkout
+              </Link>
             )}
           </div>
         </>

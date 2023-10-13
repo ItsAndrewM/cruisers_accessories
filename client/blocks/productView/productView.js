@@ -106,9 +106,18 @@ const ProductBox = ({
 
     try {
       await addItem(product.id, quantity, !variant ? selections : variant);
+      setAdded(true);
+      if (added) {
+        setButtonText("Added");
+        setTimeout(() => {
+          setButtonText("Add to Cart");
+          setAdded(false);
+        }, 2000);
+      }
       openSidebar();
       setLoading(false);
     } catch (err) {
+      console.log(err);
       setLoading(false);
     }
   };
@@ -126,6 +135,7 @@ const ProductBox = ({
       }
       setLoading(false);
     } catch (err) {
+      console.log(err);
       setLoading(false);
     }
   };
@@ -414,7 +424,7 @@ const ProductBox = ({
             )}
             <div className={styles.container}>
               <p className={styles.textHeader}>Quantity</p>
-              <Quantity quantity={quantity} setQuantity={setQuantity} />
+              <Quantity quantity={quantity} setQuantity={setQuantity} min={1} />
               <InStock product={product} />
             </div>
             <div className={styles.container}>

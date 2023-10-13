@@ -27,6 +27,7 @@ const CatCarousel = () => {
       const categories = results.map((cats, index) => {
         return (
           // <Link href={`/products/product-category/${cats.slug}`} key={cats.id}>
+          // <Link href={`/collection/${cats.slug}`} style={{ display: "block" }}>
           <>
             <Image
               src={
@@ -39,6 +40,7 @@ const CatCarousel = () => {
               height={500}
               quality={100}
             />
+
             <div className={style.textContainer}>
               <h1>{cats.name}</h1>
               <div>
