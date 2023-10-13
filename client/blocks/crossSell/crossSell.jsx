@@ -26,13 +26,13 @@ const CrossSell = () => {
     }
   }, []);
 
-  if (product && !product.cross_sell === false) {
+  if (product && !product.cross_sell) {
     return <></>;
   }
 
   return (
     <>
-      {!cross_sells.length ? (
+      {product.cross_sell && !cross_sells.length ? (
         <LoadingDots />
       ) : (
         <>
