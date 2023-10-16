@@ -11,7 +11,7 @@ import CollectionCard from "@/components/collectionCard/collectionCard";
 import { useRouter } from "next/router";
 import CategoryBar from "../categoryBar/categoryBar";
 import Loading from "./loading";
-
+import LoadingCatBar from "../categoryBar/loading";
 export const ProductGrid = ({
   products: initialProducts,
   collection,
@@ -72,7 +72,7 @@ export const ProductGrid = ({
   return (
     <>
       {!collectionChildren ? (
-        <></>
+        <LoadingCatBar />
       ) : (
         <CategoryBar children={!collectionChildren ? [] : collectionChildren} />
       )}

@@ -3,7 +3,48 @@ import styles from "./categoryBar.module.css";
 const Loading = () => {
   return (
     <div className={styles.wrapper}>
-      <ul className={styles.box}>
+      <ul
+        className={styles.box}
+        style={{
+          marginBottom: "2em",
+          borderBottom: "2px solid var(--casBlue)",
+          paddingBottom: "2em",
+        }}
+      >
+        <li className={styles.listItem} style={{ gap: ".5em" }}>
+          <div
+            style={{
+              width: "150px",
+              height: "150px",
+              backgroundColor: "lightGrey",
+            }}
+          ></div>
+          <span
+            style={{
+              width: "100px",
+              height: "25px",
+              backgroundColor: "lightGrey",
+              borderRadius: "25px",
+            }}
+          ></span>
+        </li>
+        <li className={styles.listItem} style={{ gap: ".5em" }}>
+          <div
+            style={{
+              width: "150px",
+              height: "150px",
+              backgroundColor: "lightGrey",
+            }}
+          ></div>
+          <span
+            style={{
+              width: "100px",
+              height: "25px",
+              backgroundColor: "lightGrey",
+              borderRadius: "25px",
+            }}
+          ></span>
+        </li>
         <li className={styles.listItem} style={{ gap: ".5em" }}>
           <div
             style={{
