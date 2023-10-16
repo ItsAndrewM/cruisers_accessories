@@ -20,6 +20,7 @@ import accordionStyles from "@/components/accordion/accordion.module.css";
 import { getSiteSettings } from "@/lib/operations-swell";
 import CrossSell from "../crossSell/crossSell";
 import Options from "@/components/options/options";
+import Loading from "./loading";
 
 const ProductBox = ({
   product,
@@ -203,6 +204,10 @@ const ProductBox = ({
     setCurrentImage(e.currentTarget.value);
   };
 
+  if (!product) {
+    return <Loading />;
+  }
+
   return (
     <>
       {renderSeo && (
@@ -298,43 +303,14 @@ const ProductBox = ({
               <></>
             ) : (
               <div className={styles.container}>
-                {product.options.map((option) => {
+                {product.options.map((option, index) => {
                   return (
                     <Options
                       option={option}
                       handleChange={handleChange}
                       target={id}
+                      key={index}
                     />
-                    // <Fragment key={option.name}>
-                    //   <p className={styles.textHeader}>{option.name}</p>
-                    //   <form onChange={handleChange}>
-                    //     <ul className={styles.options}>
-                    //       {option.values.map((value) => {
-                    //         return (
-                    //           <li
-                    //             key={value.id}
-                    //             style={{
-                    //               border: ref.current.checked
-                    //                 ? "2px solid var(--casBlue)"
-                    //                 : "2px solid var(--cream)",
-                    //             }}
-                    //           >
-                    //             <label>
-                    //               {value.name}
-                    //               <input
-                    //                 type="radio"
-                    //                 value={value.id}
-                    //                 name={option.name}
-                    //                 className={styles.option}
-                    //                 ref={ref}
-                    //               />
-                    //             </label>
-                    //           </li>
-                    //         );
-                    //       })}
-                    //     </ul>
-                    //   </form>
-                    // </Fragment>
                   );
                 })}
               </div>
