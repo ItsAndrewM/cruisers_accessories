@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, Fragment } from "react";
+import { useMemo, useState, useEffect, Fragment, useRef } from "react";
 import OptionPicker from "../../components/optionPicker/optionPicker";
 import { NextSeo } from "next-seo";
 import { useUI } from "../../components/ui/context";
@@ -19,6 +19,7 @@ import Image from "next/image";
 import accordionStyles from "@/components/accordion/accordion.module.css";
 import { getSiteSettings } from "@/lib/operations-swell";
 import CrossSell from "../crossSell/crossSell";
+import Options from "@/components/options/options";
 
 const ProductBox = ({
   product,
@@ -70,7 +71,7 @@ const ProductBox = ({
   };
 
   const { openSidebar } = useUI();
-
+  const ref = useRef();
   const [variant, setVariant] = useState(variants[0] || null);
   const [selections, setSelections] = useState(defaultSelections);
   const [productOptions, setProductOptions] = useState(options);
@@ -78,6 +79,7 @@ const ProductBox = ({
   const [buttonText, setButtonText] = useState("Add to Cart");
   const [quantity, setQuantity] = useState(1);
   const [imageArr, setImageArr] = useState([]);
+  const [id, setId] = useState();
   const [currentImage, setCurrentImage] = useState(
     !product.images.length
       ? `https://placehold.co/475/jpeg`
@@ -174,17 +176,11 @@ const ProductBox = ({
     } else {
       setImageArr([]);
     }
-    // const fetchSiteSettings = async () => {
-    //   const settings = await getSiteSettings();
-    //   console.log(settings);
-    // };
-    // fetchSiteSettings();
   }, []);
 
   const handleChange = (e) => {
-    // const id =
-    //   values.find((optionValue) => optionValue.name == value)?.id ?? "";
     const id = e.target.value;
+    setId(e.target.value);
     const selectionToUpdate = selections.find((selection) => {
       return selection.id == e.target.value;
     });
@@ -197,8 +193,6 @@ const ProductBox = ({
     });
 
     if (selections.length) {
-      // selectionToUpdate.value = value;
-      // selectionToUpdate.id = id;
       setSelections(selections);
       setVariant(selectedVariant);
       setSelectedVariant();
@@ -232,95 +226,6 @@ const ProductBox = ({
           }}
         />
       )}
-      {/* <div className={styles.product}>
-        <Grid gap={4} columns={[1, 2]}>
-          <div>
-            <div className={styles.box}>
-              <ImageCarousel
-                showZoom
-                alt={title}
-                width={1050}
-                height={1050}
-                priority
-                // onThumbnailClick={(index) => {
-                //   if (images[index]?.color) {
-                //     setColor(images[index].color)
-                //   }
-                // }}
-                images={
-                  allImages?.length > 0
-                    ? allImages
-                    : [
-                        {
-                          src: `https://placehold.co/1050/jpeg`,
-                        },
-                      ]
-                }
-              ></ImageCarousel>
-            </div>
-          </div>
-          <div className={styles.column}>
-            <span className={styles.span}>
-              <h1>{title}</h1>
-              <h4 aria-label="price" className={styles.span}>
-                {getPrice(
-                  variant ? variant?.price : product.price,
-                  product.currency ?? "USD"
-                )}
-              </h4>
-            </span>
-            <div>
-              {productOptions?.length > 0 &&
-                productOptions?.map((option) => {
-                  return (
-                    <Grid padding={2} columns={1} key={option.id}>
-                      {Boolean(option.values?.length) && (
-                        <OptionPicker
-                          key={option.id}
-                          name={option.name}
-                          options={formatOptionValues(option.values)}
-                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                          // @ts-ignore
-                          selected={selections[option.id]}
-                          onChange={(event) => {
-                            inputChangeHandler(option, event.target.value);
-                          }}
-                        />
-                      )}
-                    </Grid>
-                  );
-                })}
-            </div>
-            <button
-              className={styles.button}
-              name="add-to-cart"
-              disabled={loading}
-              onClick={addToCart}
-            >
-              {loading ? <LoadingDots /> : <span>{buttonText}</span>}
-            </button>
-            <button
-              className={styles.mobileButton}
-              name="add-to-cart"
-              disabled={loading}
-              onClick={addToCartMobile}
-            >
-              {loading ? <LoadingDots /> : <span>{buttonText}</span>}
-            </button>
-            <div></div>
-          </div>
-        </Grid>
-        <div
-          dangerouslySetInnerHTML={{ __html: description }}
-          style={{
-            marginBottom: "1em",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "flex-start",
-          }}
-        />
-      </div> */}
       <section className={styles.section}>
         <div className={styles.wrapper}>
           <div>
@@ -395,28 +300,41 @@ const ProductBox = ({
               <div className={styles.container}>
                 {product.options.map((option) => {
                   return (
-                    <Fragment key={option.name}>
-                      <p className={styles.textHeader}>{option.name}</p>
-                      <form onChange={handleChange}>
-                        <ul className={styles.options}>
-                          {option.values.map((value) => {
-                            return (
-                              <li key={value.id}>
-                                <label>
-                                  {value.name}
-                                  <input
-                                    type="radio"
-                                    value={value.id}
-                                    name={option.name}
-                                    className={styles.option}
-                                  />
-                                </label>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </form>
-                    </Fragment>
+                    <Options
+                      option={option}
+                      handleChange={handleChange}
+                      target={id}
+                    />
+                    // <Fragment key={option.name}>
+                    //   <p className={styles.textHeader}>{option.name}</p>
+                    //   <form onChange={handleChange}>
+                    //     <ul className={styles.options}>
+                    //       {option.values.map((value) => {
+                    //         return (
+                    //           <li
+                    //             key={value.id}
+                    //             style={{
+                    //               border: ref.current.checked
+                    //                 ? "2px solid var(--casBlue)"
+                    //                 : "2px solid var(--cream)",
+                    //             }}
+                    //           >
+                    //             <label>
+                    //               {value.name}
+                    //               <input
+                    //                 type="radio"
+                    //                 value={value.id}
+                    //                 name={option.name}
+                    //                 className={styles.option}
+                    //                 ref={ref}
+                    //               />
+                    //             </label>
+                    //           </li>
+                    //         );
+                    //       })}
+                    //     </ul>
+                    //   </form>
+                    // </Fragment>
                   );
                 })}
               </div>

@@ -88,9 +88,10 @@
   position: absolute;
   height: 1px;
   width: 1px;
+  opacity: 0;
 }
 
-.options li {
+.options > li {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -103,17 +104,13 @@
   border: 2px solid var(--cream);
 }
 
-.options li label {
+.options > li > label {
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
-}
-
-.options li:has(input:checked) {
-  border: 2px solid var(--casBlue);
 }
 
 .container form {

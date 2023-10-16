@@ -1,14 +1,23 @@
 import styles from "@/blocks/productView/productView.module.css";
+import { Fragment } from "react";
 
-const Options = ({ option, variants }) => {
+const Options = ({ option, handleChange, target }) => {
   return (
-    <>
+    <Fragment key={option.name}>
       <p className={styles.textHeader}>{option.name}</p>
       <form onChange={handleChange}>
         <ul className={styles.options}>
           {option.values.map((value) => {
             return (
-              <li key={value.id}>
+              <li
+                key={value.id}
+                style={{
+                  border:
+                    target === value.id
+                      ? "2px solid var(--casBlue)"
+                      : "2px solid var(--cream)",
+                }}
+              >
                 <label>
                   {value.name}
                   <input
@@ -23,7 +32,7 @@ const Options = ({ option, variants }) => {
           })}
         </ul>
       </form>
-    </>
+    </Fragment>
   );
 };
 
