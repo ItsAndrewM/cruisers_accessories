@@ -8,6 +8,7 @@
   align-items: center;
   color: inherit;
   padding: 0 2em;
+  z-index: 999;
 }
 
 .container {
@@ -95,10 +96,12 @@
   }
   .wrapper {
     justify-content: center;
-    margin: 0;
   }
   .wrapper > div {
     padding: 0;
     margin-bottom: 1em;
+  }
+  .cartItemsWrapper {
+    max-height: 400px;
   }
 }

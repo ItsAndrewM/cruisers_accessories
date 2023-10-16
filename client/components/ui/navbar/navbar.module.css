@@ -411,4 +411,15 @@
   .container {
     display: none;
   }
+
+  .cartButton {
+    border: none;
+    background-color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    color: var(--casBlue);
+  }
 }

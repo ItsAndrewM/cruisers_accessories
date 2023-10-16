@@ -20,6 +20,7 @@ const MobileNavbar = () => {
   const router = useRouter();
   const [checked, setChecked] = useState(false);
   const [prevUrl, setPrevUrl] = useState(router.asPath);
+  const { openSidebar } = useUI();
 
   useEffect(() => {
     if (router.asPath !== prevUrl) {
@@ -113,13 +114,14 @@ const MobileNavbar = () => {
       </div>
       <div className={navbarStyles.mobileContainer}>
         {" "}
-        <Link
-          href={"/cart"}
+        <button
+          onClick={() => openSidebar()}
+          className={navbarStyles.cartButton}
           style={{ display: "flex", width: "100%", gap: "1em" }}
         >
           <Cart />
           Cart ({quantity})
-        </Link>
+        </button>
       </div>
     </nav>
   );

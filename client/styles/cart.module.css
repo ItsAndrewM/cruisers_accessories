@@ -1,0 +1,12 @@
+#cartPage {
+  position: relative;
+}
+
+#cartPage > div {
+  position: relative;
+  z-index: 0;
+}
+
+#cartPage > div > div > div > div:nth-child(2) {
+  max-height: fit-content;
+}
