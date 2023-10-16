@@ -97,7 +97,6 @@ const MobileNavbar = () => {
         {logo && logo.image && (
           <Link href="/">
             <Image
-              layout="fixed"
               width={!logo.width ? 350 : logo.width}
               height={!logo.height ? 100 : logo.height}
               src={logoMobile}

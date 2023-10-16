@@ -86,7 +86,6 @@ const Navbar = () => {
             {logo && logo.image && (
               <Link href="/" className={styles.casLogo}>
                 <Image
-                  layout="fixed"
                   width={!logo.width ? 200 : logo.width}
                   height={!logo.height ? 200 : logo.height}
                   src={logo.image}

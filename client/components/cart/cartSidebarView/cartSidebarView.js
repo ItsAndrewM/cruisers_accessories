@@ -43,67 +43,6 @@ const CartSidebarView = () => {
   }, [cart?.items]);
 
   return (
-    // <div
-    //   className={`${styles.container} ${isEmpty ? styles.justifyContent : ""}`}
-    //   style={{ flexDirection: "column", alignItems: "center" }}
-    // >
-    //   {isEmpty ? (
-    //     <>
-    //       <Cart />
-    //       Your cart is empty
-    //       <Text>Continue browsing!</Text>
-    //     </>
-    //   ) : (
-    //     <>
-    //       <div className={styles.container}>
-    //         <div className={`${styles.wrapper}`}>
-    //           {!items.length ? (
-    //             <LoadingDots />
-    //           ) : (
-    //             items.map((item) => (
-    //               <CartItem
-    //                 key={item.id}
-    //                 item={item}
-    //                 currencyCode={cart?.currency ?? "USD"}
-    //               />
-    //             ))
-    //           )}
-    //         </div>
-    //         <div className={`${styles.wrapper}`}>
-    //           <Card sx={{ margin: "auto", minWidth: "10rem", paddingLeft: 5 }}>
-    //             <Grid gap={1} columns={2} sx={{ my: 3 }}>
-    //               <Text>Subtotal:</Text>
-    //               <Text sx={{ marginLeft: "auto" }}>{subTotal}</Text>
-    //               <Text>Shipping:</Text>
-    //               <Text sx={{ marginLeft: "auto" }}>{shippingTotal}</Text>
-    //               <Text>Tax: </Text>
-    //               <Text sx={{ marginLeft: "auto" }}>{taxTotal}</Text>
-    //             </Grid>
-
-    //             <Divider />
-    //             <Grid gap={1} columns={2}>
-    //               <Text variant="bold">Estimated Total:</Text>
-    //               <Text variant="bold" sx={{ marginLeft: "auto" }}>
-    //                 {total}
-    //               </Text>
-    //             </Grid>
-    //           </Card>
-    //           <BuilderComponent
-    //             content={cartUpsell}
-    //             model="cart-upsell-sidebar"
-    //           />
-    //         </div>
-    //       </div>
-    //       <div className={styles.container}>
-    //         {checkoutUrl && (
-    //           <span className={searchByBoatStyles.submit}>
-    //             <Link href={checkoutUrl}>Proceed to Checkout</Link>
-    //           </span>
-    //         )}
-    //       </div>
-    //     </>
-    //   )}
-    // </div>
     <div
       className={`${styles.container} ${isEmpty ? styles.justifyContent : ""}`}
       style={{ flexDirection: "column", alignItems: "center" }}
@@ -122,17 +61,19 @@ const CartSidebarView = () => {
       ) : (
         <>
           <div className={styles.container}>
-            <div className={`${styles.wrapper}`}>
+            <div className={`${styles.wrapper} `}>
               <div className={styles.header}>
                 <h2>Cart</h2>
               </div>
-              {items.map((item) => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  currencyCode={cart?.currency ?? "USD"}
-                />
-              ))}
+              <div className={styles.cartItemsWrapper}>
+                {items.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                    currencyCode={cart?.currency ?? "USD"}
+                  />
+                ))}
+              </div>
               <div className={styles.borderBottom}></div>
             </div>
             <div className={`${styles.wrapper}`}>
@@ -148,26 +89,6 @@ const CartSidebarView = () => {
                 </small>
               </div>
             </div>
-            {/* <div className={`${styles.wrapper}`}> */}
-            {/* <Card sx={{ margin: "auto", minWidth: "10rem", paddingLeft: 5 }}>
-                <Grid gap={1} columns={2} sx={{ my: 3 }}>
-                  <Text>Subtotal:</Text>
-                  <Text sx={{ marginLeft: "auto" }}>{subTotal}</Text>
-                  <Text>Shipping:</Text>
-                  <Text sx={{ marginLeft: "auto" }}>{shippingTotal}</Text>
-                  <Text>Tax: </Text>
-                  <Text sx={{ marginLeft: "auto" }}>{taxTotal}</Text>
-                </Grid>
-
-                <Divider />
-                <Grid gap={1} columns={2}>
-                  <Text variant="bold">Estimated Total:</Text>
-                  <Text variant="bold" sx={{ marginLeft: "auto" }}>
-                    {total}
-                  </Text>
-                </Grid>
-              </Card> */}
-            {/* </div> */}
           </div>
           <div className={styles.wrapper}>
             {checkoutUrl && (
