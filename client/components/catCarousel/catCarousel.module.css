@@ -11,6 +11,38 @@
   align-items: center;
 }
 
+.button {
+  border: none;
+  background-color: inherit;
+  position: absolute;
+  color: var(--casOrange);
+  top: 40%;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.button > img {
+  color: var(--casOrange);
+}
+
+.button:hover {
+  opacity: 0.5;
+}
+
+.button > img {
+  max-width: 75px !important;
+  min-height: 75px !important;
+  max-height: 75px !important;
+}
+
+#prevButton {
+  left: -80px;
+}
+
+#nextButton {
+  right: -80px;
+}
+
 .container img {
   width: 100%;
   max-width: 576px;
@@ -118,5 +150,21 @@
 
   .container img {
     padding: 0;
+  }
+
+  .button {
+    position: relative;
+    top: auto;
+  }
+  #prevButton,
+  #nextButton {
+    left: auto;
+    right: auto;
+  }
+
+  .button > img {
+    max-width: 20px !important;
+    min-height: 20px !important;
+    max-height: 20px !important;
   }
 }

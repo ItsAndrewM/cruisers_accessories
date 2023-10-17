@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import searchByBoatStyles from "../searchByBoat/searchByBoat.module.css";
+import rightArrow from "@/assets/icons/arrowRight.svg";
+import leftArrow from "@/assets/icons/arrowLeft.svg";
 
 const CatCarousel = () => {
   const [items, setItems] = useState([]);
@@ -71,6 +73,10 @@ const CatCarousel = () => {
     1024: { items: 3, itemsFit: "contain" },
   };
 
+  const handlePrev = () => {
+    console.log("clicked");
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -79,7 +85,34 @@ const CatCarousel = () => {
           items={items && items}
           responsive={responsive}
           controlsStrategy="default"
-          disableButtonsControls={true}
+          disableButtonsControls={false}
+          renderPrevButton={() => {
+            return (
+              <button
+                onClick={handlePrev}
+                className={styles.button}
+                id={styles.prevButton}
+              >
+                <Image src={leftArrow} width={75} height={75} />
+              </button>
+            );
+          }}
+          renderNextButton={() => {
+            return (
+              <button
+                onClick={handlePrev}
+                className={styles.button}
+                id={styles.nextButton}
+              >
+                <Image
+                  src={rightArrow}
+                  width={75}
+                  height={75}
+                  style={{ color: "var(--casOrange)" }}
+                />
+              </button>
+            );
+          }}
         />
       </div>
     </div>
