@@ -21,6 +21,7 @@ import { getSiteSettings } from "@/lib/operations-swell";
 import CrossSell from "../crossSell/crossSell";
 import Options from "@/components/options/options";
 import Loading from "./loading";
+import Carousel from "@/components/carousel/carousel";
 
 const ProductBox = ({
   product,
@@ -233,7 +234,8 @@ const ProductBox = ({
       )}
       <section className={styles.section}>
         <div className={styles.wrapper}>
-          <div>
+          <Carousel product={product} />
+          {/* <div>
             <Image
               alt={product.name}
               src={currentImage}
@@ -281,7 +283,7 @@ const ProductBox = ({
                 })}
               </div>
             )}
-          </div>
+          </div> */}
           <div>
             <div
               className={styles.container}

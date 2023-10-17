@@ -63,8 +63,6 @@ const CartItem = ({ item, currencyCode }) => {
     }
   }, [quantity]);
 
-  console.log(item);
-
   return (
     <div className={styles.grid}>
       <div>

@@ -7,7 +7,7 @@ import collectionViewStyles from "../collectionView/collectionView.module.css";
 
 const CategoryBar = ({ children }) => {
   if (!children.length) {
-    return <Loading />;
+    return <></>;
   }
   return (
     <div className={`${styles.wrapper} ${collectionViewStyles.first}`}>

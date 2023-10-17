@@ -55,8 +55,7 @@ export const ProductGrid = ({
         pageNum: router.query?.page || 1,
       });
       if (!result.children.length) {
-        console;
-        setCollectionChildren(null);
+        setCollectionChildren([]);
       } else {
         setCollectionChildren(result.children);
       }

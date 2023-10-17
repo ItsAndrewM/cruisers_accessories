@@ -9,16 +9,15 @@ const Options = ({ option, handleChange, target }) => {
         <ul className={styles.options}>
           {option.values.map((value) => {
             return (
-              <li
-                key={value.id}
-                style={{
-                  border:
-                    target === value.id
-                      ? "2px solid var(--casBlue)"
-                      : "2px solid var(--cream)",
-                }}
-              >
-                <label>
+              <li key={value.id}>
+                <label
+                  style={{
+                    border:
+                      target === value.id
+                        ? "2px solid var(--casBlue)"
+                        : "2px solid var(--cream)",
+                  }}
+                >
                   {value.name}
                   <input
                     type="radio"

@@ -4,31 +4,41 @@ import styles from "../../styles/test.module.css";
 import swellConfig from "@/swell.config";
 import swell from "swell-js";
 import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
+import { getProduct } from "@/lib/operations-swell";
+import Carousel from "@/components/carousel/carousel";
+import { useEffect, useState } from "react";
 
 export async function getServerSideProps(context) {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
-  const boatModel = await swell.attributes.get("boat_model");
-  const boatMake = await swell.attributes.get("boat_make");
-  const categoriesData = await swell.categories.list({ limit: 100 });
-  const categories =
-    (await categoriesData.results.map((entry) => entry.name)) || [];
+  const product = await getProduct({
+    slug: "cc-26-spinnaker-sheet-single",
+  });
   return {
     props: {
-      boatModel: boatModel,
-      boatMake: boatMake,
-      categories: categories,
+      product: product || null,
     },
   };
 }
 
-const Page = ({ boatModel, boatMake, categories }) => {
+const Page = ({ product }) => {
+  const [pics, setPics] = useState([]);
   const router = useRouter();
+
+  useEffect(() => {
+    if (product) {
+      let items = [];
+      items.push(product.images[0]);
+      const mapped = product.variants.map((variant) => {
+        return variant.images[0];
+      });
+      items = items.concat(mapped);
+      setPics(items);
+    }
+  }, [product]);
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.box}>
-        <BreadCrumbs />
-      </div>
+      <Carousel product={product} />
     </div>
   );
 };

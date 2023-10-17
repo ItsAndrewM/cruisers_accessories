@@ -1,0 +1,100 @@
+.box {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  position: relative;
+  width: 575px;
+  max-width: 575px;
+  max-height: 575px;
+  height: 575px;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  align-self: flex-start;
+  border: 1px solid var(--cream);
+}
+
+.wrapper > li {
+  min-width: 575px;
+  min-height: 575px;
+  max-height: 575px;
+  max-width: 575px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.wrapper > li > img {
+  object-fit: contain;
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  margin-bottom: 2em;
+  padding: 0;
+  height: 80px;
+  max-height: 80px;
+  max-width: 80px;
+  width: 80px;
+  background-color: inherit;
+  border: 2px solid var(--cream);
+  transition: all 0.2s ease-in-out;
+}
+
+.button > small {
+  color: var(--casBlue);
+}
+
+.button:hover {
+  border: 2px solid var(--casBlue);
+}
+
+.button > svg {
+  color: black;
+}
+
+.buttons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15%, 1fr));
+  justify-items: center;
+}
+
+/* //////////////////////////////////////////////////////////////// */
+/* /////////////////////////mobile styling///////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+
+@media (max-width: 600px) {
+  .buttons {
+    grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+  }
+
+  .button > img {
+    max-width: 75px;
+    max-height: 75px;
+  }
+  .wrapper,
+  .wrapper > li,
+  .wrapper > li > img {
+    min-width: 325px;
+    min-height: 325px;
+    width: 325px;
+    height: 325px;
+    max-width: 325px;
+    max-height: 325px;
+  }
+}
