@@ -7,6 +7,8 @@ import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
 import { getProduct } from "@/lib/operations-swell";
 import Carousel from "@/components/carousel/carousel";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import navbarStyles from "@/components/ui/navbar/navbar.module.css";
 
 export async function getServerSideProps(context) {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
@@ -24,21 +26,17 @@ const Page = ({ product }) => {
   const [pics, setPics] = useState([]);
   const router = useRouter();
 
-  useEffect(() => {
-    if (product) {
-      let items = [];
-      items.push(product.images[0]);
-      const mapped = product.variants.map((variant) => {
-        return variant.images[0];
-      });
-      items = items.concat(mapped);
-      setPics(items);
-    }
-  }, [product]);
-
   return (
     <div className={styles.wrapper}>
-      <Carousel product={product} />
+      <ul>
+        <li>
+          <h4>
+            <Link href={"/"} className={navbarStyles.link}>
+              This is a test
+            </Link>
+          </h4>
+        </li>
+      </ul>
     </div>
   );
 };

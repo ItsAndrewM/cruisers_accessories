@@ -17,9 +17,9 @@ const SubLinkItem = ({ link, setShow, show }) => {
     >
       {link?.subLinks.map((subLink, index) => {
         return (
-          <li key={uuidv4()} className={styles.top}>
+          <li key={uuidv4()} className={`${styles.top}`}>
             <h4>
-              <Link href={subLink.link} className={featuredCatStyles.link}>
+              <Link href={subLink.link} className={styles.link}>
                 {subLink.title}
               </Link>
             </h4>
@@ -30,10 +30,7 @@ const SubLinkItem = ({ link, setShow, show }) => {
                 {subLink.subLinks.map((subSubLink, index) => {
                   return (
                     <li key={uuidv4()}>
-                      <Link
-                        href={subSubLink.link}
-                        className={featuredCatStyles.link}
-                      >
+                      <Link href={subSubLink.link} className={styles.link}>
                         {subSubLink.title}
                       </Link>
                     </li>

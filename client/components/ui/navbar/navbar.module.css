@@ -136,6 +136,17 @@
 .navigation {
   display: none;
 }
+
+.link {
+  color: var(--black);
+  background-image: linear-gradient(var(--cream) 50%, var(--black) 50%);
+  background-size: auto 180%;
+  transition: all 0.3s ease-in-out;
+}
+.link:hover {
+  color: white;
+  background-position-y: 100%;
+}
 /* //////////////////////////////////////////////////////////////// */
 /* /////////////////////////mobile styling///////////////////////// */
 /* //////////////////////////////////////////////////////////////// */
