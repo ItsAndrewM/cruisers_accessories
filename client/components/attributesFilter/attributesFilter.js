@@ -45,7 +45,10 @@ const AttributesFilter = ({ attributes }) => {
               }
               return (
                 <li key={attribute.id} className={styles.summary}>
-                  <details className={accordianStyles.accordian}>
+                  <details
+                    className={accordianStyles.accordian}
+                    style={{ paddingRight: "1em" }}
+                  >
                     <summary>{attribute.name}</summary>
                   </details>
                   <div className={styles.content}>
