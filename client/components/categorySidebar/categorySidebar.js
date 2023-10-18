@@ -8,6 +8,7 @@ import {
 } from "@/lib/operations-swell";
 import Link from "next/link";
 import SkeletonCategory from "./skeletonCategory";
+import navbarStyles from "../ui/navbar/navbar.module.css";
 
 const CategorySidebar = () => {
   const [parents, setParents] = useState([]);
@@ -61,7 +62,7 @@ const CategorySidebar = () => {
                           <span>
                             <Link
                               href={`/collection/${kid.slug}`}
-                              className={featuredCatStyles.link}
+                              className={`${navbarStyles.link} ${styles.link}`}
                             >
                               {kid.name}
                             </Link>
@@ -75,7 +76,7 @@ const CategorySidebar = () => {
                                   <li key={grandChild.id}>
                                     <Link
                                       href={`/collection/${grandChild.slug}`}
-                                      className={featuredCatStyles.link}
+                                      className={`${navbarStyles.link} ${styles.link}`}
                                     >
                                       {grandChild.name}
                                     </Link>
