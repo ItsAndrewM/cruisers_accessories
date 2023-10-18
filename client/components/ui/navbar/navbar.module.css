@@ -140,7 +140,7 @@
 .link {
   color: var(--black);
   background-image: linear-gradient(var(--cream) 50%, var(--black) 50%);
-  background-size: auto 180%;
+  background-size: auto 200%;
   transition: all 0.3s ease-in-out;
 }
 .link:hover {
