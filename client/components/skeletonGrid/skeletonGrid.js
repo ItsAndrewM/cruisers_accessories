@@ -3,7 +3,7 @@ import { Grid } from "theme-ui";
 
 const SkeletonGrid = () => {
   return (
-    <Grid gap={2} width={["100%", "40%", "24%"]}>
+    <Grid gap={2} width={["40%", "40%", "24%"]}>
       <SkeletonCards />
     </Grid>
   );
