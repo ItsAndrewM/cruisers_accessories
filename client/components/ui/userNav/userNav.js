@@ -12,7 +12,7 @@ const UserNav = ({ className, children, ...props }) => {
   return (
     <Button
       onClick={toggleSidebar}
-      aria-label="Cart"
+      aria-label="Cart sideview button"
       style={{
         backgroundColor: "inherit",
         cursor: "pointer",
@@ -22,7 +22,9 @@ const UserNav = ({ className, children, ...props }) => {
         gap: "1em",
       }}
     >
-      <span style={{ color: "black" }}>Cart ({quantity})</span>
+      <span style={{ color: "black" }} aria-label="Cart quantity">
+        Cart ({quantity})
+      </span>
       <Cart />
     </Button>
   );

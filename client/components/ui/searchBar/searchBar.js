@@ -75,7 +75,7 @@ const Searchbar = () => {
           <Cross />
         ) : (
           <form className={styles.searchForm} onSubmit={handleSearch}>
-            <button type="submit">
+            <button type="submit" aria-label="Search button">
               <svg
                 width="20"
                 height="22"

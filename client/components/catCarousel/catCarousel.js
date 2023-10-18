@@ -98,6 +98,7 @@ const CatCarousel = () => {
                   width={75}
                   height={75}
                   alt="previous button"
+                  aria-label="previous button"
                 />
               </button>
             );
@@ -108,6 +109,7 @@ const CatCarousel = () => {
                 onClick={handlePrev}
                 className={styles.button}
                 id={styles.nextButton}
+                aria-label="Next button"
               >
                 <Image
                   src={rightArrow}
