@@ -31,23 +31,11 @@ export async function getStaticProps() {
 
 export default function Page({ products, page }) {
   const router = useRouter();
-  console.log(router.isFallback);
   const { theme } = useThemeUI();
-  if (router.isFallback) {
-    return <Loading />;
-  }
+  // if (router.isFallback || !page || !products) {
+  //   return <Loading />;
+  // }
   // This includes setting the noindex header because static files always return a status 200 but the rendered not found page page should obviously not be indexed
-  if (!page && !Builder.isEditing && !Builder.isPreviewing) {
-    return (
-      <>
-        <Head>
-          <meta name="robots" content="noindex" />
-          <meta name="title"></meta>
-        </Head>
-        {Builder.isBrowser && <DefaultErrorPage statusCode={404} />}
-      </>
-    );
-  }
   const { title, description, image } = page.data || {};
   Builder.isStatic = true;
   return (
@@ -73,7 +61,7 @@ export default function Page({ products, page }) {
           }}
         />
       )}
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Loading />}>
         <BuilderComponent
           options={{ includeRefs: true }}
           model={{ builderModel }}

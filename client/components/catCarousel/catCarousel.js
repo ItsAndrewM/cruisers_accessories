@@ -73,9 +73,7 @@ const CatCarousel = () => {
     1024: { items: 3, itemsFit: "contain" },
   };
 
-  const handlePrev = () => {
-    console.log("clicked");
-  };
+  const handlePrev = () => {};
 
   return (
     <div className={styles.wrapper}>

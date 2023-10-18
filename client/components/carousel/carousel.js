@@ -4,6 +4,7 @@ import arrowRight from "@/assets/icons/arrowRight.svg";
 import arrowLeft from "@/assets/icons/arrowLeft.svg";
 import Image from "next/image";
 import LoadingDots from "../ui/loadingDots/loadingDots";
+import Loading from "./loading";
 
 const Carousel = ({ product }) => {
   const [pixels, setPixels] = useState(0);
@@ -46,7 +47,6 @@ const Carousel = ({ product }) => {
         // });
         product.variants.forEach((variant) => {
           const { name, id } = variant;
-          console.log(!variant.images);
 
           items.push(
             !variant.images
@@ -81,7 +81,7 @@ const Carousel = ({ product }) => {
   }, []);
 
   if (!pics.length) {
-    return <LoadingDots />;
+    return <Loading />;
   }
 
   return (

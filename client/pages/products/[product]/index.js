@@ -7,16 +7,14 @@ import {
 } from "../../../lib/operations-swell";
 import { resolveSwellContent } from "../../../lib/resolve-swell-content";
 import { useRouter } from "next/router";
-import Head from "next/head";
-import DefaultErrorPage from "next/error";
 import Layout from "../../../components/layout/layout";
 import { getLayoutProps } from "../../../lib/get-layout-props";
 import { useThemeUI } from "theme-ui";
 import builderConfig from "@/builder.config";
 import { NextSeo } from "next-seo";
-import LoadingDots from "@/components/ui/loadingDots/loadingDots";
-import Loading from "@/blocks/productView/loading";
-import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
+
+import { Suspense } from "react";
+import Loading from "./loading";
 // Replace with your Public API Key.
 builder.init("20988483cda74747b3e814c30d7ff832");
 
@@ -69,30 +67,35 @@ export const getStaticProps = async ({ params }) => {
 const Page = ({ product, page, builderModel }) => {
   const isLive = !Builder.isEditing && !Builder.isPreviewing;
   const router = useRouter();
-  console.log(router.isFallback);
   const { theme } = useThemeUI();
-  const { title, description, image } = page.data || {};
-  if (!product && isLive) {
-    return (
-      <>
-        <Head>
-          <meta name="robots" content="noindex" />
-          <meta name="title"></meta>
-        </Head>
-        <DefaultErrorPage statusCode={404} />
-      </>
-    );
-  }
 
-  return router.isFallback ? (
-    // TODO (BC) Add Skeleton Views
-    <>
-      <div style={{ marginTop: "20px" }}>
-        <BreadCrumbs />
-      </div>
-      <Loading />
-    </>
-  ) : (
+  if (router.isFallback) {
+    return <Loading />;
+  }
+  const { title, description, image } = page.data || {};
+
+  //   return (
+  //     <>
+  //       <Head>
+  //         <meta name="robots" content="noindex" />
+  //         <meta name="title"></meta>
+  //       </Head>
+  //       <DefaultErrorPage statusCode={404} />
+  //     </>
+  //   );
+  // }
+
+  // router.isFallback ? (
+  //   // TODO (BC) Add Skeleton Views
+  //   <>
+  //     <div style={{ marginTop: "20px" }}>
+  //       <BreadCrumbs />
+  //     </div>
+  //     <Loading />
+  //   </>
+  // ) : (
+
+  return (
     <div>
       {title && (
         <NextSeo
@@ -115,12 +118,14 @@ const Page = ({ product, page, builderModel }) => {
           }}
         />
       )}
-      <BuilderComponent
-        key={product.id}
-        model={builderModel}
-        data={{ product, theme }}
-        {...(page && { content: page })}
-      />
+      <Suspense fallback={<Loading />}>
+        <BuilderComponent
+          key={product.id}
+          model={builderModel}
+          data={{ product, theme }}
+          {...(page && { content: page })}
+        />
+      </Suspense>
     </div>
   );
 };
