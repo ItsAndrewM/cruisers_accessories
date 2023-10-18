@@ -4,7 +4,10 @@ import utilStyles from "@/styles/utils.module.css";
 
 const Loading = () => {
   return (
-    <section className={`${layoutStyles.section} ${utilStyles.gap2}`}>
+    <section
+      className={`${layoutStyles.section} ${utilStyles.gap2}`}
+      style={{ marginTop: "20px" }}
+    >
       <div className={styles.wrapper}>
         <div
           style={{

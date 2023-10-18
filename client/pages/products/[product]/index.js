@@ -15,6 +15,8 @@ import { useThemeUI } from "theme-ui";
 import builderConfig from "@/builder.config";
 import { NextSeo } from "next-seo";
 import LoadingDots from "@/components/ui/loadingDots/loadingDots";
+import Loading from "@/blocks/productView/loading";
+import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
 // Replace with your Public API Key.
 builder.init("20988483cda74747b3e814c30d7ff832");
 
@@ -25,7 +27,7 @@ export const getStaticPaths = async () => {
   return {
     // TODO: update to /product
     paths: paths?.map((path) => `/products/${path}`) ?? [],
-    fallback: "blocking",
+    fallback: true,
   };
 };
 
@@ -67,6 +69,7 @@ export const getStaticProps = async ({ params }) => {
 const Page = ({ product, page, builderModel }) => {
   const isLive = !Builder.isEditing && !Builder.isPreviewing;
   const router = useRouter();
+  console.log(router.isFallback);
   const { theme } = useThemeUI();
   const { title, description, image } = page.data || {};
   if (!product && isLive) {
@@ -81,8 +84,14 @@ const Page = ({ product, page, builderModel }) => {
     );
   }
 
-  return router.isFallback && isLive ? (
-    <LoadingDots /> // TODO (BC) Add Skeleton Views
+  return router.isFallback ? (
+    // TODO (BC) Add Skeleton Views
+    <>
+      <div style={{ marginTop: "20px" }}>
+        <BreadCrumbs />
+      </div>
+      <Loading />
+    </>
   ) : (
     <div>
       {title && (

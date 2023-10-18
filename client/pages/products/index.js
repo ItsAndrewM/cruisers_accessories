@@ -10,12 +10,14 @@ import { getAllProducts } from "../../lib/operations-swell";
 import { getLayoutProps } from "../../lib/get-layout-props";
 import { NextSeo } from "next-seo";
 import ProductsViewHome from "@/blocks/productsViewHome/productsViewHome";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const builderModel = "all-products";
 builder.init(builderConfig.apiKey);
 
-// export async function getStaticProps() {
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
+  // export async function getServerSideProps(context) {
   const products = await getAllProducts(builderConfig);
   const page = await resolveSwellContent(builderModel);
   return {
@@ -29,9 +31,10 @@ export async function getServerSideProps(context) {
 
 export default function Page({ products, page }) {
   const router = useRouter();
+  console.log(router.isFallback);
   const { theme } = useThemeUI();
   if (router.isFallback) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
   // This includes setting the noindex header because static files always return a status 200 but the rendered not found page page should obviously not be indexed
   if (!page && !Builder.isEditing && !Builder.isPreviewing) {
@@ -70,12 +73,14 @@ export default function Page({ products, page }) {
           }}
         />
       )}
-      <BuilderComponent
-        options={{ includeRefs: true }}
-        model={{ builderModel }}
-        data={{ products, theme }}
-        {...(page && { content: page })}
-      />
+      <Suspense fallback={<p>Loading...</p>}>
+        <BuilderComponent
+          options={{ includeRefs: true }}
+          model={{ builderModel }}
+          data={{ products, theme }}
+          {...(page && { content: page })}
+        />
+      </Suspense>
       {/* <ProductsViewHome /> */}
     </div>
   );
