@@ -26,7 +26,7 @@ const CustomDotGroup = ({ images, onThumbnailClick, ...imageProps }) => {
                 {...imageProps}
                 height={80}
                 width={80}
-                alt=""
+                alt="dot"
               ></Image>
             </Dot>
           </IconButton>
@@ -65,7 +65,7 @@ const ImageCarousel = ({
               {showZoom ? (
                 <ImageWithZoom src={image.src} />
               ) : (
-                <Image src={image.src} {...imageProps} />
+                <Image src={image.src} {...imageProps} alt="slide" />
               )}
             </Slide>
           ))}

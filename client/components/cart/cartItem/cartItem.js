@@ -75,6 +75,7 @@ const CartItem = ({ item, currencyCode }) => {
             }
             width={90}
             height={90}
+            alt={item.product.name}
           />
         </Link>
       </div>

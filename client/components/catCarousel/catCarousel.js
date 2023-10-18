@@ -93,7 +93,12 @@ const CatCarousel = () => {
                 className={styles.button}
                 id={styles.prevButton}
               >
-                <Image src={leftArrow} width={75} height={75} />
+                <Image
+                  src={leftArrow}
+                  width={75}
+                  height={75}
+                  alt="previous button"
+                />
               </button>
             );
           }}
@@ -109,6 +114,7 @@ const CatCarousel = () => {
                   width={75}
                   height={75}
                   style={{ color: "var(--casOrange)" }}
+                  alt="next button"
                 />
               </button>
             );
