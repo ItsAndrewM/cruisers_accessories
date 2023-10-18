@@ -31,10 +31,11 @@ const Carousel = ({ product }) => {
   useEffect(() => {
     if (product) {
       const { id, name } = product;
+
       let items = [];
       items.push(
         product.images.length
-          ? product.images[0]
+          ? { id, name, ...product.images[0] }
           : { id, name, file: { url: "https://placehold.co/475/jpeg" } }
       );
       if (product.variants) {
@@ -45,10 +46,12 @@ const Carousel = ({ product }) => {
         // });
         product.variants.forEach((variant) => {
           const { name, id } = variant;
+          console.log(!variant.images);
+
           items.push(
             !variant.images
               ? { id, name, file: { url: "https://placehold.co/475/jpeg" } }
-              : variant.images[0]
+              : { id, name, ...variant.images[0] }
           );
         });
         setPics(items);
@@ -101,6 +104,7 @@ const Carousel = ({ product }) => {
         <ul className={styles.buttons}>
           {pics.length > 1 &&
             pics.map((product, index) => {
+              // console.log(product);
               return (
                 <li key={product.id}>
                   <button
@@ -119,8 +123,8 @@ const Carousel = ({ product }) => {
                       height={75}
                       alt={product.name}
                     />
-                    <small>{product.name}</small>
                   </button>
+                  <small>{product.name}</small>
                 </li>
               );
             })}
