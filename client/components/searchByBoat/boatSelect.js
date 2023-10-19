@@ -27,6 +27,7 @@ const BoatSelect = ({
         name={name}
         required={required ? true : false}
         className={getError(name) ? styles.invalid : ""}
+        disabled={!values.length}
       >
         <option
           value={defaultVal}

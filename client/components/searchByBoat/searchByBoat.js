@@ -155,9 +155,7 @@ const SearchByBoat = () => {
           <LoadingDots />
         ) : (
           <BoatSelect
-            values={
-              !filteredCategories.length ? categories : filteredCategories
-            }
+            values={!filteredCategories.length ? [] : filteredCategories}
             label={"Product Categories"}
             setState={setCategory}
             defaultVal={"select a category"}
