@@ -17,6 +17,7 @@ export const ProductGrid = ({
   limit = 10,
   cardProps,
   highlightCard,
+  isMobile,
 }) => {
   const [collectionProducts, setCollectionProducts] = useState(
     initialProducts || []
@@ -70,7 +71,10 @@ export const ProductGrid = ({
       {!collectionChildren ? (
         <LoadingCatBar />
       ) : (
-        <CategoryBar children={!collectionChildren ? [] : collectionChildren} />
+        <CategoryBar
+          children={!collectionChildren ? [] : collectionChildren}
+          isMobile={isMobile}
+        />
       )}
       <div className={styles.container}>
         <div className={styles.wrapper}>

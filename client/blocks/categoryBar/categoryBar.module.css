@@ -29,7 +29,9 @@
 
 @media (max-width: 600px) {
   .box {
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(49%, 1fr));
+    justify-items: center;
   }
 }

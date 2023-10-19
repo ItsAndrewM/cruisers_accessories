@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
-import LoadingDots from "@/components/ui/loadingDots/loadingDots";
 import builderConfig from "@/builder.config";
-import { ProductGrid, ProductGridProps } from "../productGrid/productGrid";
+import { ProductGrid } from "../productGrid/productGrid";
 import { getCollection } from "../../lib/operations-swell";
 import styles from "./collectionView.module.css";
-import CardSkeleton from "@/components/ui/cardSkeleton/cardSkeleton";
 import SkeletonGrid from "./skeletonGrid";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
 import Loading from "./loading";
+import accordionStyles from "@/components/accordion/accordion.module.css";
 
 const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
   const router = useRouter();
@@ -18,6 +15,27 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
   const [loading, setLoading] = useState(true);
   const [pageNums, setPageNums] = useState(1);
   const [children, setChildren] = useState([]);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" && window.innerWidth <= 600
+  );
+  const handleResize = () => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth <= 600) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (window.innerWidth <= 600) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+    window.addEventListener("resize", handleResize);
+  }, []);
   // useEffect(() => setCollection(initialCollection), [initialCollection]);
   useEffect(() => {
     const fetchCollection = async () => {
@@ -50,9 +68,32 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
       ) : (
         <div className={`${styles.wrapper} ${styles.first}`}>
           <span style={{ marginTop: 0, marginBottom: 2 }}>
-            <h1>{collection.name}</h1>
+            {!isMobile ? (
+              <>
+                <h1>{collection.name}</h1>
+
+                <div
+                  dangerouslySetInnerHTML={{ __html: collection.description }}
+                />
+              </>
+            ) : (
+              <>
+                <details className={`${accordionStyles.accordian}`}>
+                  <summary>
+                    <h1>{collection.name}</h1>
+                  </summary>
+                </details>
+                <div
+                  className={accordionStyles.content}
+                  style={{ border: "none" }}
+                >
+                  <div
+                    dangerouslySetInnerHTML={{ __html: collection.description }}
+                  />
+                </div>
+              </>
+            )}
           </span>
-          <div dangerouslySetInnerHTML={{ __html: collection.description }} />
         </div>
       )}
       <div className={styles.padding5}>
@@ -63,6 +104,7 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
             {...productGridOptions}
             products={!collection?.products ? [] : collection?.products}
             collection={collection}
+            isMobile={isMobile}
           />
         )}
       </div>
