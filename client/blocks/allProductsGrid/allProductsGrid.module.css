@@ -47,21 +47,18 @@
   .wrapper {
     padding: 0 !important;
   }
+
   .container {
     flex-direction: column;
     padding-top: 1em;
   }
 
-  .wrapper > div:nth-child(2),
-  .wrapper > div:first-child {
-    padding: 0;
-  }
   .wrapper > div:nth-child(2) > div,
   .wrapper > div:nth-child(2) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3em;
+    gap: 2em;
   }
   .wrapper > div:nth-child(2) > div {
     padding: 0;
@@ -86,6 +83,7 @@
     display: grid !important;
   }
   .gridBorder {
+    padding-top: 2em;
     border-top: 2px solid var(--casBlue);
   }
 }

@@ -94,9 +94,9 @@
   .container {
     padding: 0 !important;
     max-width: 150px !important;
-    max-height: 235px !important;
+    max-height: 250px !important;
     min-width: 150px !important;
-    min-height: 235px !important;
+    min-height: 250px !important;
     border: none !important;
   }
 

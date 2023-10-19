@@ -14,3 +14,41 @@
 .padding5 {
   padding: 5px;
 }
+
+.card {
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 350px;
+  max-height: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.card > div:first-child {
+  width: 250px;
+  height: 250px;
+  background-color: lightGrey;
+}
+
+/* //////////////////////////////////////////////////////////////// */
+/* /////////////////////////mobile styling///////////////////////// */
+/* //////////////////////////////////////////////////////////////// */
+
+@media (max-width: 600px) {
+  .card {
+    max-width: 150px;
+    min-width: 150px;
+    min-height: 235px;
+    max-height: 235px;
+  }
+
+  .card > div:first-child {
+    max-width: 125px;
+    min-width: 125px;
+    min-height: 125px;
+    max-height: 125px;
+  }
+}

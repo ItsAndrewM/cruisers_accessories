@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import LoadingDots from "../../components/ui/loadingDots/loadingDots";
 import { Grid } from "@theme-ui/components";
-import ProductCard from "../../components/productCard/productCard";
-import ProductCardDemo from "../../components/productCard/productCardDemo";
 import { getCollection, getProduct } from "../../lib/operations-swell";
 import builderConfig from "../../builder.config";
 import styles from "../allProductsGrid/allProductsGrid.module.css";
@@ -81,7 +78,7 @@ export const ProductGrid = ({
             <Loading />
           ) : (
             <Grid
-              gap={2}
+              gap={["2em", 2]}
               width={["40%", "40%", "24%"]}
               className={styles.gridBorder}
             >

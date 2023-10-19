@@ -33,45 +33,40 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
   }, [collection]);
 
   return (
-    <>
-      <div
-        className={styles.wrapper}
-        key={!collection?.id ? "" : collection.id}
-      >
-        {renderSeo && (
-          <NextSeo
-            title={!collection?.name ? "" : collection?.name}
-            description={!collection?.description ? "" : collection.description}
-            openGraph={{
-              type: "website",
-              // name,
-              // description,
-            }}
+    <div className={styles.wrapper} key={!collection?.id ? "" : collection.id}>
+      {renderSeo && (
+        <NextSeo
+          title={!collection?.name ? "" : collection?.name}
+          description={!collection?.description ? "" : collection.description}
+          openGraph={{
+            type: "website",
+            // name,
+            // description,
+          }}
+        />
+      )}
+      {(!category && loading) || (!collection && loading) ? (
+        <Loading />
+      ) : (
+        <div className={`${styles.wrapper} ${styles.first}`}>
+          <span style={{ marginTop: 0, marginBottom: 2 }}>
+            <h1>{collection.name}</h1>
+          </span>
+          <div dangerouslySetInnerHTML={{ __html: collection.description }} />
+        </div>
+      )}
+      <div className={styles.padding5}>
+        {!collection?.products ? (
+          <SkeletonGrid />
+        ) : (
+          <ProductGrid
+            {...productGridOptions}
+            products={!collection?.products ? [] : collection?.products}
+            collection={collection}
           />
         )}
-        {(!category && loading) || (!collection && loading) ? (
-          <Loading />
-        ) : (
-          <div className={`${styles.wrapper} ${styles.first}`}>
-            <span style={{ marginTop: 0, marginBottom: 2 }}>
-              <h1>{collection.name}</h1>
-            </span>
-            <div dangerouslySetInnerHTML={{ __html: collection.description }} />
-          </div>
-        )}
-        <div className={styles.padding5}>
-          {!collection?.products ? (
-            <SkeletonGrid />
-          ) : (
-            <ProductGrid
-              {...productGridOptions}
-              products={!collection?.products ? [] : collection?.products}
-              collection={collection}
-            />
-          )}
-        </div>
       </div>
-    </>
+    </div>
   );
 };
 

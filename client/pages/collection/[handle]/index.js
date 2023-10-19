@@ -13,11 +13,21 @@ import { useThemeUI } from "@theme-ui/core";
 import { getLayoutProps } from "../../../lib/get-layout-props";
 import CollectionView from "@/blocks/collectionView/collectionView";
 import LoadingDots from "@/components/ui/loadingDots/loadingDots";
+import Loading from "./loading";
+import { Suspense } from "react";
 
 builder.init(builderConfig.apiKey);
 Builder.isStatic = true;
 
 const builderModel = "collection-page";
+
+export async function getStaticPaths({ locales }) {
+  const paths = await getAllCollectionPaths(builderConfig);
+  return {
+    paths: paths.map((path) => `/collection/${path}`) ?? [],
+    fallback: "blocking",
+  };
+}
 
 export async function getStaticProps({ params }) {
   const collection = await getCollection(builderConfig, {
@@ -27,7 +37,6 @@ export async function getStaticProps({ params }) {
   const page = await resolveSwellContent(builderModel, {
     collectionHandle: params?.handle,
   });
-
   return {
     props: {
       page: page || null,
@@ -38,42 +47,22 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export async function getStaticPaths({ locales }) {
-  const paths = await getAllCollectionPaths(builderConfig);
-  return {
-    paths: paths.map((path) => `/collection/${path}`) ?? [],
-    fallback: "blocking",
-  };
-}
-
 export default function Handle({ collection, page, builderModel }) {
+  console.log(builderModel);
   const router = useRouter();
   const isLive = !Builder.isEditing && !Builder.isPreviewing;
   const { theme } = useThemeUI();
-  if (!collection && isLive) {
-    return (
-      <>
-        <Head>
-          <meta name="robots" content="noindex" />
-          <meta name="title"></meta>
-        </Head>
-        <DefaultErrorPage statusCode={404} />
-      </>
-    );
+  if (router.isFallback || !collection || !page) {
+    return <Loading />;
   }
 
-  return router.isFallback && isLive ? (
-    <LoadingDots /> // TODO (BC) Add Skeleton Views
-  ) : (
-    <>
-      <BuilderComponent
-        key={collection.id}
-        model={builderModel}
-        data={{ collection, theme }}
-        {...(page && { content: page })}
-      />
-      {/* <CollectionView /> */}
-    </>
+  return (
+    <BuilderComponent
+      key={collection.id}
+      model={builderModel}
+      data={{ collection, theme }}
+      {...(page && { content: page })}
+    />
   );
 }
 
