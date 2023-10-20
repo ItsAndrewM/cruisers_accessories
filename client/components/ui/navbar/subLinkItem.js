@@ -20,7 +20,14 @@ const SubLinkItem = ({ link, setShow, show }) => {
         return (
           <li key={uuidv4()} className={`${styles.top}`}>
             <h4>
-              <Link href={subLink.link} className={styles.link}>
+              <Link
+                href={
+                  link.link.includes("/collection")
+                    ? `/collection/${subLink.link}`
+                    : subLink.link
+                }
+                className={styles.link}
+              >
                 {subLink.title}
               </Link>
             </h4>
