@@ -32,6 +32,26 @@
   display: none;
 }
 
+.skeletonCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  height: 350px;
+}
+
+.skeletonImg {
+  width: 250px;
+  max-width: 250px;
+  max-height: 250px;
+  height: 250px;
+  background-color: lightgrey;
+}
+
+.skeletonButton {
+}
+
 /* //////////////////////////////////////////////////////////////// */
 /* /////////////////////////mobile styling///////////////////////// */
 /* //////////////////////////////////////////////////////////////// */
@@ -69,8 +89,8 @@
   }
 
   .grid {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     align-items: center;
     /* gap: 3em !important; */
     padding-top: 2em;
@@ -85,5 +105,25 @@
   .gridBorder {
     padding-top: 2em;
     border-top: 2px solid var(--casBlue);
+  }
+  .skeletonCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 150px !important;
+    max-height: 220px !important;
+    height: 220px;
+    width: 150px;
+    min-height: 220px !important;
+    min-width: 150px !important;
+  }
+
+  .skeletonImg {
+    height: 125px !important;
+    width: 125px !important;
+  }
+
+  .skeletonButton {
   }
 }

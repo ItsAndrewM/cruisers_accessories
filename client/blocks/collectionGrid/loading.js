@@ -7,7 +7,7 @@ const Loading = () => {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <Grid gap={2} width={["100%", "40%", "24%"]}>
+        <Grid gap={2} width={["40%", "40%", "24%"]}>
           <SkeletonCards />
         </Grid>
         <SkeletonPagination />

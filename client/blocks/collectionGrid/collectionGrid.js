@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react";
-import LoadingDots from "../../components/ui/loadingDots/loadingDots";
 import { Grid } from "@theme-ui/components";
-import ProductCard from "../../components/productCard/productCard";
-import ProductCardDemo from "../../components/productCard/productCardDemo";
-import {
-  getAllCollections,
-  getPageCount,
-  getPaginatedItems,
-} from "../../lib/operations-swell";
-import builderConfig from "../../builder.config";
+import { getPageCount, getPaginatedItems } from "../../lib/operations-swell";
 import CollectionCard from "../../components/collectionCard/collectionCard";
 import PaginationBar from "@/components/paginationBar/paginationBar";
 import { useRouter } from "next/router";
 import styles from "../allProductsGrid/allProductsGrid.module.css";
-import CardSkeleton from "@/components/ui/cardSkeleton/cardSkeleton";
 import Loading from "./loading";
 
 export const CollectionGrid = ({
@@ -50,7 +41,7 @@ export const CollectionGrid = ({
     fetchCollection();
   }, [router.query]);
 
-  if (loading || !categories) {
+  if (!loading || !categories) {
     return <Loading />;
   } else {
     return (
