@@ -70,7 +70,7 @@
 .navlinks {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 3em;
   padding: 0 2em;
 }

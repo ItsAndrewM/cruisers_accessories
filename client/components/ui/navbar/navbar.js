@@ -1,19 +1,18 @@
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import UserNav from "../userNav/userNav";
 import env from "../../../config/env";
 import { BuilderComponent, builder } from "@builder.io/react";
 import { useCart } from "../../../lib/hooks/useCart";
 import { useThemeUI } from "theme-ui";
-import { Themed } from "@theme-ui/mdx";
 import { useUI } from "../context";
 import Image from "next/image";
 import Searchbar from "../searchBar/searchBar";
 import styles from "./navbar.module.css";
-import featuredCatStyles from "../../featuredCat/featuredCat.module.css";
 import NavigationLinkItem from "./navigationLinkItem";
 import MobileNavbar from "../mobileNavbar/mobileNavbar";
 import { v4 as uuidv4 } from "uuid";
+import Nav from "./nav/nav";
 
 const Navbar = () => {
   const [current, setCurrent] = useState();
@@ -101,7 +100,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <nav className={styles.container}>
+      {/* <nav className={styles.container}>
         <ul className={styles.navlinks}>
           {navigationLinks?.map((link, index) => (
             <NavigationLinkItem
@@ -113,7 +112,12 @@ const Navbar = () => {
             />
           ))}
         </ul>
-      </nav>
+      </nav> */}
+      <Nav
+        navigationLinks={navigationLinks}
+        setCurrent={setCurrent}
+        current={current}
+      />
     </header>
   );
 };

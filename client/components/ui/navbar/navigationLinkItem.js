@@ -5,7 +5,13 @@ import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./navbar.module.css";
 
-const NavigationLinkItem = ({ link, index, setCurrent, current }) => {
+const NavigationLinkItem = ({
+  link,
+  index,
+  setCurrent,
+  current,
+  categoryLinks,
+}) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -36,10 +42,14 @@ const NavigationLinkItem = ({ link, index, setCurrent, current }) => {
       >
         {link.title}
       </Link>
-      {!link.subLinks?.length ? (
+      {!link.title.toLowerCase().includes("shop".toLowerCase()) ? (
         <></>
       ) : (
-        <SubLinkItem link={link} setShow={setShow} show={show} />
+        <SubLinkItem
+          link={{ ...link, subLinks: categoryLinks }}
+          setShow={setShow}
+          show={show}
+        />
       )}
     </li>
   );

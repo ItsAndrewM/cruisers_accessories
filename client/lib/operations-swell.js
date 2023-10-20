@@ -169,6 +169,27 @@ export const getPageCount = async (query) => {
   }
 };
 
+export const getCategoriesForNavigation = async () => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const parents = await getParentCategories();
+  const children = await getChildCategories();
+  const results = parents?.map((parent) => {
+    console.log("parent: " + parent.id);
+    const filtered = children?.filter((child) => {
+      return child.parent_id === parent.id;
+    });
+    return {
+      link: parent.slug,
+      title: parent.name,
+      subLinks: filtered?.map((child) => {
+        return { link: child.slug, title: child.name };
+      }),
+    };
+  });
+
+  return results;
+};
+
 export const getPaginatedItems = async (pageNum, query, sort) => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   if (query === "products") {

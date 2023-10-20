@@ -7,14 +7,9 @@ import {
   getCollection,
   getAllCollectionPaths,
 } from "../../../lib/operations-swell";
-import DefaultErrorPage from "next/error";
-import Head from "next/head";
 import { useThemeUI } from "@theme-ui/core";
 import { getLayoutProps } from "../../../lib/get-layout-props";
-import CollectionView from "@/blocks/collectionView/collectionView";
-import LoadingDots from "@/components/ui/loadingDots/loadingDots";
 import Loading from "./loading";
-import { Suspense } from "react";
 
 builder.init(builderConfig.apiKey);
 Builder.isStatic = true;
