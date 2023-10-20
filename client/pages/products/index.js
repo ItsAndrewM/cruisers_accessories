@@ -42,7 +42,7 @@ export default function Page({ products, page }) {
     <div>
       {title && (
         <NextSeo
-          title={title}
+          title={`CAS | ${title}`}
           description={description}
           openGraph={{
             type: "website",

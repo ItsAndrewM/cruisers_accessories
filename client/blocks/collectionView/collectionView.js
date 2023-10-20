@@ -54,7 +54,7 @@ const CollectionView = ({ collection, productGridOptions, renderSeo }) => {
     <div className={styles.wrapper} key={!collection?.id ? "" : collection.id}>
       {renderSeo && (
         <NextSeo
-          title={!collection?.name ? "" : collection?.name}
+          title={!collection?.name ? "" : `CAS | ${collection?.name}`}
           description={!collection?.description ? "" : collection.description}
           openGraph={{
             type: "website",

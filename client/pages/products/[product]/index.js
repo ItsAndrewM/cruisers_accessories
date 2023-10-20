@@ -99,7 +99,7 @@ const Page = ({ product, page, builderModel }) => {
     <div>
       {title && (
         <NextSeo
-          title={title}
+          title={`CAS | ${title}`}
           description={description}
           openGraph={{
             type: "website",
