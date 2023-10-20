@@ -31,7 +31,10 @@ const SubLinkItem = ({ link, setShow, show }) => {
                 {subLink.subLinks.map((subSubLink, index) => {
                   return (
                     <li key={uuidv4()}>
-                      <Link href={subSubLink.link} className={styles.link}>
+                      <Link
+                        href={`/collection/${subSubLink.link}`}
+                        className={styles.link}
+                      >
                         {subSubLink.title}
                       </Link>
                     </li>
