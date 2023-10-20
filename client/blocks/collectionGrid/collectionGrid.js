@@ -41,7 +41,7 @@ export const CollectionGrid = ({
     fetchCollection();
   }, [router.query]);
 
-  if (!loading || !categories) {
+  if (loading || !categories) {
     return <Loading />;
   } else {
     return (
