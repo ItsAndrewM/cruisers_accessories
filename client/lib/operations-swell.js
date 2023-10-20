@@ -174,7 +174,6 @@ export const getCategoriesForNavigation = async () => {
   const parents = await getParentCategories();
   const children = await getChildCategories();
   const results = parents?.map((parent) => {
-    console.log("parent: " + parent.id);
     const filtered = children?.filter((child) => {
       return child.parent_id === parent.id;
     });

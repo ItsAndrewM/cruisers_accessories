@@ -36,7 +36,6 @@ const Nav = ({ navigationLinks, setCurrent, current }) => {
       <ul className={styles.navlinks}>
         {links.length &&
           links?.map((link, index) => {
-            console.log(link);
             return (
               <NavigationLinkItem
                 link={link}

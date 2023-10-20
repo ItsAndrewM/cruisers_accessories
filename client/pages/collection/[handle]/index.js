@@ -43,7 +43,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Handle({ collection, page, builderModel }) {
-  console.log(builderModel);
   const router = useRouter();
   const isLive = !Builder.isEditing && !Builder.isPreviewing;
   const { theme } = useThemeUI();

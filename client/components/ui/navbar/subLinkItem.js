@@ -9,7 +9,6 @@ const SubLinkItem = ({ link, setShow, show }) => {
     e.preventDefault();
     setShow(false);
   };
-  console.log(link);
 
   return (
     <ul
