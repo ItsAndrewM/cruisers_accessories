@@ -5,6 +5,7 @@ const SkeletonPagination = () => {
         width: "100%",
         height: "35px",
         display: "flex",
+        flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -14,6 +15,7 @@ const SkeletonPagination = () => {
           width: "160px",
           height: "35px",
           display: "flex",
+          flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
           gap: ".5em",
