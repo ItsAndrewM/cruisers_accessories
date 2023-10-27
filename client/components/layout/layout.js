@@ -43,7 +43,12 @@ const Layout = ({ children, pageProps }) => {
           return (
             <ManagedUIContext key={data.id} siteSettings={siteSettings}>
               {/* <ManagedUIContext > */}
-              <Head seoInfo={siteSeoInfo || seoConfig} />
+              <Head seoInfo={siteSeoInfo || seoConfig}>
+                <meta
+                  name="google-site-verification"
+                  content="5R4mb3oDhcrgDQBLmbcBff3oxbDp1L6XVtPUPP_nOUY"
+                />
+              </Head>
               <div className="google-analytics-container">
                 {" "}
                 <Script async id="google-analytics">
