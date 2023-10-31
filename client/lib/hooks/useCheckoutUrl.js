@@ -7,5 +7,6 @@ export const useCheckoutUrl = () => {
     return null;
   }
 
-  return cart?.checkout_url;
-}
+  // return cart?.checkout_url;
+  return `/checkout/${cart?.checkout_id}/shipping`;
+};

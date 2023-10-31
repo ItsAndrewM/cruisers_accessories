@@ -1,5 +1,6 @@
 import swell from "swell-js";
 import swellConfig from "../swell.config";
+import { useCart } from "./hooks/useCart";
 
 // export interface BuillderConfig {
 //     apiKey: string
@@ -7,17 +8,41 @@ import swellConfig from "../swell.config";
 //     collectionsModel: string
 //     isDemo?: boolean
 // }
+
+export const getShippingRates = async () => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  try {
+    const shippingRates = await swell.cart.getShippingRates();
+    console.log(shippingRates);
+    if (!shippingRates) {
+      throw new Error(
+        "Shipping Country must be defined to generate shipping rates"
+      );
+    }
+    return shippingRates;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCartPaths = async () => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  const result = await swell.cart.get();
+  return result;
+};
+
 export const getSiteSettings = async () => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   const settings = await swell.cart.getSettings();
   return settings;
 };
+
 export const getCategoryByBoat = async (boatModel, boatMake) => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   const data = await fetch(
     process.env.NODE_ENV === "production"
-      ? `https://cruiser-accessories.vercel.app/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
-      : `http://localhost:3000/api/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+      ? `${process.env.SITE_URL}api/swell/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+      : `http://localhost:3000/api/swell/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
   );
   const jsonData = await data.json();
   const categories = jsonData.data.results.map((product) => {
@@ -45,8 +70,8 @@ export const getFilteredProducts = async (query) => {
   // return products;
   const products = await fetch(
     process.env.NODE_ENV === "production"
-      ? `https://cruiser-accessories.vercel.app/api/products?${query}`
-      : `http://localhost:3000/api/products?${query}`
+      ? `${process.env.SITE_URL}api/swell/products?${query}`
+      : `http://localhost:3000/api/swell/products?${query}`
   );
 
   // );

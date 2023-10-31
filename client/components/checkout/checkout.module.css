@@ -1,0 +1,444 @@
+.form {
+  padding: 1em;
+}
+
+.cartSection {
+  margin-bottom: 1rem;
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.cartSection h2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hint {
+  font-size: 0.9rem;
+}
+
+.formGroup {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.formLabel {
+  position: absolute;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+  background-color: inherit;
+}
+.hide {
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem !important;
+  font-weight: 700;
+}
+
+.formField:focus ~ .formLabel,
+.formField:not(:placeholder-shown) ~ .formLabel {
+  position: absolute;
+  top: 0 !important;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem !important;
+  font-weight: 700;
+}
+
+/* .formField:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 2px;
+  border-image: linear-gradient(to right, var(--black), var(--casBlue));
+  border-image-slice: 1;
+  border-radius: 5px;
+} */
+
+.formField:required,
+.formField:enabled,
+.formField:empty {
+  box-shadow: none;
+}
+
+.formField {
+  font-family: inherit;
+  width: 100%;
+  border: 2px solid var(--cream);
+  background-color: white;
+  /* border-bottom: 2px solid #9b9b9b; */
+  outline: 0;
+  font-size: 1.3rem;
+  color: var(--casBlue);
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  text-indent: 10px;
+}
+
+.formField::placeholder {
+  color: transparent;
+}
+
+.formField:placeholder-shown ~ .formLabel {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 20px;
+  left: 10px;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.row:has(:nth-child(2)) {
+  gap: 2rem;
+}
+
+.col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.col33 {
+  width: 33%;
+}
+
+.col30 {
+  width: 30%;
+}
+
+.col20 {
+  width: 20%;
+}
+
+.col40 {
+  width: 40%;
+}
+
+.comments {
+  height: 120px;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+}
+
+.formGroup select {
+  text-indent: 10px;
+  color: #9b9b9b;
+}
+
+.formCheck {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1em;
+}
+
+.formCheck input,
+.formCheck label {
+  width: auto;
+  color: #9b9b9b;
+  background-color: inherit;
+  font-weight: bold;
+}
+
+.formGroup:has(input[type="password"]) {
+  width: 50%;
+}
+
+.chevron {
+  display: inline-block;
+  margin-right: 0.7rem;
+  position: relative;
+  top: 0.4rem;
+}
+
+.chevron::before {
+  border-style: solid;
+  border-width: 0.1em 0.1em 0 0;
+  content: "";
+  display: inline-block;
+  height: 0.45em;
+  position: relative;
+  top: 0.3em;
+  width: 0.45em;
+  transition: transform 0.2s ease-out;
+}
+
+.left {
+  left: 0.25em;
+  transform: rotate(-135deg);
+}
+
+.right {
+  top: -5px;
+  left: 5px;
+  transform: rotate(45deg);
+}
+
+.cartActions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartActions > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cartActions > div > div > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartRadioOptions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartRadioOptions ul {
+  width: 100%;
+  border: 1px solid var(--hintGrey);
+}
+
+.cartRadioOptions li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+}
+
+.cartRadioOptions li:nth-child(2) {
+  border-top: 1px solid var(--hintGrey);
+}
+
+.cartRadioOptions div {
+  display: flex;
+  width: auto;
+  gap: 1rem;
+}
+
+.cartRadioOptions label {
+  color: var(--casBlue);
+  font-weight: bold;
+}
+
+.cartRadioOptions input,
+.cartRadioOptions label {
+  cursor: pointer;
+}
+
+.cartReview {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--hintGrey);
+}
+
+.cartReviewSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+}
+
+.cartReviewSection:nth-child(2),
+.cartReviewSection:nth-child(3),
+.cartReviewSection:nth-child(4) {
+  border-top: 1px solid var(--hintGrey);
+}
+
+.cartReviewSectionBody {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cartReviewSectionTitle {
+  width: 100px;
+  padding-right: 1rem;
+}
+
+.cartReviewSectionAction {
+  color: var(--casBlue);
+  font-weight: bold;
+}
+
+.breadCrumbs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.breadCrumbs > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.breadCrumbs ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.breadCrumbs a {
+  width: 100%;
+  font-weight: bold;
+  color: var(--casBlue);
+  font-size: 0.8rem;
+}
+
+.breadCrumbs li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hideBilling {
+  display: none;
+}
+
+.showBilling {
+  display: block;
+}
+
+.cartSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cartSectionHeader h2 {
+  width: auto;
+}
+
+.muted {
+  color: rgb(158, 161, 163);
+  font-weight: bold;
+}
+
+.total,
+.total ul,
+.total li {
+  width: 100%;
+}
+
+.total ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.total li {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(49%, 1fr));
+  justify-items: space-between;
+}
+
+.total li:first-child {
+  padding-top: 1rem;
+}
+
+.total span:nth-child(2),
+.total h3:nth-child(2) {
+  text-align: right;
+}
+
+.total span {
+  font-weight: bold;
+  color: var(--casBlue);
+}
+
+.grandTotal {
+  font-size: 1.2rem;
+  border-top: 2px solid var(--cream);
+  padding-top: 1rem;
+}
+
+.grandTotal h3:nth-child(2) {
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  gap: 0.25em;
+}
+
+.grandTotal h3:nth-child(2) > span {
+  font-size: 1rem;
+}
+
+.orderReview {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.orderReviewHeader {
+  width: 100%;
+}
+
+.orderReviewInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.orderReviewTitle {
+  font-weight: bold;
+}
+
+.orderReviewColumn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.orderConfirmation {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.orderReviewCell {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}

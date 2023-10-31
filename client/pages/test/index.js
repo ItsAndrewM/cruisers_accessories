@@ -6,39 +6,43 @@ import swell from "swell-js";
 import BreadCrumbs from "@/components/breadCrumbs/breadcrumbs";
 import { getProduct } from "@/lib/operations-swell";
 import Carousel from "@/components/carousel/carousel";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import navbarStyles from "@/components/ui/navbar/navbar.module.css";
+import CustomerInfo from "@/components/checkout/customerInfo/customerInfo";
+import Shipping from "@/components/checkout/shipping/shipping";
+import { getLayoutProps } from "@/lib/get-layout-props";
+import { useCart } from "@/lib/hooks/useCart";
+import { Context } from "@/lib/context";
 
 export async function getServerSideProps(context) {
-  await swell.init(swellConfig.storeId, swellConfig.publicKey);
-  const product = await getProduct({
-    slug: "cc-26-spinnaker-sheet-single",
-  });
+  const data = await fetch("http://localhost:3000/api/swell/shipping-method");
+  const result = await data.json();
   return {
     props: {
-      product: product || null,
+      product: "blah blah" || null,
+      ...(await getLayoutProps()),
     },
   };
 }
 
 const Page = ({ product }) => {
-  const [pics, setPics] = useState([]);
+  const [aState, setAState] = useState();
   const router = useRouter();
+  const { cart, swell } = useContext(Context);
 
-  return (
-    <div className={styles.wrapper}>
-      <ul>
-        <li>
-          <h4>
-            <Link href={"/"} className={navbarStyles.link}>
-              This is a test
-            </Link>
-          </h4>
-        </li>
-      </ul>
-    </div>
-  );
+  useEffect(() => {
+    const fetchGetStuff = async () => {
+      const stuff = await swell.cart.getShippingRates();
+      console.log(stuff);
+      console.log(cart);
+    };
+    if (swell && cart) {
+      fetchGetStuff();
+    }
+  }, [swell, cart]);
+
+  return <div style={{ display: "flex", flexWrap: "nowrap" }}></div>;
 };
 
 Page.Layout = Layout;

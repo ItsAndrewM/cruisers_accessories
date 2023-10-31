@@ -35,10 +35,7 @@ export default async function Handler(req, res) {
         .json({ success: false, message: "Some Error Occured at backend" });
     }
 
-    // Your Custom Code for doing something with order
-    // Usually Store an order in the database like MongoDB
-
-    res.status(200).json({ success: true, data: { order } });
+    res.status(200).json({ success: true, data: response.result });
   } catch (err) {
     console.log("Err at Create Order: ", err);
     return res

@@ -13,6 +13,7 @@ import NavigationLinkItem from "./navigationLinkItem";
 import MobileNavbar from "../mobileNavbar/mobileNavbar";
 import { v4 as uuidv4 } from "uuid";
 import Nav from "./nav/nav";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [current, setCurrent] = useState();
@@ -20,6 +21,7 @@ const Navbar = () => {
   const { theme } = useThemeUI();
   const { navigationLinks, logo } = useUI();
   const cart = useCart();
+  const router = useRouter();
 
   const handleHover = (e) => {
     e.preventDefault();
@@ -49,7 +51,7 @@ const Navbar = () => {
     fetchContent();
   }, [cart?.items]);
 
-  return (
+  return !router.pathname.includes("checkout") ? (
     <header className={styles.header}>
       <BuilderComponent
         content={announcement}
@@ -119,6 +121,8 @@ const Navbar = () => {
         current={current}
       />
     </header>
+  ) : (
+    <></>
   );
 };
 

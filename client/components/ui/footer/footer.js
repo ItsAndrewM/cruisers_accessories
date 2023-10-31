@@ -5,10 +5,12 @@ import styles from "./footer.module.css";
 import Image from "next/image";
 import utilStyles from "../../../styles/utils.module.css";
 import logoWhite from "@/assets/images/logo/logo_white.png";
+import { useRouter } from "next/router";
 
 const Footer = () => {
+  const router = useRouter();
   const { footerLinks, logo } = useUI();
-  return (
+  return !router.pathname.includes("checkout") ? (
     <footer className={styles.footer}>
       <div className={styles.logoWrapper}>
         {logo && logo.image && (
@@ -62,6 +64,8 @@ const Footer = () => {
         ))}
       </ul>
     </footer>
+  ) : (
+    <></>
   );
 };
 

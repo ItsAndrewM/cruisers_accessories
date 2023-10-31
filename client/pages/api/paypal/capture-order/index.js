@@ -21,10 +21,9 @@ export default async function Handler(req, res) {
       .status(500)
       .json({ success: false, message: "Some Error Occured at backend" });
   }
-
   // Your Custom Code to Update Order Status
   // And Other stuff that is related to that order, like wallet
   // Here I am updateing the wallet and sending it back to frontend to update it on frontend
 
-  res.status(200).json({ success: true, data: { wallet } });
+  res.status(200).json({ success: true, data: response.result });
 }
