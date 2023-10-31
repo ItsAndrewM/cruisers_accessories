@@ -12,10 +12,9 @@ import Order from "@/components/checkout/order/order";
 export const getServerSideProps = async (context) => {
   const id = context.query.cartId;
   const data = await fetch(
-    // process.env.NODE_ENV === "production"
-    //   ? `${process.env.SITE_URL}/api/swell/order-details/654159f64858d100120ab3be`
-    //   :
-    `http://localhost:3000/api/swell/order-details/${id}`
+    process.env.NODE_ENV === "production"
+      ? `${process.env.SITE_URL}api/swell/order-details/${id}`
+      : `http://localhost:3000/api/swell/order-details/${id}`
   );
   const results = await data.json();
   console.log(results);

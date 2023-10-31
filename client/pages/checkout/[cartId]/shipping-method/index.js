@@ -14,7 +14,11 @@ import CartTotal from "@/components/checkout/cartTotal/cartTotal";
 import { Context } from "@/lib/context";
 
 export const getServerSideProps = async (context) => {
-  const data = await fetch("http://localhost:3000/api/swell/shipping-method");
+  const data = await fetch(
+    process.env.NODE_ENV === "production"
+      ? `${process.env.SITE_URL}api/swell/shipping-method`
+      : "http://localhost:3000/api/swell/shipping-method"
+  );
   const result = await data.json();
   const id = context.query.cartId;
   return {

@@ -16,7 +16,11 @@ import { useCart } from "@/lib/hooks/useCart";
 import { Context } from "@/lib/context";
 
 export async function getServerSideProps(context) {
-  const data = await fetch("http://localhost:3000/api/swell/shipping-method");
+  const data = await fetch(
+    process.env.NODE_ENV === "production"
+      ? `${process.env.SITE_URL}api/swell/shipping-method`
+      : "http://localhost:3000/api/swell/shipping-method"
+  );
   const result = await data.json();
   return {
     props: {

@@ -15,10 +15,9 @@ const Order = ({ cart }) => {
   useEffect(() => {
     const fetchAccountData = async () => {
       const results = await fetch(
-        // process.env.NODE_ENV === "production"
-        //   ? `${process.env.SITE_URL}/api/swell/order-details/654159f64858d100120ab3be`
-        //   :
-        `http://localhost:3000/api/swell/account-details/${cart.account_id}`
+        process.env.NODE_ENV === "production"
+          ? `${process.env.SITE_URL}api/swell/order-details/${cart.account_id}`
+          : `http://localhost:3000/api/swell/account-details/${cart.account_id}`
       );
       const data = await results.json();
       if (data.success) {

@@ -28,7 +28,11 @@ const FeaturedCat = () => {
 
   useEffect(() => {
     const getCategories = async () => {
-      const props = await fetch("/api/swell/category-parents");
+      const props = await fetch(
+        process.env.NODE_ENV === "production"
+          ? `${process.env.SITE_URL}api/swell/category-parents`
+          : "http://localhost:3000/api/swell/category-parents"
+      );
       const data = await props.json();
       setItems(data.data.results);
     };
