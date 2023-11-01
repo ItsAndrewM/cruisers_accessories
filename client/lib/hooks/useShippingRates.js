@@ -2,10 +2,25 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../context";
 
 export const useShippingRates = async () => {
-  // const { swell, cart } = useContext(Context);
-  // const [shippingRates, setShippingRates] = useState();
-  //   console.log(cart);
-  //   const settings = await swell.cart.getShippingRates();
-  //   console.log(settings);
-  //   return settings;
+  const [shippingRates, setShippingRates] = useState([]);
+  const { swell } = useContext(Context);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await swell.cart.getShippingRates();
+        setShippingRates(result.services);
+        if (!result) {
+          throw new Error(
+            "Product delivery requires 'shipment' value or country ISO code is required"
+          );
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return shippingRates;
 };

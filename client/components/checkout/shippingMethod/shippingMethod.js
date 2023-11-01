@@ -6,7 +6,7 @@ import swell from "swell-js";
 import swellConfig from "@/swell.config";
 import { useRouter } from "next/router";
 
-const ShippingMethod = ({ id, cart }) => {
+const ShippingMethod = ({ id, cart, shipping_method }) => {
   const router = useRouter();
   const [errors, setErrors] = useState({});
   const handleShippingMethod = async (e) => {
@@ -79,7 +79,28 @@ const ShippingMethod = ({ id, cart }) => {
         <h2>Shipping Method</h2>
         <div className={styles.cartRadioOptions}>
           <ul>
-            <li>
+            {shipping_method.map((method, index) => {
+              return (
+                <li key={method.id}>
+                  <div>
+                    <input
+                      type="radio"
+                      id={`shipping_method.${method.id}`}
+                      name="shipping_method"
+                      value={method.id}
+                      placeholder={method.name}
+                      required
+                      defaultChecked={index === 0 ? true : false}
+                    />
+                    <label htmlFor={`shipping_method.${method.id}`}>
+                      {method.name}
+                    </label>
+                  </div>
+                  <span>${method.price.toFixed(2)}</span>
+                </li>
+              );
+            })}
+            {/* <li>
               <div>
                 <input
                   type="radio"
@@ -111,7 +132,7 @@ const ShippingMethod = ({ id, cart }) => {
                 </label>
               </div>
               <span>$50.00</span>
-            </li>
+            </li> */}
           </ul>
         </div>
       </section>

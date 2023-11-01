@@ -6,6 +6,7 @@ import swell from "swell-js";
 import swellConfig from "@/swell.config";
 import { useRouter } from "next/router";
 import Check from "@/components/icons/check";
+import productCardStyles from "../../productCard/productCard.module.css";
 
 const Order = ({ cart }) => {
   const router = useRouter();
@@ -86,6 +87,13 @@ const Order = ({ cart }) => {
               </div>
             </div>
           </section>
+        </div>
+      </section>
+      <section>
+        <div className={styles.buttonWrapper}>
+          <Link href={"/"} className={styles.button}>
+            Home
+          </Link>
         </div>
       </section>
     </>

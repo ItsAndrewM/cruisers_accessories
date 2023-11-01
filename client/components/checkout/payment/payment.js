@@ -7,6 +7,7 @@ import PayPalButton from "./paypalButton/paypalButton";
 
 const Payment = ({ id, cart }) => {
   const [billingAddress, setBillingAddress] = useState(false);
+  console.log(cart);
 
   const handleRadioButton = (e) => {
     setBillingAddress(!billingAddress);
@@ -51,7 +52,7 @@ const Payment = ({ id, cart }) => {
           <section className={styles.cartReviewSection}>
             <div className={styles.cartReviewSectionTitle}>Method</div>
             <div className={styles.cartReviewSectionBody}>
-              {cart.shipping.service}
+              {cart.shipping.service_name}
             </div>
             <div className={styles.cartReviewSectionAction}>
               <Link href={`/checkout/${id}/shipping-method`}>Change</Link>

@@ -23,7 +23,12 @@ const Billing = ({ id, cart }) => {
         await swell.init(swellConfig.storeId, swellConfig.publicKey);
         const billing = Object.keys(cart.shipping)
           .filter((key) => {
-            if (key !== "account_address_id" && key !== "service") {
+            if (
+              key !== "account_address_id" &&
+              key !== "service" &&
+              key !== "price" &&
+              key !== "service_name"
+            ) {
               return key;
             }
           })
@@ -31,6 +36,7 @@ const Billing = ({ id, cart }) => {
             obj[key] = cart.shipping[key];
             return obj;
           }, {});
+
         const response = await swell.cart.update({
           billing: billing,
         });
@@ -71,7 +77,6 @@ const Billing = ({ id, cart }) => {
         }
         return acc;
       }, {});
-
       try {
         await swell.init(swellConfig.storeId, swellConfig.publicKey);
         const response = await swell.cart.update({

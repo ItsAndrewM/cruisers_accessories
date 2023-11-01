@@ -12,40 +12,40 @@ import CheckoutLayout from "../layout";
 import styles from "@/styles/checkout.module.css";
 import CartTotal from "@/components/checkout/cartTotal/cartTotal";
 import { Context } from "@/lib/context";
+import { useShippingRates } from "@/lib/hooks/useShippingRates";
 
 export const getServerSideProps = async (context) => {
-  const data = await fetch(
-    process.env.NODE_ENV === "production"
-      ? `${process.env.SITE_URL}api/swell/shipping-method`
-      : "http://localhost:3000/api/swell/shipping-method"
-  );
-  const result = await data.json();
   const id = context.query.cartId;
   return {
     props: {
       id: id,
-      shipping_methods: result.data,
       ...(await getLayoutProps()),
     },
   };
 };
-const Page = ({ id, shipping_methods }) => {
+const Page = ({ id }) => {
   const cart = useCart();
+  const [shippingRates, setShippingRates] = useState([]);
+  const { swell } = useContext(Context);
 
-  // const { cart, swell } = useContext(Context);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await swell.cart.getShippingRates();
+        if (!result) {
+          throw new Error(
+            "Product delivery requires 'shipment' value or country ISO code is required"
+          );
+        }
+        setShippingRates(result.services);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
-  // useEffect(() => {
-  //   const fetchGetStuff = async () => {
-  //     const stuff = await swell.cart.getShippingRates();
-  //     console.log(stuff);
-  //     console.log(cart);
-  //   };
-  //   if (swell && cart) {
-  //     fetchGetStuff();
-  //   }
-  // }, [swell, cart]);
-
-  if (!id || !cart) {
+  if (!id || !cart || !shippingRates.length) {
     return (
       <div
         style={{
@@ -80,7 +80,11 @@ const Page = ({ id, shipping_methods }) => {
               <progress className={styles.pureMaterialProgressCircular} />
             </div>
           ) : (
-            <ShippingMethod id={id} cart={cart} />
+            <ShippingMethod
+              id={id}
+              cart={cart}
+              shipping_method={shippingRates}
+            />
           )}
         </div>
       )}
