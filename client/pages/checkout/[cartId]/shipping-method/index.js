@@ -51,11 +51,7 @@ const Page = ({ id, shipping_methods }) => {
         <></>
       ) : (
         <div className={styles.column}>
-          <ShippingMethod
-            id={id}
-            cart={cart}
-            shipping_methods={shipping_methods}
-          />
+          <ShippingMethod id={id} cart={cart} />
         </div>
       )}
       {!cart ? (

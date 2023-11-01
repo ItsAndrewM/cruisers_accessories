@@ -2,6 +2,8 @@ import client from "@/lib/utils/paypal/index";
 import paypal from "@paypal/checkout-server-sdk";
 
 export default async function Handler(req, res) {
+  console.log(req.body);
+  console.log(req.method);
   if (req.method != "POST")
     return res.status(404).json({ success: false, message: "Not Found" });
 
@@ -28,6 +30,7 @@ export default async function Handler(req, res) {
       ],
     });
     const response = await PaypalClient.execute(request);
+    console.log(response);
     if (response.statusCode !== 201) {
       console.log("RES: ", response);
       return res
