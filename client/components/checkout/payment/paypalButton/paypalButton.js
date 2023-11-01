@@ -141,7 +141,7 @@ const PayPalButton = ({ cart, id }) => {
     try {
       let response = await fetch(
         process.env.NODE_ENV === "production"
-          ? `${process.env.SITE_URL}api/paypal/create-order`
+          ? `https://www.precisioncruisingaccessories.com/api/paypal/create-order`
           : "http://localhost:3000/api/paypal/create-order",
         {
           method: "POST",
@@ -173,7 +173,7 @@ const PayPalButton = ({ cart, id }) => {
     try {
       let response = await axios.post(
         process.env.NODE_ENV === "production"
-          ? `${process.env.SITE_URL}api/paypal/capture-order`
+          ? `https://www.precisioncruisingaccessories.com/api/paypal/capture-order`
           : "http://localhost:3000/api/paypal/capture-order",
         {
           orderID,
