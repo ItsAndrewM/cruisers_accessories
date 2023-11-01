@@ -67,7 +67,21 @@ const Page = ({ id, shipping_methods }) => {
         <></>
       ) : (
         <div className={styles.column}>
-          <ShippingMethod id={id} cart={cart} />
+          {!cart.shipping || !cart.account ? (
+            <div
+              style={{
+                width: "100vw",
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <progress className={styles.pureMaterialProgressCircular} />
+            </div>
+          ) : (
+            <ShippingMethod id={id} cart={cart} />
+          )}
         </div>
       )}
       {!cart ? (
