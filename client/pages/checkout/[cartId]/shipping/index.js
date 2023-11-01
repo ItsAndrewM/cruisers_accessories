@@ -22,6 +22,23 @@ export const getServerSideProps = async (context) => {
 
 const Page = ({ id }) => {
   const cart = useCart();
+
+  if (!id || !cart) {
+    return (
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <progress className={styles.pureMaterialProgressCircular} />
+      </div>
+    );
+  }
+
   return (
     <CheckoutLayout id={id}>
       <div className={styles.column}>

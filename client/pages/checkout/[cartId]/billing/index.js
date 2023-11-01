@@ -12,14 +12,32 @@ import CartTotal from "@/components/checkout/cartTotal/cartTotal";
 export const getServerSideProps = async (context) => {
   const id = context.query.cartId;
   return {
-    props: { id: id, ...(await getLayoutProps()) },
+    props: {
+      id: id,
+      ...(await getLayoutProps()),
+    },
   };
 };
 
 const Page = ({ id }) => {
-  const theme = useThemeUI;
-  const router = useRouter();
   const cart = useCart();
+
+  if (!id || !cart) {
+    return (
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <progress className={styles.pureMaterialProgressCircular} />
+      </div>
+    );
+  }
+
   return (
     <CheckoutLayout id={id}>
       {!cart ? (

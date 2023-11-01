@@ -35,6 +35,22 @@ const Page = ({ id, order }) => {
   //   fetchData();
   // }, []);
 
+  if (!id || !order) {
+    return (
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <progress className={styles.pureMaterialProgressCircular} />
+      </div>
+    );
+  }
+
   return (
     <CheckoutLayout id={id}>
       {!order ? (
