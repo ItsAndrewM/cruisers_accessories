@@ -17,7 +17,6 @@ export const getServerSideProps = async (context) => {
       : `http://localhost:3000/api/swell/order-details/${id}`
   );
   const results = await data.json();
-  console.log(results);
   return {
     props: {
       id: id,
@@ -27,7 +26,6 @@ export const getServerSideProps = async (context) => {
   };
 };
 const Page = ({ id, order }) => {
-  console.log(order);
   // useEffect(() => {
   //   const fetchData = async () => {
   //     await swell.init(swellConfig.storeId, swellConfig.publicKey);

@@ -6,7 +6,6 @@ import CartActions from "../cartActions/cartActions";
 import PayPalButton from "./paypalButton/paypalButton";
 
 const Payment = ({ id, cart }) => {
-  console.log(cart);
   const [billingAddress, setBillingAddress] = useState(false);
 
   const handleRadioButton = (e) => {

@@ -8,7 +8,6 @@ const getOrderDetails = async (id) => {
 };
 
 export default async function Handler(req, res) {
-  console.log(req.query.id);
   if (req.method != "GET")
     return res.status(404).json({ success: false, message: "Not Found" });
 

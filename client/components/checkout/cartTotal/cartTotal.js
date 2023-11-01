@@ -6,7 +6,6 @@ import OrderItem from "@/components/cart/orderItem/orderItem";
 
 const CartTotal = ({ cart }) => {
   const router = useRouter();
-  console.log(cart);
   return (
     <div className={`${styles.wrapper} `}>
       <div className={styles.cartItemsWrapper}>

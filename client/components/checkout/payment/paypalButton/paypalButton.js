@@ -107,7 +107,6 @@ const PayPalButton = ({ cart, id }) => {
   };
 
   const swellCreatePayment = async (order_id, paypal_order_id) => {
-    console.log(paypal_order_id);
     try {
       let response = await fetch(
         process.env.NODE_ENV === "production"
@@ -159,7 +158,6 @@ const PayPalButton = ({ cart, id }) => {
         .then((order) => {
           return order;
         });
-      console.log(response);
       return response.data.id;
     } catch (err) {
       console.log(err);
@@ -179,7 +177,6 @@ const PayPalButton = ({ cart, id }) => {
           orderID,
         }
       );
-      console.log(response.data);
       if (response.data.success) {
         if (swell) {
           await swell.cart.update({
@@ -239,12 +236,10 @@ const PayPalButton = ({ cart, id }) => {
           if (response.success) {
             if (swell) {
               const submitOrder = await swell.cart.submitOrder();
-              console.log(submitOrder);
               const swellResponse = await swellCreatePayment(
                 submitOrder.id,
                 submitOrder.metadata.paypal_checkout.order_id
               );
-              console.log(swellResponse.data);
               if (swellResponse.success) {
                 router.push(`/checkout/${swellResponse.data.order_id}/order`);
               }

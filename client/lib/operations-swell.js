@@ -13,7 +13,6 @@ export const getShippingRates = async () => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   try {
     const shippingRates = await swell.cart.getShippingRates();
-    console.log(shippingRates);
     if (!shippingRates) {
       throw new Error(
         "Shipping Country must be defined to generate shipping rates"

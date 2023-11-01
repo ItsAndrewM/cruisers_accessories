@@ -11,7 +11,6 @@ const Order = ({ cart }) => {
   const router = useRouter();
   const [errors, setErrors] = useState({});
   const [account, setAccount] = useState();
-  console.log(cart);
   useEffect(() => {
     const fetchAccountData = async () => {
       const results = await fetch(
@@ -23,7 +22,6 @@ const Order = ({ cart }) => {
       if (data.success) {
         setAccount(data.data);
       }
-      console.log(data);
     };
     if (cart) {
       fetchAccountData();

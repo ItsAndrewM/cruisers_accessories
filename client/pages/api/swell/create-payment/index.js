@@ -4,7 +4,6 @@ swell.init("psl-test-store", "sk_drvQHk5KZy6w0BF55jyArsdojvJ3AxVy");
 //https://github.com/orgs/swellstores/discussions/255#discussioncomment-5960624
 
 export default async function Handler(req, res) {
-  console.log(req.body);
   if (req.method != "POST")
     return res.status(404).json({ success: false, message: "Not Found" });
 

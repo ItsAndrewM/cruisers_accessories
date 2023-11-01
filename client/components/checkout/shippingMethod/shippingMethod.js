@@ -35,7 +35,6 @@ const ShippingMethod = ({ id, cart }) => {
             //   : "Express Shipping",
           },
         });
-        console.log(response);
         if (!response) {
           throw new Error(`Invalid response: ${response.status}`);
         }
