@@ -21,6 +21,7 @@ import SkeletonPagination from "../collectionGrid/skeletonPagination";
 import SkeletonFilter from "@/components/attributesFilter/skeletonFilter";
 import FilterBar from "@/components/filterBar/filterBar";
 import accordianStyles from "../../components/accordion/accordion.module.css";
+import Loading from "../collectionGrid/loading";
 
 export const AllProductsGrid = ({
   offset = 1,
@@ -147,7 +148,7 @@ export const AllProductsGrid = ({
           )}
         </div>
         {!allProducts.length ? (
-          <SkeletonGrid />
+          <Loading />
         ) : (
           <Grid
             gap={2}
