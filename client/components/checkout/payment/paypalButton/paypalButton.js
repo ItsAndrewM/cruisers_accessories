@@ -110,7 +110,7 @@ const PayPalButton = ({ cart, id }) => {
     try {
       let response = await fetch(
         process.env.NODE_ENV === "production"
-          ? `${process.env.SITE_URL}api/swell/create-payment`
+          ? `https://www.precisioncruisingaccessories.com/api/swell/create-payment`
           : "http://localhost:3000/api/swell/create-payment",
         {
           method: "POST",
