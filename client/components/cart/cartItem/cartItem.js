@@ -9,6 +9,9 @@ import { useUpdateItemQuantity } from "../../../lib/hooks/useUpdateItemQuantity"
 import { useRemoveItemFromCart } from "../../../lib/hooks/useRemoveItemFromCart";
 import styles from "./cartItem.module.css";
 import Quantity from "@/components/quantity/quantity";
+import swell from "swell-js";
+import swellConfig from "@/swell.config";
+import { getProduct } from "@/lib/operations-swell";
 const CartItem = ({ item, currencyCode }) => {
   const updateItem = useUpdateItemQuantity();
   const removeItem = useRemoveItemFromCart();
@@ -67,22 +70,37 @@ const CartItem = ({ item, currencyCode }) => {
     <div className={styles.grid}>
       <div>
         <Link href={item.product.slug}>
-          <Image
-            src={
-              !item.product.images.length
-                ? "https://placehold.co/90/jpeg"
-                : item.product.images[0].file?.url
-            }
-            width={90}
-            height={90}
-            alt={item.product.name}
-          />
+          {!item.variant ? (
+            <Image
+              src={
+                !item.product.images.length
+                  ? "https://placehold.co/90/jpeg"
+                  : item.product.images[0].file?.url
+              }
+              width={90}
+              height={90}
+              alt={item.product.name}
+            />
+          ) : (
+            <Image
+              src={
+                !item.variant.images.length
+                  ? "https://placehold.co/90/jpeg"
+                  : item.variant.images[0].file?.url
+              }
+              width={90}
+              height={90}
+              alt={item.product.name}
+            />
+          )}
         </Link>
       </div>
       <div className={styles.information}>
         <div>
           <small>{item.product.name}</small>
+          {!item.variant ? <></> : <small>{item.variant.name}</small>}
         </div>
+
         <div>
           <Quantity
             quantity={quantity}

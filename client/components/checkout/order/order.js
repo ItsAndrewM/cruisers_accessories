@@ -9,6 +9,7 @@ import Check from "@/components/icons/check";
 import productCardStyles from "../../productCard/productCard.module.css";
 
 const Order = ({ cart }) => {
+  console.log(cart);
   const router = useRouter();
   const [errors, setErrors] = useState({});
   const [account, setAccount] = useState();

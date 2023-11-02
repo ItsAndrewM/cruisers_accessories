@@ -6,12 +6,8 @@ import Image from "next/image";
 import LoadingDots from "../ui/loadingDots/loadingDots";
 import Loading from "./loading";
 
-const Carousel = ({ product }) => {
-  const [pixels, setPixels] = useState(0);
+const Carousel = ({ product, pixels, setPixels, setIsMobile, isMobile }) => {
   const [pics, setPics] = useState([]);
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" && window.innerWidth <= 600
-  );
 
   const [limit, setLimit] = useState((pics.length - 1) * 250);
 

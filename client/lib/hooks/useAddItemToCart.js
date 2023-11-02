@@ -3,14 +3,15 @@ import { Context } from "../context";
 
 export const useAddItemToCart = () => {
   const { swell, setCart } = useContext(Context);
-  const addItemToCart = async (product_id, quantity, options) => {
-    // if (options) {
+  const addItemToCart = async (product_id, quantity, variant_id, options) => {
     try {
       const newCart = await swell.cart.addItem({
         product_id,
         quantity,
-        // variant_id: options.id,
-        variant_id: options ? options.id : null,
+        variant_id: variant_id.id,
+        options: !options
+          ? null
+          : [{ name: options.name, value: options.value }],
       });
       setCart(newCart);
       return newCart;

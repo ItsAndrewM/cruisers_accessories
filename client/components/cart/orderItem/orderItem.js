@@ -48,6 +48,7 @@ const OrderItem = ({ item }) => {
       <div className={styles.information}>
         <div>
           <small>{item.product_name}</small>
+          {!item.options ? <></> : <small> - {item.options[0].value}</small>}
         </div>
         <div>
           <small>${item.price_total.toFixed(2)}</small>

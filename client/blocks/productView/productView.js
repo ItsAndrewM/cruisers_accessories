@@ -79,9 +79,15 @@ const ProductBox = ({
   const [productOptions, setProductOptions] = useState(options);
   const [added, setAdded] = useState(false);
   const [buttonText, setButtonText] = useState("Add to Cart");
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" && window.innerWidth <= 600
+  );
   const [quantity, setQuantity] = useState(1);
   const [imageArr, setImageArr] = useState([]);
   const [id, setId] = useState();
+  const [pixels, setPixels] = useState(0);
+  const [selectedOption, setSelectedOption] = useState();
+
   const [currentImage, setCurrentImage] = useState(
     !product.images.length
       ? `https://placehold.co/475/jpeg`
@@ -108,9 +114,13 @@ const ProductBox = ({
 
   const addToCart = async () => {
     setLoading(true);
-
     try {
-      await addItem(product.id, quantity, !variant ? selections : variant);
+      await addItem(
+        product.id,
+        quantity,
+        !variant ? selections : variant,
+        !selectedOption ? null : selectedOption
+      );
       setAdded(true);
       if (added) {
         setButtonText("Added");
@@ -181,22 +191,35 @@ const ProductBox = ({
   }, []);
 
   const handleChange = (e) => {
+    const name = e.target.parentNode.textContent;
     const id = e.target.value;
+    const optionName = e.target.name;
     setId(e.target.value);
     const selectionToUpdate = selections.find((selection) => {
       return selection.id == e.target.value;
     });
     const selectedVariant = product.variants.find((variant) => {
-      if (variant.option_value_ids) {
-        return variant.option_value_ids[0] === id;
-      } else {
-        return variant.name === e.target.parentNode.textContent;
+      // if (variant.option_value_ids) {
+      //   return variant.option_value_ids[0] === id;
+      // } else {
+      //   return variant.name === e.target.parentNode.textContent;
+      // }
+      if (variant.name) {
+        return variant.name.includes(name);
       }
     });
 
     if (selections.length) {
+      const optionFound = product.options[0].values.find((val) => {
+        return val.name.includes(name);
+      });
       setSelections(selections);
       setVariant(selectedVariant);
+      setSelectedOption({
+        value: optionFound.name,
+        name: optionName,
+        id: optionFound.id,
+      });
       setSelectedVariant();
     }
   };
@@ -234,56 +257,13 @@ const ProductBox = ({
       )}
       <section className={styles.section}>
         <div className={styles.wrapper}>
-          <Carousel product={product} />
-          {/* <div>
-            <Image
-              alt={product.name}
-              src={currentImage}
-              width={475}
-              height={475}
-            />
-            {!imageArr.length ? (
-              <></>
-            ) : (
-              <div className={styles.listContainer}>
-                {imageArr.map((image) => {
-                  if (image.file) {
-                    return (
-                      <button
-                        onClick={handleClick}
-                        value={image.file.url}
-                        key={image.file.url}
-                      >
-                        <Image
-                          src={image.file.url}
-                          width={75}
-                          height={75}
-                          style={{ objectFit: "contain" }}
-                        />
-                      </button>
-                    );
-                  } else {
-                    if (image.images) {
-                      return (
-                        <button
-                          onClick={handleClick}
-                          value={image.images[0].file.url}
-                          key={image.images[0].file.url}
-                        >
-                          <Image
-                            src={image.images[0].file.url}
-                            width={75}
-                            height={75}
-                            style={{ objectFit: "contain" }}
-                          />
-                        </button>
-                      );
-                    }
-                  }
-                })}
-              </div>
-            )}
-          </div> */}
+          <Carousel
+            product={product}
+            setPixels={setPixels}
+            pixels={pixels}
+            setIsMobile={setIsMobile}
+            isMobile={isMobile}
+          />
           <div>
             <div
               className={styles.container}
@@ -312,6 +292,10 @@ const ProductBox = ({
                       handleChange={handleChange}
                       target={id}
                       key={index}
+                      setPixels={setPixels}
+                      pixels={pixels}
+                      isMobile={isMobile}
+                      setIsMobile={setIsMobile}
                     />
                   );
                 })}
