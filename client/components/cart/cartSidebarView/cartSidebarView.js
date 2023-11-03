@@ -13,11 +13,13 @@ import Link from "next/link";
 import searchByBoatStyles from "../../searchByBoat/searchByBoat.module.css";
 import LoadingDots from "@/components/ui/loadingDots/loadingDots";
 import utilStyles from "@/styles/utils.module.css";
+import { useUI } from "@/components/ui/context";
 
 const CartSidebarView = () => {
   const checkoutUrl = useCheckoutUrl();
   const cart = useCart();
   const subTotal = getPrice(cart?.sub_total, cart?.currency ?? "USD");
+  const { closeSidebar } = useUI();
   const total = getPrice(cart?.grand_total, cart?.currency ?? "USD");
   const shippingTotal = getPrice(cart?.shipment_total, cart?.currency ?? "USD");
   const taxTotal = getPrice(cart?.tax_total, cart?.currency ?? "USD");
@@ -92,7 +94,11 @@ const CartSidebarView = () => {
           </div>
           <div className={styles.wrapper}>
             {checkoutUrl && (
-              <Link href={checkoutUrl} className={styles.checkout}>
+              <Link
+                href={checkoutUrl}
+                className={styles.checkout}
+                onClick={closeSidebar}
+              >
                 Proceed to Checkout
               </Link>
             )}

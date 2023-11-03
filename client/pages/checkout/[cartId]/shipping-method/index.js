@@ -27,6 +27,7 @@ const Page = ({ id }) => {
   const cart = useCart();
   const [shippingRates, setShippingRates] = useState([]);
   const { swell } = useContext(Context);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +46,13 @@ const Page = ({ id }) => {
     fetchData();
   }, []);
 
-  if (!id || !cart || !shippingRates.length) {
+  useEffect(() => {
+    if (cart && id && shippingRates.length) {
+      setLoading(false);
+    }
+  }, [cart, id]);
+
+  if (loading) {
     return (
       <div
         style={{

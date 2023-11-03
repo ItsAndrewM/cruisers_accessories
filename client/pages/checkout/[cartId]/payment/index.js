@@ -6,6 +6,7 @@ import { useCart } from "@/lib/hooks/useCart";
 import CheckoutLayout from "../layout";
 import styles from "@/styles/checkout.module.css";
 import CartTotal from "@/components/checkout/cartTotal/cartTotal";
+import { useEffect, useState } from "react";
 
 export const getServerSideProps = async (context) => {
   const id = context.query.cartId;
@@ -18,9 +19,16 @@ export const getServerSideProps = async (context) => {
 };
 
 const Page = ({ id }) => {
+  const [loading, setLoading] = useState(true);
   const cart = useCart();
 
-  if (!id || !cart) {
+  useEffect(() => {
+    if (cart && id) {
+      setLoading(false);
+    }
+  }, [cart, id]);
+
+  if (loading) {
     return (
       <div
         style={{
