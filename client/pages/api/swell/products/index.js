@@ -13,15 +13,26 @@ export const getQueriedProducts = async (query) => {
     }
     return acc;
   }, {});
-  return await swell.get("/products", {
-    where: {
-      $and: [{ active: true }, data],
-    },
-    categories: [query["categories"]],
-    sort: "name asc",
-    limit: 24,
-    page: 1,
-  });
+  if (query["categories"]) {
+    return await swell.get("/products", {
+      where: {
+        $and: [{ active: true }, data],
+      },
+      categories: [query["categories"]],
+      sort: "name asc",
+      limit: 24,
+      page: 1,
+    });
+  } else {
+    return await swell.get("/products", {
+      where: {
+        $and: [{ active: true }, data],
+      },
+      sort: "name asc",
+      limit: 24,
+      page: 1,
+    });
+  }
 };
 
 const handler = async (req, res) => {

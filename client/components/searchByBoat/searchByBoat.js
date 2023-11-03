@@ -97,14 +97,24 @@ const SearchByBoat = () => {
               return data.category === category.name;
             });
         try {
-          router.push({
-            pathname: "/products",
-            query: {
-              "Boat Make": data.boat_make,
-              "Boat Model": data?.boat_model ? data.boat_model : "",
-              categories: find?.id ? find.id : "",
-            },
-          });
+          if (!find.id) {
+            router.push({
+              pathname: "/products",
+              query: {
+                "Boat Make": data.boat_make,
+                "Boat Model": data?.boat_model ? data.boat_model : "",
+              },
+            });
+          } else {
+            router.push({
+              pathname: "/products",
+              query: {
+                "Boat Make": data.boat_make,
+                "Boat Model": data?.boat_model ? data.boat_model : "",
+                categories: find.id,
+              },
+            });
+          }
         } catch (error) {
           console.log(error);
         }
