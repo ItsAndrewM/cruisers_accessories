@@ -195,20 +195,14 @@ const ProductBox = ({
     const id = e.target.value;
     const optionName = e.target.name;
     setId(e.target.value);
-    const selectionToUpdate = selections.find((selection) => {
-      return selection.id == e.target.value;
-    });
+    // const selectionToUpdate = selections.find((selection) => {
+    //   return selection.id == e.target.value;
+    // });
     const selectedVariant = product.variants.find((variant) => {
-      // if (variant.option_value_ids) {
-      //   return variant.option_value_ids[0] === id;
-      // } else {
-      //   return variant.name === e.target.parentNode.textContent;
-      // }
       if (variant.name) {
         return variant.name.includes(name);
       }
     });
-
     if (selections.length) {
       const optionFound = product.options[0].values.find((val) => {
         return val.name.includes(name);

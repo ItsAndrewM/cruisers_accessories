@@ -98,7 +98,13 @@ const CartItem = ({ item, currencyCode }) => {
       <div className={styles.information}>
         <div>
           <small>{item.product.name}</small>
-          {!item.variant ? <></> : <small>{item.variant.name}</small>}
+          {!item.variant && !item.options ? (
+            <></>
+          ) : (
+            <small>
+              - {item.variant ? item.variant.name : item.options[0].value}
+            </small>
+          )}
         </div>
 
         <div>
