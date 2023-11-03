@@ -20,6 +20,7 @@ const UserNav = ({ className, children, ...props }) => {
         justifyContent: "center",
         alignItems: "center",
         gap: "1em",
+        width: "150px",
       }}
     >
       <span style={{ color: "black" }} aria-label="Cart quantity">

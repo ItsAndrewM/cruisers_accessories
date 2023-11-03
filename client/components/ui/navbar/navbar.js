@@ -60,34 +60,19 @@ const Navbar = () => {
       />
       <MobileNavbar />
       <div className={styles.wrapper}>
-        <div className={styles.logo}>
-          <UserNav />
-          <Searchbar />
+        <div id={styles.navigation}>
+          <Nav
+            navigationLinks={navigationLinks}
+            setCurrent={setCurrent}
+            current={current}
+          />
         </div>
-        <div className={styles.logo}>
-          {/* <div className={styles.textWrapper}>
-            <span>
-              <Link
-                href={"tel:1-888-958-5638"}
-                className={featuredCatStyles.link}
-              >
-                1-888-958-5638
-              </Link>
-            </span>
-            <span>
-              <Link
-                href={"mailto:info@precisionsailloft.com"}
-                className={featuredCatStyles.link}
-              >
-                info@precisionsailloft.com
-              </Link>
-            </span>
-          </div> */}
+        <div className={styles.logo} id={styles.casLogo}>
           <div>
             {logo && logo.image && (
               <Link href="/" className={styles.casLogo}>
                 <Image
-                  width={!logo.width ? 200 : logo.width}
+                  width={!logo.width ? 400 : logo.width}
                   height={!logo.height ? 200 : logo.height}
                   src={logo.image}
                   alt={logo.text}
@@ -101,25 +86,11 @@ const Navbar = () => {
             )}
           </div>
         </div>
+        <div className={styles.logo} id={styles.search}>
+          <Searchbar />
+          <UserNav />
+        </div>
       </div>
-      {/* <nav className={styles.container}>
-        <ul className={styles.navlinks}>
-          {navigationLinks?.map((link, index) => (
-            <NavigationLinkItem
-              link={link}
-              index={index}
-              setCurrent={setCurrent}
-              current={current}
-              key={uuidv4()}
-            />
-          ))}
-        </ul>
-      </nav> */}
-      <Nav
-        navigationLinks={navigationLinks}
-        setCurrent={setCurrent}
-        current={current}
-      />
     </header>
   ) : (
     <></>
