@@ -12,11 +12,13 @@ import Quantity from "@/components/quantity/quantity";
 import swell from "swell-js";
 import swellConfig from "@/swell.config";
 import { getProduct } from "@/lib/operations-swell";
+import { useRouter } from "next/router";
 const CartItem = ({ item, currencyCode }) => {
   const updateItem = useUpdateItemQuantity();
   const removeItem = useRemoveItemFromCart();
   const [quantity, setQuantity] = useState(item.quantity);
   const [removing, setRemoving] = useState(false);
+  const router = useRouter();
   const updateQuantity = async (quantity) => {
     await updateItem(item.id, quantity);
   };
@@ -102,20 +104,23 @@ const CartItem = ({ item, currencyCode }) => {
             <></>
           ) : (
             <small>
-              - {item.variant ? item.variant.name : item.options[0].value}
+              {item.variant
+                ? ` ${item.variant.name}`
+                : ` - ${item.options[0].value}`}
             </small>
           )}
         </div>
-
-        <div>
-          <Quantity
-            quantity={quantity}
-            setQuantity={setQuantity}
-            handleRemove={handleRemove}
-            min={0}
-          />
-          <small>${item.price_total.toFixed(2)}</small>
-        </div>
+        {!router.asPath.includes("checkout") && (
+          <div>
+            <Quantity
+              quantity={quantity}
+              setQuantity={setQuantity}
+              handleRemove={handleRemove}
+              min={0}
+            />
+            <small>${item.price_total.toFixed(2)}</small>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -42,6 +42,7 @@
 
 .button {
   display: flex;
+  justify-content: center;
   flex-direction: column;
   gap: 0.25em;
   padding: 0;
