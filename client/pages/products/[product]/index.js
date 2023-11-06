@@ -118,14 +118,12 @@ const Page = ({ product, page, builderModel }) => {
           }}
         />
       )}
-      <Suspense fallback={<Loading />}>
-        <BuilderComponent
-          key={product.id}
-          model={builderModel}
-          data={{ product, theme }}
-          {...(page && { content: page })}
-        />
-      </Suspense>
+      <BuilderComponent
+        key={product.id}
+        model={builderModel}
+        data={{ product, theme }}
+        {...(page && { content: page })}
+      />
     </div>
   );
 };
