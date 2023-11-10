@@ -11,8 +11,7 @@ import { Router, useRouter } from "next/router";
 import { useContext, useState } from "react";
 
 const SCRIPT_PROVIDER_OPTIONS = {
-  clientId:
-    "ATT6zwIXEo7yOo7q4uZ4WZZpIE_bAT3IAsbqcM7dg0GDS88qcjRTMCGbWPvryT6cXoTPSMmA2qPoHKZw",
+  clientId: process.env.PAYPAL_CLIENT_ID,
   currency: "USD",
   intent: "capture",
 };

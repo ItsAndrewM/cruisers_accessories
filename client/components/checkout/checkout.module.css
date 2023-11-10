@@ -55,6 +55,7 @@
 .formField:not(:placeholder-shown) ~ .formLabel {
   position: absolute;
   top: 0 !important;
+  left: 10px;
   display: block;
   transition: 0.2s;
   font-size: 1rem !important;
