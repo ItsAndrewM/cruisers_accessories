@@ -11,11 +11,11 @@ import { Router, useRouter } from "next/router";
 import { useContext, useState } from "react";
 
 const SCRIPT_PROVIDER_OPTIONS = {
-  clientId: process.env.PAYPAL_CLIENT_ID,
+  clientId: `${process.env.PAYPAL_CLIENT_ID}`,
   currency: "USD",
   intent: "capture",
 };
-
+console.log(SCRIPT_PROVIDER_OPTIONS);
 const LoadScriptButton = () => {
   const [{ isResolved }, dispatch] = usePayPalScriptReducer();
 
