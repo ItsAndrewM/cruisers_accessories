@@ -16,7 +16,7 @@ import { NextSeo } from "next-seo";
 import { Suspense } from "react";
 import Loading from "./loading";
 // Replace with your Public API Key.
-builder.init("20988483cda74747b3e814c30d7ff832");
+builder.init(process.env.NEXT_PUBLIC_BUILDER_PUBLIC_KEY);
 
 export const getStaticPaths = async () => {
   const slugs = await getAllProductPaths();
