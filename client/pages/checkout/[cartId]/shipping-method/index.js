@@ -50,7 +50,7 @@ const Page = ({ id }) => {
     if (cart && id && shippingRates.length) {
       setLoading(false);
     }
-  }, [cart, id]);
+  }, [cart, id, shippingRates]);
 
   if (loading) {
     return (
