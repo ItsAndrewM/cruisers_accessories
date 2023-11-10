@@ -40,7 +40,7 @@ export const getCategoryByBoat = async (boatModel, boatMake) => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   const data = await fetch(
     process.env.NODE_ENV === "production"
-      ? `${process.env.SITE_URL}api/swell/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
+      ? `https://www.precisioncruisingaccessories.com/api/swell/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
       : `http://localhost:3000/api/swell/boat-categories?boat_model=${boatModel}&boat_make=${boatMake}}`
   );
   const jsonData = await data.json();
@@ -69,7 +69,7 @@ export const getFilteredProducts = async (query) => {
   // return products;
   const products = await fetch(
     process.env.NODE_ENV === "production"
-      ? `${process.env.SITE_URL}api/swell/products?${query}`
+      ? `https://www.precisioncruisingaccessories.com/api/swell/products?${query}`
       : `http://localhost:3000/api/swell/products?${query}`
   );
 

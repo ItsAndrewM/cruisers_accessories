@@ -16,7 +16,7 @@ const Order = ({ cart }) => {
     const fetchAccountData = async () => {
       const results = await fetch(
         process.env.NODE_ENV === "production"
-          ? `${process.env.SITE_URL}api/swell/order-details/${cart.account_id}`
+          ? `https://www.precisioncruisingaccessories.com/api/swell/account-details/${cart.account_id}`
           : `http://localhost:3000/api/swell/account-details/${cart.account_id}`
       );
       const data = await results.json();

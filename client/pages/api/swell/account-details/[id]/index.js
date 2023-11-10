@@ -14,7 +14,7 @@ export default async function Handler(req, res) {
   if (!req.query.id)
     return res.status(400).json({
       success: false,
-      message: "Please Provide amount, account ID and method of payment",
+      message: "Please Provide account ID",
     });
 
   try {

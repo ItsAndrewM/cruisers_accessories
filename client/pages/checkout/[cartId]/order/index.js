@@ -13,7 +13,7 @@ export const getServerSideProps = async (context) => {
   const id = context.query.cartId;
   const data = await fetch(
     process.env.NODE_ENV === "production"
-      ? `${process.env.SITE_URL}api/swell/order-details/${id}`
+      ? `https://www.precisioncruisingaccessories.com/api/swell/order-details/${id}`
       : `http://localhost:3000/api/swell/order-details/${id}`
   );
   const results = await data.json();
