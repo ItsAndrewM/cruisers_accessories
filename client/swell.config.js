@@ -1,13 +1,15 @@
-if (!"psl-test-store") {
-    throw new Error('Missing required environment variable SWELL_STORE_ID')
+if (!process.env.NEXT_PUBLIC_SWELL_STORE_ID) {
+  throw new Error(
+    "Missing required environment variable NEXT_PUBLIC_SWELL_STORE_ID"
+  );
 }
-if (!"pk_By1MsSwBSiM1eFL4HPR8IWkRpO9N9m2C") {
-    throw new Error(
-        'Missing required environment variable SWELL_PUBLIC_KEY'
-    )
+if (!process.env.NEXT_PUBLIC_SWELL_PUBLIC_KEY) {
+  throw new Error(
+    "Missing required environment variable NEXT_PUBLIC_SWELL_PUBLIC_KEY"
+  );
 }
 
 export default {
-    storeId: "psl-test-store",
-    publicKey: "pk_By1MsSwBSiM1eFL4HPR8IWkRpO9N9m2C",
-}
+  storeId: process.env.NEXT_PUBLIC_SWELL_STORE_ID,
+  publicKey: process.env.NEXT_PUBLIC_SWELL_PUBLIC_KEY,
+};

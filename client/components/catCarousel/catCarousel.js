@@ -17,7 +17,7 @@ const CatCarousel = () => {
     const getCategories = async () => {
       swell.init(
         process.env.NEXT_PUBLIC_SWELL_STORE_ID,
-        "pk_By1MsSwBSiM1eFL4HPR8IWkRpO9N9m2C"
+        process.env.NEXT_PUBLIC_SWELL_PUBLIC_KEY
       );
       const props = await swell.categories.list({
         limit: 100,

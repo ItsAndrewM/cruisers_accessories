@@ -18,7 +18,7 @@ import { Context } from "@/lib/context";
 export async function getServerSideProps(context) {
   const data = await fetch(
     process.env.NODE_ENV === "production"
-      ? `https://www.precisioncruisingaccessories.com/api/swell/shipping-method`
+      ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/swell/shipping-method`
       : "http://localhost:3000/api/swell/shipping-method"
   );
   const result = await data.json();

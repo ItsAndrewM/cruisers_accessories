@@ -30,7 +30,7 @@ const FeaturedCat = () => {
     const getCategories = async () => {
       const props = await fetch(
         process.env.NODE_ENV === "production"
-          ? `https://www.precisioncruisingaccessories.com/api/swell/category-parents`
+          ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/swell/category-parents`
           : "http://localhost:3000/api/swell/category-parents"
       );
       const data = await props.json();

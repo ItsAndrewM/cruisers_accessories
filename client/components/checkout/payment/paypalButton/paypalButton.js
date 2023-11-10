@@ -11,7 +11,7 @@ import { Router, useRouter } from "next/router";
 import { useContext, useState } from "react";
 
 const SCRIPT_PROVIDER_OPTIONS = {
-  clientId: `${process.env.PAYPAL_CLIENT_ID}`,
+  clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
   currency: "USD",
   intent: "capture",
 };
@@ -81,7 +81,7 @@ const PayPalButton = ({ cart, id }) => {
     try {
       let response = await fetch(
         process.env.NODE_ENV === "production"
-          ? `https://www.precisioncruisingaccessories.com/api/swell/create-order`
+          ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/swell/create-order`
           : "http://localhost:3000/api/swell/create-order",
         {
           method: "POST",
@@ -109,7 +109,7 @@ const PayPalButton = ({ cart, id }) => {
     try {
       let response = await fetch(
         process.env.NODE_ENV === "production"
-          ? `https://www.precisioncruisingaccessories.com/api/swell/create-payment`
+          ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/swell/create-payment`
           : "http://localhost:3000/api/swell/create-payment",
         {
           method: "POST",
@@ -139,7 +139,7 @@ const PayPalButton = ({ cart, id }) => {
     try {
       let response = await fetch(
         process.env.NODE_ENV === "production"
-          ? `https://www.precisioncruisingaccessories.com/api/paypal/create-order`
+          ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/paypal/create-order`
           : "http://localhost:3000/api/paypal/create-order",
         {
           method: "POST",
@@ -170,7 +170,7 @@ const PayPalButton = ({ cart, id }) => {
     try {
       let response = await axios.post(
         process.env.NODE_ENV === "production"
-          ? `https://www.precisioncruisingaccessories.com/api/paypal/capture-order`
+          ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/paypal/capture-order`
           : "http://localhost:3000/api/paypal/capture-order",
         {
           orderID,
