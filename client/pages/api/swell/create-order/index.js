@@ -1,5 +1,8 @@
 const swell = require("swell-node");
-swell.init("psl-test-store", "sk_drvQHk5KZy6w0BF55jyArsdojvJ3AxVy");
+swell.init(
+  process.env.NEXT_PUBLIC_SWELL_STORE_ID,
+  process.env.SWELL_SECRET_KEY
+);
 
 //https://github.com/orgs/swellstores/discussions/255#discussioncomment-5960624
 
