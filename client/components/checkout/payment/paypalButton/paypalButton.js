@@ -7,7 +7,7 @@ import {
   PayPalButtons,
 } from "@paypal/react-paypal-js";
 import axios from "axios";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 
 const SCRIPT_PROVIDER_OPTIONS = {
@@ -15,7 +15,6 @@ const SCRIPT_PROVIDER_OPTIONS = {
   currency: "USD",
   intent: "capture",
 };
-console.log(SCRIPT_PROVIDER_OPTIONS);
 const LoadScriptButton = () => {
   const [{ isResolved }, dispatch] = usePayPalScriptReducer();
 

@@ -38,7 +38,6 @@ export default async function Handler(req, res) {
         .status(500)
         .json({ success: false, message: "Some Error Occured at backend" });
     }
-    console.log(response);
     res.status(200).json({ success: true, data: response });
   } catch (err) {
     console.log("Err at Swell Create Payment: ", err);
