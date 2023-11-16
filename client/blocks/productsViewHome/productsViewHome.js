@@ -4,8 +4,8 @@ import styles from "../collectionViewHome/collectionViewHome.module.css";
 import { AllProductsGrid } from "../allProductsGrid/allProductsGrid";
 
 const ProductsViewHome = ({ allProductsGridOptions, renderSeo }) => {
-  const title = "CAS Products collections";
-  const description = "CAS Products collections";
+  const title = "PCA Products collections";
+  const description = "PCA Products collections";
 
   return (
     <div className={styles.wrapper}>

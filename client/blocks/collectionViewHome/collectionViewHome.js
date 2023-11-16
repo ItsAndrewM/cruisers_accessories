@@ -4,8 +4,8 @@ import styles from "./collectionViewHome.module.css";
 import { CollectionGrid } from "../collectionGrid/collectionGrid";
 
 const CollectionViewHome = ({ productGridOptions, renderSeo }) => {
-  const title = "CAS category collections";
-  const description = "CAS category collections";
+  const title = "PCA category collections";
+  const description = "PCA category collections";
 
   return (
     <>

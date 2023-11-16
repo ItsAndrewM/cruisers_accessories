@@ -230,7 +230,7 @@ const ProductBox = ({
     <>
       {renderSeo && (
         <NextSeo
-          title={`CAS | ${title}`}
+          title={`PCA | ${title}`}
           description={description}
           openGraph={{
             type: "website",
