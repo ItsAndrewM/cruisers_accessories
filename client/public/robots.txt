@@ -2,6 +2,5 @@
 User-agent: *
 Disallow: /test
 
-# Allow all crawlers
-User-agent: *
-Allow: /
+//Sitemap
+Sitemap: https://www.precisioncruisingaccessories.com/sitemap.xml
