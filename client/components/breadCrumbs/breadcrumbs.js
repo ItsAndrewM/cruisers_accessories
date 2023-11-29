@@ -3,28 +3,21 @@ import styles from "./breadcrumbs.module.css";
 import { useEffect, useState } from "react";
 import featuredCatStyles from "../featuredCat/featuredCat.module.css";
 import Link from "next/link";
+import {
+  getBreadCrumbs,
+  getParentOfCategory,
+  getProductWithCategory,
+} from "@/lib/operations-swell";
 
 const BreadCrumbs = () => {
   const router = useRouter();
   const [routes, setRoutes] = useState([]);
-  const [asLink, setAsLink] = useState([]);
   useEffect(() => {
-    let path = router.asPath
-      .split("/")
-      .map((route) => {
-        return route.replace(/-/g, " ");
-      })
-      .filter((path) => path !== "");
-    const found = path.find((val) => {
-      return val.includes("?");
-    });
-    if (found) {
-      path = path[path.indexOf(found)].split("?");
-      path.pop();
-    }
-    setRoutes(path);
-    const url = router.asPath.split("/").filter((path) => path !== "");
-    setAsLink(url);
+    const fetchBreadCrumbs = async () => {
+      const breadCrumb = await getBreadCrumbs(router);
+      setRoutes(breadCrumb);
+    };
+    fetchBreadCrumbs();
   }, []);
 
   return (
@@ -39,22 +32,18 @@ const BreadCrumbs = () => {
           <></>
         ) : (
           routes.map((path, index) => {
-            let url = "";
-            for (let i = 0; i <= index; i++) {
-              url += "/" + asLink[i];
-            }
             return (
-              <li key={path}>
+              <li key={path.path}>
                 <span key={index}>/ </span>
                 <Link
-                  href={url}
+                  href={path.link}
                   className={
-                    router.asPath === url
+                    router.asPath === path.link
                       ? styles.active
                       : featuredCatStyles.link
                   }
                 >
-                  {path}
+                  {path.path}
                 </Link>
               </li>
             );

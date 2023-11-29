@@ -9,6 +9,141 @@ import { useCart } from "./hooks/useCart";
 //     isDemo?: boolean
 // }
 
+export const getProductWithCategory = async (options) => {
+  await swell.init(swellConfig.storeId, swellConfig.publicKey);
+  if (Boolean(options.id) === Boolean(options.slug)) {
+    throw new Error("Either a slug or id is required");
+  }
+
+  const result = await swell.products.get(options.id || options.slug, {
+    expand: ["categories"],
+  });
+
+  return result ? normalizeProduct(result) : null;
+};
+
+export const getLinks = (path, router, item) => {
+  return path.map((val, index) => {
+    let link = "";
+    let name = val;
+    if (index === 0) {
+      link = `/${val}`;
+    }
+    if (item && item.categories && item.categories.length && index === 1) {
+      link = `/collection/${item.categories[0].slug}`;
+    }
+    if (item && Object.keys(item).includes("top_id") && index === 1) {
+      link = `/collection/${item.slug}`;
+    }
+    if (index === path.length - 1) {
+      link = router.asPath;
+    }
+    if (index === path.length - 1 && item) {
+      name = item.name;
+      link = router.asPath;
+    }
+    return { path: name, link: link };
+  });
+};
+
+export const getBreadCrumbs = async (router) => {
+  if (router.query.handle) {
+    const parent = await getParentOfCategory(router.query.handle);
+    if (parent && parent.slug !== router.query.handle) {
+      let path = router.asPath
+        .split("/")
+        .map((route) => {
+          return route.replace(/-/g, " ");
+        })
+        .filter((path) => path !== "");
+      const found = path.find((val) => {
+        return val.includes("?");
+      });
+      if (found) {
+        path = path[path.indexOf(found)].split("?");
+        path.pop();
+      }
+      const url = router.asPath.split("/").filter((path) => path !== "");
+
+      path.splice(1, 0, parent.name);
+      url.splice(1, 0, parent.slug);
+      const obj = getLinks(path, router, parent);
+      return obj;
+    } else {
+      let path = router.asPath
+        .split("/")
+        .map((route) => {
+          return route.replace(/-/g, " ");
+        })
+        .filter((path) => path !== "");
+      const found = path.find((val) => {
+        return val.includes("?");
+      });
+      if (found) {
+        path = path[path.indexOf(found)].split("?");
+        path.pop();
+      }
+      const url = router.asPath.split("/").filter((path) => path !== "");
+      return { url: url, path: path };
+    }
+  }
+  if (router.query.product) {
+    const product = await getProductWithCategory({
+      slug: router.query.product,
+    });
+    if (product.categories && product.categories.length) {
+      let path = router.asPath
+        .split("/")
+        .map((route) => {
+          return route.replace(/-/g, " ");
+        })
+        .filter((path) => path !== "");
+      const found = path.find((val) => {
+        return val.includes("?");
+      });
+      if (found) {
+        path = path[path.indexOf(found)].split("?");
+        path.pop();
+      }
+      path.splice(1, 0, product.categories[0].name);
+      const obj = getLinks(path, router, product);
+      return obj;
+    } else {
+      let path = router.asPath
+        .split("/")
+        .map((route) => {
+          return route.replace(/-/g, " ");
+        })
+        .filter((path) => path !== "");
+      const found = path.find((val) => {
+        return val.includes("?");
+      });
+      if (found) {
+        path = path[path.indexOf(found)].split("?");
+        path.pop();
+      }
+      const obj = getLinks(path, router);
+      return obj;
+    }
+  } else {
+    let path = router.asPath
+      .split("/")
+      .map((route) => {
+        return route.replace(/-/g, " ");
+      })
+      .filter((path) => path !== "");
+    const found = path.find((val) => {
+      return val.includes("?");
+    });
+    if (found) {
+      path = path[path.indexOf(found)].split("?");
+      path.pop();
+    }
+    const obj = getLinks(path, router);
+    return obj;
+  }
+};
+
 export const getShippingRates = async () => {
   await swell.init(swellConfig.storeId, swellConfig.publicKey);
   try {
@@ -275,6 +410,14 @@ export const getParentCategories = async () => {
   });
 
   return parents;
+};
+
+export const getParentOfCategory = async (category) => {
+  const parents = await getParentCategories();
+  const parent = parents.find((val) => {
+    return category.toLowerCase().includes(val.slug.toLowerCase());
+  });
+  return parent;
 };
 
 export const getChildCategories = async () => {
