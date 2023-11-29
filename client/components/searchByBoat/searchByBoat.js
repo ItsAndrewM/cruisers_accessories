@@ -13,6 +13,7 @@ const SearchByBoat = () => {
   const [categories, setCategories] = useState([]);
   const [make, setMake] = useState();
   const [model, setModel] = useState([]);
+  const [categoryText, setCategoryText] = useState("Select a model and make");
   const [category, setCategory] = useState();
   const [categoryIds, setCategoryIds] = useState();
   const [filtered, setFiltered] = useState([]);
@@ -97,6 +98,15 @@ const SearchByBoat = () => {
               return data.category === category.name;
             });
         try {
+          if (!find && Object.keys(data).length === 1) {
+            router.push({
+              pathname: "/products",
+              query: {
+                "Boat Make": data.boat_make,
+                // "Boat Model": data?.boat_model ? data.boat_model : "",
+              },
+            });
+          }
           if (!find) {
             router.push({
               pathname: "/products",
@@ -125,10 +135,25 @@ const SearchByBoat = () => {
   };
 
   const handleChange = (e) => {
-    if (make && model.toLowerCase().includes(make.toLowerCase())) {
+    // console.log(e.target[e.target.selectedIndex]);
+
+    if (make && model.length) {
       fetchCategories();
     }
   };
+
+  useEffect(() => {
+    if (make && !model.length) {
+      console.log("Select a Boat Model");
+      setCategoryText("Select a Boat Model");
+    }
+    if (make && model.length && !filteredCategories.length) {
+      setCategoryText("Loading...");
+    }
+    if (filteredCategories.length) {
+      setCategoryText("Select a product category");
+    }
+  }, [make, model, filteredCategories]);
 
   const getError = (field) => errors[field];
 
@@ -168,7 +193,7 @@ const SearchByBoat = () => {
             values={!filteredCategories.length ? [] : filteredCategories}
             label={"Product Categories"}
             setState={setCategory}
-            defaultVal={"select a category"}
+            defaultVal={categoryText}
             getError={getError}
             name={"category"}
             required={false}
