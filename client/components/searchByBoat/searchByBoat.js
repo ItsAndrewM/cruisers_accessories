@@ -97,7 +97,7 @@ const SearchByBoat = () => {
               return data.category === category.name;
             });
         try {
-          if (!find.id) {
+          if (!find) {
             router.push({
               pathname: "/products",
               query: {
