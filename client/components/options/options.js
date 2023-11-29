@@ -1,4 +1,5 @@
 import styles from "@/blocks/productView/productView.module.css";
+import Option from "./option/option";
 import { Fragment } from "react";
 
 const Options = ({
@@ -8,6 +9,8 @@ const Options = ({
   pixels,
   setPixels,
   isMobile,
+  setVariant,
+  variants,
 }) => {
   return (
     <Fragment key={option.name}>
@@ -16,32 +19,17 @@ const Options = ({
         <ul className={styles.options}>
           {option.values.map((value, index) => {
             return (
-              <li
+              <Option
                 key={value.id}
-                onClick={() =>
-                  setPixels(
-                    (option.values.length - index) * (isMobile ? 325 : 575)
-                  )
-                }
-              >
-                <label
-                  style={{
-                    border:
-                      pixels ===
-                      (option.values.length - index) * (isMobile ? 325 : 575)
-                        ? "2px solid var(--casBlue)"
-                        : "2px solid var(--cream)",
-                  }}
-                >
-                  {value.name}
-                  <input
-                    type="radio"
-                    value={value.id}
-                    name={option.name}
-                    className={styles.option}
-                  />
-                </label>
-              </li>
+                option={option}
+                value={value}
+                index={index}
+                pixels={pixels}
+                setPixels={setPixels}
+                isMobile={isMobile}
+                setVariant={setVariant}
+                variants={variants}
+              />
             );
           })}
         </ul>

@@ -110,8 +110,6 @@ const ProductBox = ({
     }
   }
 
-  // console.log(selections);
-
   const addToCart = async () => {
     setLoading(true);
     try {
@@ -195,12 +193,11 @@ const ProductBox = ({
     const id = e.target.value;
     const optionName = e.target.name;
     setId(e.target.value);
-    // const selectionToUpdate = selections.find((selection) => {
-    //   return selection.id == e.target.value;
-    // });
+
     const selectedVariant = product.variants.find((variant) => {
       if (variant.name) {
-        return variant.name.includes(name);
+        const val = variant.name.replace(" -", "");
+        return val.includes(name);
       }
     });
     if (selections.length) {
@@ -216,10 +213,6 @@ const ProductBox = ({
       });
       setSelectedVariant();
     }
-  };
-
-  const handleClick = (e) => {
-    setCurrentImage(e.currentTarget.value);
   };
 
   if (!product) {
@@ -290,6 +283,8 @@ const ProductBox = ({
                       pixels={pixels}
                       isMobile={isMobile}
                       setIsMobile={setIsMobile}
+                      setVariant={setVariant}
+                      variants={product.variants}
                     />
                   );
                 })}

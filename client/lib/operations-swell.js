@@ -26,6 +26,7 @@ export const getLinks = (path, router, item) => {
   return path.map((val, index) => {
     let link = "";
     let name = val;
+    console.log(item);
     if (index === 0) {
       link = `/${val}`;
     }
@@ -38,7 +39,11 @@ export const getLinks = (path, router, item) => {
     if (index === path.length - 1) {
       link = router.asPath;
     }
-    if (index === path.length - 1 && item) {
+    if (
+      index === path.length - 1 &&
+      item &&
+      !Object.keys(item).includes("top_id")
+    ) {
       name = item.name;
       link = router.asPath;
     }
@@ -208,7 +213,6 @@ export const getFilteredProducts = async (query) => {
       : `http://localhost:3000/api/swell/products?${query}`
   );
 
-  // );
   return products;
 };
 
@@ -260,27 +264,8 @@ export const getAllProducts = async (
     limit: limit,
     page: offset,
   });
-  // console.log(productResults);
 
-  // if (productResults.count > 24) {
-  //   let results = productResults.results;
-  //   const pages = [];
-  //   for (let i = 1; i <= productResults.page_count; i++) {
-  //     pages.push(i);
-  //   }
-  //   for (const page in pages) {
-  //     if (page !== 1) {
-  //       const nextPage = await swell.products.list({
-  //         limit: limit,
-  //         page: Number(page),
-  //       });
-  //       results = [...results].concat(nextPage.results);
-  //     }
-  //   }
-  //   return results ? normalizeProducts(results) : [];
-  // } else {
   return productResults ? normalizeProducts(productResults?.results) : [];
-  // }
 };
 
 export const getAllProductPaths = async () => {
@@ -290,7 +275,6 @@ export const getAllProductPaths = async () => {
     limit: 24,
     page: 1,
   });
-  // console.log(productResults);
 
   if (productResults.count > 24) {
     let results = productResults.results;

@@ -100,7 +100,6 @@ const Carousel = ({ product, pixels, setPixels, setIsMobile, isMobile }) => {
         <ul className={styles.buttons}>
           {pics.length > 1 &&
             pics.map((product, index) => {
-              // console.log(product);
               return (
                 <li key={product.id}>
                   <button
