@@ -1,11 +1,7 @@
-import CustomerInfo from "@/components/checkout/customerInfo/customerInfo";
 import Shipping from "@/components/checkout/shipping/shipping";
 import { useCart } from "@/lib/hooks/useCart";
-import { useRouter } from "next/router";
-import { useThemeUI } from "theme-ui";
 import CheckoutLayout from "../layout";
 import Layout from "@/components/layout/layout";
-import { BuilderComponent } from "@builder.io/react";
 import { getLayoutProps } from "@/lib/get-layout-props";
 import CartTotal from "@/components/checkout/cartTotal/cartTotal";
 import styles from "@/styles/checkout.module.css";

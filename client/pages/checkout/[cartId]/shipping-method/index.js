@@ -1,18 +1,12 @@
 import Layout from "@/components/layout/layout";
-import { BuilderComponent } from "@builder.io/react";
-import { useRouter } from "next/router";
-import { useThemeUI } from "theme-ui";
-import { getShippingRates } from "@/lib/operations-swell";
 import { useCart } from "@/lib/hooks/useCart";
 import { useContext, useEffect, useState } from "react";
 import ShippingMethod from "@/components/checkout/shippingMethod/shippingMethod";
-import CheckBreadcrumbs from "@/components/checkout/checkBreadcrumbs/checkBreadcrumbs";
 import { getLayoutProps } from "@/lib/get-layout-props";
 import CheckoutLayout from "../layout";
 import styles from "@/styles/checkout.module.css";
 import CartTotal from "@/components/checkout/cartTotal/cartTotal";
 import { Context } from "@/lib/context";
-import { useShippingRates } from "@/lib/hooks/useShippingRates";
 
 export const getServerSideProps = async (context) => {
   const id = context.query.cartId;

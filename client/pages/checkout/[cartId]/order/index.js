@@ -2,8 +2,6 @@ import Layout from "@/components/layout/layout";
 import CheckoutLayout from "../layout";
 import { getLayoutProps } from "@/lib/get-layout-props";
 import { useCart } from "@/lib/hooks/useCart";
-import swellConfig from "@/swell.config";
-import swell from "swell-js";
 import { useEffect, useState } from "react";
 import CartTotal from "@/components/checkout/cartTotal/cartTotal";
 import styles from "@/styles/checkout.module.css";

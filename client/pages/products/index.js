@@ -3,13 +3,10 @@ import Layout from "../../components/layout/layout";
 import { BuilderComponent, Builder, builder } from "@builder.io/react";
 import { resolveSwellContent } from "../../lib/resolve-swell-content";
 import builderConfig from "../../builder.config";
-import DefaultErrorPage from "next/error";
-import Head from "next/head";
 import { useThemeUI } from "@theme-ui/core";
 import { getAllProducts } from "../../lib/operations-swell";
 import { getLayoutProps } from "../../lib/get-layout-props";
 import { NextSeo } from "next-seo";
-import ProductsViewHome from "@/blocks/productsViewHome/productsViewHome";
 import { Suspense } from "react";
 import Loading from "./loading";
 

@@ -1,3 +1,4 @@
+import Layout from "@/components/layout/layout";
 import { getLayoutProps } from "@/lib/get-layout-props";
 
 export async function getServerSideProps(context) {

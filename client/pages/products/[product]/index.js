@@ -12,8 +12,6 @@ import { getLayoutProps } from "../../../lib/get-layout-props";
 import { useThemeUI } from "theme-ui";
 import builderConfig from "@/builder.config";
 import { NextSeo } from "next-seo";
-
-import { Suspense } from "react";
 import Loading from "./loading";
 // Replace with your Public API Key.
 builder.init(process.env.NEXT_PUBLIC_BUILDER_PUBLIC_KEY);

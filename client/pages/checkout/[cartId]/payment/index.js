@@ -1,4 +1,3 @@
-import CheckBreadcrumbs from "@/components/checkout/checkBreadcrumbs/checkBreadcrumbs";
 import Payment from "@/components/checkout/payment/payment";
 import Layout from "@/components/layout/layout";
 import { getLayoutProps } from "@/lib/get-layout-props";

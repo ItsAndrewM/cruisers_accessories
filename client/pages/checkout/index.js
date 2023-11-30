@@ -1,7 +1,6 @@
 import Layout from "@/components/layout/layout";
 import swell from "swell-js";
 import swellConfig from "@/swell.config";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { BuilderComponent } from "@builder.io/react";
 import { useThemeUI } from "theme-ui";
 import { useCart } from "@/lib/hooks/useCart";
