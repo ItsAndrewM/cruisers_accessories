@@ -74,27 +74,6 @@ const Page = ({ product, page, builderModel }) => {
   }
   const { title, description, image } = page.data || {};
 
-  //   return (
-  //     <>
-  //       <Head>
-  //         <meta name="robots" content="noindex" />
-  //         <meta name="title"></meta>
-  //       </Head>
-  //       <DefaultErrorPage statusCode={404} />
-  //     </>
-  //   );
-  // }
-
-  // router.isFallback ? (
-  //   // TODO (BC) Add Skeleton Views
-  //   <>
-  //     <div style={{ marginTop: "20px" }}>
-  //       <BreadCrumbs />
-  //     </div>
-  //     <Loading />
-  //   </>
-  // ) : (
-
   return (
     <div>
       {title && (

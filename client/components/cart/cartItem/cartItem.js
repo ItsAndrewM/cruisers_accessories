@@ -75,7 +75,7 @@ const CartItem = ({ item, currencyCode }) => {
           {!item.variant ? (
             <Image
               src={
-                !item.product.images.length
+                !item.product.images
                   ? "https://placehold.co/90/jpeg"
                   : item.product.images[0].file?.url
               }

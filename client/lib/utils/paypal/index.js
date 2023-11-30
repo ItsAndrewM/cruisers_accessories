@@ -6,7 +6,6 @@ const configureEnvironment = function () {
   return process.env.NODE_ENV === "production"
     ? new checkoutNodeJssdk.core.LiveEnvironment(clientId, clientSecret)
     : new checkoutNodeJssdk.core.SandboxEnvironment(clientId, clientSecret);
-  // return new checkoutNodeJssdk.core.SandboxEnvironment(clientId, clientSecret);
 };
 
 const client = function () {

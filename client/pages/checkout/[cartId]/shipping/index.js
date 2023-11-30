@@ -58,11 +58,6 @@ const Page = ({ id }) => {
         <div className={styles.column}>
           <CartTotal cart={cart} />
         </div>
-        // cart.items.map((item) => {
-        //   console.log(item);
-
-        //   return <p key={item.id}>{item.product.name}</p>;
-        // })
       )}
     </CheckoutLayout>
   );

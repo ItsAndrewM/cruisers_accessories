@@ -2,23 +2,20 @@ import { useContext } from "react";
 import { Context } from "../context";
 
 export const useAddItemToCart = () => {
-  const { setCart, cart } = useContext(Context);
+  const { swell, setCart } = useContext(Context);
   const addItemToCart = async (product_id, quantity, variant_id, options) => {
     try {
-      const newCart = await fetch(
-        "http://localhost:3000/api/wc/store/cart/add-item",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: product_id,
-            quantity: quantity,
-            token: cart.nonce,
-          }),
-        }
-      );
+      // const { setCart } = useContext(Context);
+      // try {
+      //   if (swell) {
+      const newCart = await swell.cart.addItem({
+        product_id,
+        quantity,
+        variant_id: variant_id.id,
+        options: !options
+          ? null
+          : [{ name: options.name, value: options.value }],
+      });
       setCart(newCart);
       return newCart;
     } catch (err) {

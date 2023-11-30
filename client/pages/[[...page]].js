@@ -7,7 +7,6 @@ import DefaultErrorPage from "next/error";
 import Head from "next/head";
 import { resolveSwellContent } from "../lib/resolve-swell-content";
 import "../blocks/productGrid/productGrid.builder";
-// import "../blocks/collectionView/collectionView.builder"
 import { useThemeUI } from "@theme-ui/core";
 import Link from "../components/ui/link/link";
 import { getLayoutProps } from "../lib/get-layout-props";

@@ -17,7 +17,6 @@ const builderModel = "all-products";
 builder.init(builderConfig.apiKey);
 
 export async function getStaticProps() {
-  // export async function getServerSideProps(context) {
   const products = await getAllProducts(builderConfig);
   const page = await resolveSwellContent(builderModel);
   return {
@@ -32,10 +31,7 @@ export async function getStaticProps() {
 export default function Page({ products, page }) {
   const router = useRouter();
   const { theme } = useThemeUI();
-  // if (router.isFallback || !page || !products) {
-  //   return <Loading />;
-  // }
-  // This includes setting the noindex header because static files always return a status 200 but the rendered not found page page should obviously not be indexed
+
   const { title, description, image } = page.data || {};
   Builder.isStatic = true;
   return (

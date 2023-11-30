@@ -14,7 +14,6 @@ export const getShippingMethods = async () => {
 const handler = async (req, res) => {
   try {
     const data = await getShippingMethods();
-    // console.log(data.results.services);
     const shipments = data.results.find((value) =>
       value.id.includes("shipments")
     );

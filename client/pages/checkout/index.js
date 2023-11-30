@@ -29,11 +29,7 @@ const Page = ({ name }) => {
 
   return (
     <>
-      <BuilderComponent
-        key={name}
-        // model={builderModel}
-        data={{ theme }}
-      />
+      <BuilderComponent key={name} data={{ theme }} />
       {!cart ? (
         <></>
       ) : (
